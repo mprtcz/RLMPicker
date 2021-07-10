@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Multiselect from "multiselect-react-dropdown";
 
 const MultiselectFilter = (props) => {
-  const { data, filterType } = props;
+  const { data, filterType, onSelect } = props;
   const [selected, setSelected] = useState([]);
   console.log("data in select", data);
 
@@ -16,11 +16,14 @@ const MultiselectFilter = (props) => {
       };
     });
 
-  const onSelect = (e) => {
-    console.log(e);
+  const onSelectDone = (selectedItems) => {
+    selectedItems.map((item) => item.name);
+    onSelect(selectedItems.map((item) => item.name));
   };
-  const onRemove = (e) => {
-    console.log(e);
+
+  const onRemove = (selectedItems) => {
+    selectedItems.map((item) => item.name);
+    onSelect(selectedItems.map((item) => item.name));
   };
 
   return (
@@ -28,7 +31,7 @@ const MultiselectFilter = (props) => {
       <Multiselect
         options={options} // Options to display in the dropdown
         selectedValues={selected} // Preselected value to persist in dropdown
-        onSelect={(e) => onSelect(e)} // Function will trigger on select event
+        onSelect={(e) => onSelectDone(e)} // Function will trigger on select event
         onRemove={(e) => onRemove(e)} // Function will trigger on remove event
         displayValue="name" // Property name to display in the dropdown options
         showCheckbox

@@ -6,6 +6,10 @@ const Page = () => {
   const episodesData = data;
   console.log("data", data);
 
+  const handleFiltering = (e) => {
+    console.log("e", e);
+  };
+
   return (
     <div className="mainDiv">
       <div className="header">
@@ -14,8 +18,16 @@ const Page = () => {
       <div className="content">
         <div className="results">results go here</div>
         <div className="fitlers">
-          <MultiselectFilter data={episodesData} filterType="titles" />
-          <MultiselectFilter data={episodesData} filterType="members" />
+          <MultiselectFilter
+            data={episodesData}
+            filterType="titles"
+            onSelect={(e) => handleFiltering(e)}
+          />
+          <MultiselectFilter
+            data={episodesData}
+            filterType="members"
+            onSelect={(e) => handleFiltering(e)}
+          />
         </div>
       </div>
     </div>
