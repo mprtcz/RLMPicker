@@ -36,6 +36,7 @@ const Page = () => {
       <div className="header">
         <h2>Hello, sir.</h2>
       </div>
+
       <div className="content">
         <div className="results">
           results go here

@@ -15,3 +15,18 @@
 .results {
   width: 60%;
 }
+
+.header {
+  display: flex;
+  flex-direction: column;
+}
+
+.datum-creator {
+  display: flex;
+  flex-direction: column;
+}
+
+.datum-label {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
