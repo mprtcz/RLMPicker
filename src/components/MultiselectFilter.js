@@ -15,7 +15,6 @@ const MultiselectFilter = (props) => {
         name: datum,
       };
     });
-  console.log("options in select", options);
 
   const onSelect = (e) => {
     console.log(e);
