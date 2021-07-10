@@ -1,10 +1,13 @@
 import { data } from "data/data";
-import React from "react";
+import React, { useState } from "react";
 import MultiselectFilter from "./MultiselectFilter";
+import Results from "./Results";
 
 const Page = () => {
   const episodesData = data;
   console.log("data", data);
+
+  const [results, setResults] = useState([]);
 
   const handleFiltering = (e) => {
     console.log("e", e);
@@ -16,7 +19,10 @@ const Page = () => {
         <h2>Hello, sir.</h2>
       </div>
       <div className="content">
-        <div className="results">results go here</div>
+        <div className="results">
+          results go here
+          <Results data={results} />
+        </div>
         <div className="fitlers">
           <MultiselectFilter
             data={episodesData}

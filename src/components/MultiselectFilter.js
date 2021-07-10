@@ -17,13 +17,20 @@ const MultiselectFilter = (props) => {
     });
 
   const onSelectDone = (selectedItems) => {
-    selectedItems.map((item) => item.name);
-    onSelect(selectedItems.map((item) => item.name));
+    processSelection(selectedItems);
   };
 
   const onRemove = (selectedItems) => {
-    selectedItems.map((item) => item.name);
-    onSelect(selectedItems.map((item) => item.name));
+    processSelection(selectedItems);
+  };
+
+  const processSelection = (selectedItems) => {
+    const selectedItemsStrings = selectedItems.map((item) => item.name);
+
+    onSelect({
+      type: filterType,
+      items: selectedItemsStrings,
+    });
   };
 
   return (
