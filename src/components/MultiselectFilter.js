@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Multiselect from "multiselect-react-dropdown";
+import { searchData } from "functions/searchData";
 
 const MultiselectFilter = (props) => {
   const { data, filterType, onSelect } = props;
@@ -21,6 +22,10 @@ const MultiselectFilter = (props) => {
 
   const onRemove = (selectedItems) => {
     processSelection(selectedItems);
+  };
+
+  const onSearch = (searchTerm) => {
+    console.log("searched for ", searchTerm);
   };
 
   const processSelection = (selectedItems) => {

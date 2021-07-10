@@ -3,6 +3,7 @@ import { searchData } from "functions/searchData";
 import React, { useEffect, useState } from "react";
 import MultiselectFilter from "./MultiselectFilter";
 import Results from "./Results";
+import ItemSelect from "./Select";
 
 const Page = () => {
   const episodesData = data;
@@ -48,6 +49,7 @@ const Page = () => {
             filterType="titles"
             onSelect={(e) => handleFiltering(e)}
           />
+          <ItemSelect items={episodesData} onSelect={(e) => setResults(e)} />
           <MultiselectFilter
             data={episodesData}
             filterType="members"
