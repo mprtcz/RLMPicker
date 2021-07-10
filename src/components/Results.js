@@ -5,12 +5,12 @@ const Results = (props) => {
 
   return (
     <div>
-      {results &&
-        results.map((result) => {
-          <div className="result">
-            <div className="title">{result.title}</div>
-          </div>;
-        })}
+      Content:
+      {results.map((datum, i) => (
+        <div className="result" key={i}>
+          <div className="title">{datum.episodeName}</div>
+        </div>
+      ))}
     </div>
   );
 };

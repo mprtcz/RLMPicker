@@ -1,16 +1,34 @@
 import { data } from "data/data";
-import React, { useState } from "react";
+import { searchData } from "functions/searchData";
+import React, { useEffect, useState } from "react";
 import MultiselectFilter from "./MultiselectFilter";
 import Results from "./Results";
 
 const Page = () => {
   const episodesData = data;
-  console.log("data", data);
 
   const [results, setResults] = useState([]);
+  const [filters, setFilters] = useState([]);
 
-  const handleFiltering = (e) => {
-    console.log("e", e);
+  useEffect(() => {
+    console.log("results", results);
+  }, [results]);
+
+  useEffect(
+    (filter) => {
+      const searchResults = searchData(episodesData, filters);
+      setResults(searchResults);
+    },
+    [filters]
+  );
+
+  const handleFiltering = (filter) => {
+    const filtersWithCurrentRemoved = filters.filter(
+      (f) => f.type !== filter.type
+    );
+    filtersWithCurrentRemoved.push(filter);
+
+    setFilters(filtersWithCurrentRemoved);
   };
 
   return (
@@ -21,7 +39,7 @@ const Page = () => {
       <div className="content">
         <div className="results">
           results go here
-          <Results data={results} />
+          <Results results={results} />
         </div>
         <div className="fitlers">
           <MultiselectFilter

@@ -4,7 +4,6 @@ import Multiselect from "multiselect-react-dropdown";
 const MultiselectFilter = (props) => {
   const { data, filterType, onSelect } = props;
   const [selected, setSelected] = useState([]);
-  console.log("data in select", data);
 
   const options = (data || [])
     .flatMap((datum) => datum[filterType])
