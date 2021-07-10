@@ -4,9 +4,9 @@ export const data = [
   {
     id: "1",
 
-    episodeName: "",
-    url: "",
-    members: [],
+    episodeName: "Best of the Worst Episode 1",
+    url: "https://www.youtube.com/watch?v=q6TY-nBkxqY",
+    members: [Members.JAY, Members.JESS, Members.JOSH, Members.MIKE],
     guests: [],
     subtitle: "Action Movies",
     releaseDate: 1358463600000,
@@ -36,9 +36,10 @@ export const data = [
   {
     id: "2",
 
-    episodeName: "",
-    url: "",
-    members: [],
+    episodeName:
+      "Best of the Worst: The New Gladiators, Exterminator 2, and Aftermath",
+    url: "https://www.youtube.com/watch?v=cnDJa_HZVP0",
+    members: [Members.JAY, Members.RICH, Members.JOSH, Members.JACK],
     guests: [],
     subtitle: "Future Dystopian Movies",
     releaseDate: 1359673200000,
@@ -69,9 +70,10 @@ export const data = [
   {
     id: "3",
 
-    episodeName: "",
-    url: "",
-    members: [],
+    episodeName:
+      "Best of the Worst Episode 3: The Killer Eye, They Bite, and Xtro",
+    url: "https://www.youtube.com/watch?v=vcBkm1nOI5k",
+    members: [Members.JESS, Members.MIKE, Members.JOSH, Members.JACK],
     guests: [],
     subtitle: "Three Bewb-filled Creature Features",
     releaseDate: 1360710000000,
@@ -100,9 +102,10 @@ export const data = [
   },
   {
     id: "4",
-    episodeName: "",
-    url: "",
-    members: [],
+    episodeName:
+      "Best of the Worst: Deadly Prey, Hard Ticket to Hawaii, and Miami Connection",
+    url: "https://www.youtube.com/watch?v=mbWTthXfdBc",
+    members: [Members.RICH, Members.JAY, Members.JOSH, Members.JACK],
     guests: [],
     subtitle: "Warm Climes",
     releaseDate: 1364079600000,
@@ -133,9 +136,9 @@ export const data = [
   {
     id: "5",
 
-    episodeName: "",
-    url: "",
-    members: [],
+    episodeName: "Best of the Worst: The Wheel of the Worst",
+    url: "https://www.youtube.com/watch?v=JkWk_chVcJk",
+    members: [Members.JESS, Members.MIKE, Members.RICH, Members.JAY],
     guests: [],
     subtitle: "The Wheel of the Worst 1",
     releaseDate: 1367272800000,
@@ -165,13 +168,13 @@ export const data = [
   },
   {
     id: "6",
-
-    episodeName: "",
-    url: "",
-    members: [],
-    guests: ["May 16", "2013"],
+    episodeName:
+      "Best of the Worst: The Vindicator, Cyber Tracker, Robot Jox, and R.O.T.O.R.",
+    url: "https://www.youtube.com/watch?v=s76vZATqLrE",
+    members: [Members.JACK, Members.RICH, Members.JOSH, Members.JAY],
+    guests: [],
     subtitle: "Robot Movies",
-    releaseDate: null,
+    releaseDate: 1368662400000,
     editors: "Jay Bauman",
     description:
       "An attempt to watch some bad robot movies nearly ends in failure.",
@@ -204,10 +207,10 @@ export const data = [
   },
   {
     id: "7",
-
-    episodeName: "",
-    url: "",
-    members: [],
+    episodeName:
+      "Best of the Worst: Playing Dangerous, Shapeshifter, and Thunderpants",
+    url: "https://www.youtube.com/watch?v=WGI-BKctOK8",
+    members: [Members.MIKE, Members.JESS, Members.RICH, Members.JAY],
     guests: [],
     subtitle: "Stupid Kids Movies",
     releaseDate: 1369692000000,
@@ -237,10 +240,9 @@ export const data = [
   },
   {
     id: "8",
-
-    episodeName: "",
-    url: "",
-    members: [],
+    episodeName: "Best of the Worst: Wheel of the Worst #2",
+    url: "https://www.youtube.com/watch?v=7Kf00CUxMto",
+    members: [Members.MIKE, Members.RICH, Members.JOSH, Members.JACK],
     guests: [],
     subtitle: "Wheel of the Worst 2",
     releaseDate: 1375912800000,
@@ -270,10 +272,10 @@ export const data = [
   },
   {
     id: "9",
-
-    episodeName: "",
-    url: "",
-    members: [],
+    episodeName:
+      "Best of the Worst: V-World Matrix, The Amazing Bulk, and ????",
+    url: "https://www.youtube.com/watch?v=o4HOlhADlZo",
+    members: [Members.MIKE, Members.JAY, Members.RICH],
     guests: ["Colin Cunningham"],
     subtitle: "Visual Effects Driven Turds",
     releaseDate: 1377640800000,
@@ -303,10 +305,10 @@ export const data = [
   },
   {
     id: "10",
-
-    episodeName: "",
-    url: "",
-    members: [],
+    episodeName:
+      "Best of the Worst: Bloody Birthday, Crazy Fat Ethel II, and Psycho From Texas",
+    url: "https://www.youtube.com/watch?v=x94zXO02VPU",
+    members: [Members.JAY, Members.MIKE, Members.JACK],
     guests: ["Gillian Bellinger"],
     subtitle: "Slasher Flicks",
     releaseDate: 1379455200000,
@@ -336,10 +338,10 @@ export const data = [
   },
   {
     id: "11",
-
-    episodeName: "",
-    url: "",
-    members: [],
+    episodeName:
+      "Best of the Worst: Night Beast, Trick or Treat, and Skull Forest",
+    url: "https://www.youtube.com/watch?v=J7eSdXLmj9A",
+    members: [Members.JACK, Members.MIKE, Members.RICH, Members.JAY],
     guests: [],
     subtitle: "Halloween Episode",
     releaseDate: 1383174000000,
@@ -369,10 +371,9 @@ export const data = [
   },
   {
     id: "12",
-
-    episodeName: "",
-    url: "",
-    members: [],
+    episodeName: "Best of the Worst: Wheel of the Worst #3",
+    url: "https://www.youtube.com/watch?v=5fkjMstO-t0",
+    members: [Members.JAY, Members.RICH, Members.MIKE, Members.JESS],
     guests: [],
     subtitle: "Wheel of the Worst 3",
     releaseDate: 1385074800000,
@@ -402,13 +403,13 @@ export const data = [
   },
   {
     id: "13",
-
-    episodeName: "",
-    url: "",
-    members: [],
-    guests: ["November 30", "2013"],
+    episodeName:
+      "Best of the Worst: Playing Dangerous 2, The Exterminator, and The Deadliest Prey",
+    url: "youtube.com/watch?v=kdGfGjusufo",
+    members: [Members.JACK, Members.JAY, Members.RICH, Members.JOSH],
+    guests: [],
     subtitle: "Sequel Episode",
-    releaseDate: null,
+    releaseDate: 1385769600000,
     editors: "Jay Bauman",
     description:
       "To get a sense of the complete story, the gang watches the sequels to previously reviewed movies.",
@@ -435,10 +436,10 @@ export const data = [
   },
   {
     id: "14",
-
-    episodeName: "",
-    url: "",
-    members: [],
+    episodeName:
+      "Best of the Worst: Elves, Santa Claus, and Christmas Vacation 2",
+    url: "https://www.youtube.com/watch?v=3plH6M1LadY",
+    members: [Members.JESS, Members.RICH, Members.JACK, Members.MIKE],
     guests: [],
     subtitle: "Christmas Special",
     releaseDate: 1387753200000,
@@ -469,9 +470,10 @@ export const data = [
   {
     id: "15",
 
-    episodeName: "",
-    url: "",
-    members: [],
+    episodeName:
+      "Best of the Worst: Robo-C.H.I.C., Alien Seed, and Yor: The Hunter from the Future",
+    url: "https://www.youtube.com/watch?v=Hb_VwaOT4QQ",
+    members: [Members.JAY, Members.MIKE, Members.RICH, Members.JOSH],
     guests: [],
     subtitle: "Otherworldly Sci-fi Movies",
     releaseDate: 1390950000000,
@@ -502,12 +504,12 @@ export const data = [
   {
     id: "16",
 
-    episodeName: "",
-    url: "",
-    members: [],
-    guests: ["February 28", "2014"],
+    episodeName: "Best of the Worst: Wheel of the Worst #4",
+    url: "https://www.youtube.com/watch?v=kakU6kQDmU4",
+    members: [Members.JAY, Members.RICH, Members.JESS, Members.MIKE],
+    guests: [],
     subtitle: "Wheel of the Worst 4",
-    releaseDate: null,
+    releaseDate: 1392336000000,
     editors: "Mike Stoklasa",
     description:
       "In the fourth installment of Wheel of the Worst, the gang drudges through another set of terrible videos.",
@@ -541,10 +543,10 @@ export const data = [
   },
   {
     id: "17",
-
-    episodeName: "",
-    url: "",
-    members: [],
+    episodeName:
+      "Best of the Worst: Supergirl, Captain America (1990), and Roger Corman's Fantastic Four",
+    url: "youtube.com/watch?v=d-O_RzwrZPw",
+    members: [Members.JACK, Members.JAY, Members.RICH, Members.JOSH],
     guests: [],
     subtitle: "Superhero Movies",
     releaseDate: 1394319600000,
@@ -574,10 +576,9 @@ export const data = [
   },
   {
     id: "18",
-
-    episodeName: "",
-    url: "",
-    members: [],
+    episodeName: "Best of the Worst: Ninja Movies",
+    url: "https://www.youtube.com/watch?v=ZERv4Q92vXA",
+    members: [Members.JAY, Members.MIKE, Members.RICH],
     guests: ["Len Kabasinski"],
     subtitle: "Ninja Movies!",
     releaseDate: 1398981600000,
@@ -607,10 +608,9 @@ export const data = [
   },
   {
     id: "19",
-
-    episodeName: "",
-    url: "",
-    members: [],
+    episodeName: "Best of the Worst: Wheel of the Worst #5",
+    url: "https://www.youtube.com/watch?v=ceUSZBMeREY",
+    members: [Members.MIKE, Members.JAY, Members.RICH, Members.JACK],
     guests: [],
     subtitle: "Wheel of the Worst 5",
     releaseDate: 1401746400000,
@@ -639,10 +639,10 @@ export const data = [
   },
   {
     id: "20",
-
-    episodeName: "",
-    url: "",
-    members: [],
+    episodeName:
+      "Best of the Worst: Ghetto Blaster, Terror in Beverly Hills, and Killing American Style",
+    url: "https://www.youtube.com/watch?v=AND1YZSp6YI",
+    members: [Members.RICH, Members.JAY],
     guests: ["Colin Cunningham", "Jim Maxwell"],
     subtitle: "American Action Movies",
     releaseDate: 1404338400000,
@@ -672,10 +672,9 @@ export const data = [
   },
   {
     id: "21",
-
-    episodeName: "",
-    url: "",
-    members: [],
+    episodeName: "Best of the Worst: High Voltage, Death Spa, and Space Mutiny",
+    url: "https://www.youtube.com/watch?v=6pgbB9ORqRg",
+    members: [Members.JAY, Members.MIKE, Members.RICH, Members.JOSH],
     guests: [],
     subtitle: "Battle of the Genres",
     releaseDate: 1406757600000,
@@ -705,10 +704,9 @@ export const data = [
   },
   {
     id: "22",
-
-    episodeName: "",
-    url: "",
-    members: [],
+    episodeName: "Best of the Worst: Shakma, Python II, and Beaks: The Movie",
+    url: "https://www.youtube.com/watch?v=QAzZceRTmpc",
+    members: [Members.JACK, Members.JAY, Members.RICH, Members.MIKE],
     guests: [],
     subtitle: "When Animals Attack!!!",
     releaseDate: 1409090400000,
@@ -737,10 +735,9 @@ export const data = [
   },
   {
     id: "23",
-
-    episodeName: "",
-    url: "",
-    members: [],
+    episodeName: "Best of the Worst: Wheel of the Worst #6",
+    url: "https://www.youtube.com/watch?v=aA2Z16QiNsE",
+    members: [Members.MIKE, Members.JESS],
     guests: ["Colin Cunningham", "Jim Maxwell"],
     subtitle: "Wheel of the Worst 6",
     releaseDate: 1410991200000,
@@ -770,10 +767,10 @@ export const data = [
   },
   {
     id: "24",
-
-    episodeName: "",
-    url: "",
-    members: [],
+    episodeName:
+      "Best of the Worst: Theodore Rex, Carnosaur, Tammy and the T-Rex",
+    url: "https://www.youtube.com/watch?v=t4pJL1eAh00",
+    members: [Members.JOSH, Members.RICH, Members.JACK, Members.JAY],
     guests: [],
     subtitle: "Dinosaur Movies!",
     releaseDate: 1412460000000,
@@ -802,10 +799,9 @@ export const data = [
   },
   {
     id: "25",
-
-    episodeName: "",
-    url: "",
-    members: [],
+    episodeName: "Best of the Worst: The Item, The Crawlers, and Blood Lock",
+    url: "https://www.youtube.com/watch?v=n747ktceuwI",
+    members: [Members.JESS, Members.JOSH, Members.MIKE, Members.JAY],
     guests: [],
     subtitle: "Halloween Spooktacular!!!",
     releaseDate: 1414623600000,
@@ -836,10 +832,10 @@ export const data = [
   {
     id: "26",
 
-    episodeName: "",
-    url: "",
-    members: [],
-    guests: [],
+    episodeName: "Best of the Worst: Wheel of the Worst #7",
+    url: "https://www.youtube.com/watch?v=wZFuyATj5EI",
+    members: [Members.MIKE, Members.JAY, Members.RICH],
+    guests: ["Freddie Williams"],
     subtitle: "Wheel of the Worst 7",
     releaseDate: 1418860800,
     editors: "Mike Stoklasa",
@@ -874,10 +870,9 @@ export const data = [
   },
   {
     id: "27",
-
-    episodeName: "",
-    url: "",
-    members: [],
+    episodeName: "Best of the Worst: The Star Wars Holiday Special",
+    url: "https://www.youtube.com/watch?v=_CtUd0yuYN4",
+    members: [Members.MIKE, Members.JACK, Members.RICH, Members.JAY],
     guests: [],
     subtitle: "The Star Wars Holiday Special (1978, Color, CBS)",
     releaseDate: 1419462000000,
@@ -895,10 +890,10 @@ export const data = [
   },
   {
     id: "28",
-
-    episodeName: "",
-    url: "",
-    members: [],
+    episodeName:
+      "Best of the Worst: Alienator, Alien from the Deep, and Hands of Steel",
+    url: "https://www.youtube.com/watch?v=z5PnYARAyUw",
+    members: [Members.RICH, Members.MIKE, Members.JACK, Members.JAY],
     guests: [],
     subtitle: "Weird Things on the Left Arm Sci-Fi-Extravaganza!!!",
     releaseDate: 1392678000000,

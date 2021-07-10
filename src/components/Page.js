@@ -1,4 +1,4 @@
-import { data } from "data/data";
+import { data } from "data/new-data";
 import { searchData } from "functions/searchData";
 import React, { useEffect, useState } from "react";
 import MultiselectFilter from "./MultiselectFilter";
