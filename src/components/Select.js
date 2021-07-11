@@ -1,4 +1,8 @@
 import React, { useEffect, useState } from "react";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
 
 const ItemSelect = (props) => {
   const { items, onSelect } = props;
@@ -15,7 +19,10 @@ const ItemSelect = (props) => {
 
   return (
     <div className="item-select">
-      <select onChange={(e) => setSelectedItem(e.target.value)}>
+      <Select
+        className="single-select"
+        onChange={(e) => setSelectedItem(e.target.value)}
+      >
         {items.length &&
           items
             .map((item) => {
@@ -27,8 +34,10 @@ const ItemSelect = (props) => {
               });
             })
             .flat()
-            .map((item2) => <option value={item2.id}> {item2.title}</option>)}
-      </select>
+            .map((item2) => (
+              <MenuItem value={item2.id}> {item2.title}</MenuItem>
+            ))}
+      </Select>
     </div>
   );
 };

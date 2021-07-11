@@ -30,3 +30,27 @@
   margin-top: 15px;
   margin-bottom: 15px;
 }
+
+.results-grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.video-image {
+  width: 250px;
+}
+
+.result-cell {
+  margin: 10px;
+  width: 250px;
+  font-weight: 600;
+}
+
+.item-select {
+  margin: 10px;
+}
+
+.single-select {
+  width: 100%;
+}

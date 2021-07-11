@@ -40,7 +40,6 @@ const Page = () => {
 
       <div className="content">
         <div className="results">
-          results go here
           <Results results={results} />
         </div>
         <div className="fitlers">
