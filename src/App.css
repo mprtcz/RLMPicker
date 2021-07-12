@@ -47,10 +47,16 @@
   font-weight: 600;
 }
 
-.item-select {
-  margin: 10px;
+.filters-container {
+  min-width: 150px;
 }
 
-.single-select {
+/* Will space all children of class */
+.filters-container > * {
+  width: 100%;
+  margin: 30px 0;
+}
+
+.MuiInputBase-root {
   width: 100%;
 }

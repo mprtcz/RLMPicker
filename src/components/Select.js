@@ -9,11 +9,13 @@ const ItemSelect = (props) => {
   const [selectedItem, setSelectedItem] = useState(null);
 
   useEffect(() => {
-    console.log("seelcted item: ", selectedItem);
-
+    console.log("selectedItem", selectedItem);
+    if (selectedItem === null) return items.map((item) => item.id);
     const filteredItems = items.filter((item) => {
       return item.id === selectedItem;
     });
+    console.log("Setting in single select", filteredItems);
+
     onSelect(filteredItems);
   }, [selectedItem]);
 
@@ -34,8 +36,10 @@ const ItemSelect = (props) => {
               });
             })
             .flat()
-            .map((item2) => (
-              <MenuItem value={item2.id}> {item2.title}</MenuItem>
+            .map((item2, key) => (
+              <MenuItem value={item2.id} key={key}>
+                {item2.title}
+              </MenuItem>
             ))}
       </Select>
     </div>
