@@ -7,14 +7,25 @@ import Select from "@material-ui/core/Select";
 const ItemSelect = (props) => {
   const { items, onSelect } = props;
   const [selectedItem, setSelectedItem] = useState(null);
+  const clearTitle = "-clear-";
+  const [options, setOptions] = useState(
+    items.concat([{ moviesData: [{ title: clearTitle, id: -1 }] }])
+  );
 
   useEffect(() => {
     console.log("selectedItem", selectedItem);
-    if (selectedItem === null) return items.map((item) => item.id);
-    const filteredItems = items.filter((item) => {
-      return item.id === selectedItem;
-    });
-    console.log("Setting in single select", filteredItems);
+
+    if (!selectedItem) {
+      onSelect(options.map((item) => item.id));
+      return;
+    }
+    const filteredItems = options
+      .map((item) => item.id)
+      .filter((id) => {
+        return id === selectedItem;
+      });
+
+    console.log("single select items: ", items);
 
     onSelect(filteredItems);
   }, [selectedItem]);
@@ -25,8 +36,8 @@ const ItemSelect = (props) => {
         className="single-select"
         onChange={(e) => setSelectedItem(e.target.value)}
       >
-        {items.length &&
-          items
+        {options.length &&
+          options
             .map((item) => {
               return item.moviesData.map((movie) => {
                 return {
@@ -36,6 +47,11 @@ const ItemSelect = (props) => {
               });
             })
             .flat()
+            .sort((item1, item2) => {
+              if (item2.title > item1.title) return -1;
+              if (item1.title > item2.title) return 1;
+              return 0;
+            })
             .map((item2, key) => (
               <MenuItem value={item2.id} key={key}>
                 {item2.title}
