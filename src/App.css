@@ -54,6 +54,12 @@
   font-weight: 600;
 }
 
+.main-result-cell {
+  margin: 10px;
+  width: 400px;
+  font-weight: 600;
+}
+
 .filters-container {
   min-width: 150px;
 }
@@ -77,4 +83,14 @@
 .main-result {
   margin-bottom: 100px;
   margin-top: 100px;
+}
+
+.main-single-result {
+  display: flex;
+  justify-content: center;
+}
+
+.single-result {
+  display: flex;
+  justify-content: center;
 }

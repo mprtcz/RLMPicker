@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
+import SingleResult from "./SingleResult";
 
 const Results = (props) => {
   const { results } = props;
@@ -8,12 +9,6 @@ const Results = (props) => {
   useEffect(() => {
     setChosen(results[Math.floor(Math.random() * results.length)]);
   }, [results]);
-
-  const createVideoImageUrl = (url) => {
-    const parts = url.split("/");
-    const id = parts[parts.length - 1].split("=")[1];
-    return `https://img.youtube.com/vi/${id}/0.jpg`;
-  };
 
   /**
    * Shuffles the array as described in https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#The_modern_algorithm
@@ -27,34 +22,16 @@ const Results = (props) => {
     return clone;
   };
 
-  const openVideoUrl = (chosenVideo) => {
-    window.open(chosenVideo.url, "_blank");
-  };
-
   return (
     <div className="all-results">
       {chosen && (
-        <div className="main-result" style={{ width: "85%" }}>
-          <img
-            onClick={() => openVideoUrl(chosen)}
-            className="chosen-video-image"
-            src={createVideoImageUrl(chosen.url)}
-          ></img>
-          <div className="title">
-            <h2>{chosen.episodeName}</h2>
-          </div>
+        <div className="main-result">
+          <SingleResult episode={chosen} id={1} main={true} />
         </div>
       )}
       <div className="results-grid">
         {shuffleArray(results).map((episode, i) => (
-          <div className="result-cell" key={i}>
-            <img
-              onClick={() => openVideoUrl(episode)}
-              className="video-image"
-              src={createVideoImageUrl(episode.url)}
-            ></img>
-            <div className="title">{episode.episodeName}</div>
-          </div>
+          <SingleResult episode={episode} id={1} />
         ))}
       </div>
     </div>
