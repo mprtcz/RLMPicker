@@ -388,7 +388,7 @@ export const data = [
         studio: "Amazing Film Productions",
       },
       {
-        title: '"Where Did I Come From?"',
+        title: "Where Did I Come From?",
         year: "1986",
         technology: "Color",
         studio: "De Laurentiis Entertainment Group",

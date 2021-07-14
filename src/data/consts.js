@@ -1,5 +1,5 @@
 export const EpisodeSeries = {
-  BestOfTheWorst: "BestOfTheWorst",
+  BestOfTheWorst: "Best Of The Worst",
 };
 
 export const Members = {
@@ -8,7 +8,7 @@ export const Members = {
   RICH: "Rich Evans",
   JESS: "Jess",
   JOSH: "Josh",
-  Jack: "Jack",
+  JACK: "Jack",
 };
 
 export const SubSeries = {
@@ -17,11 +17,3 @@ export const SubSeries = {
   WHEEL_OF_MISFORTUNE: "Wheel of misfortune",
 };
 
-export const Titles = {
-  RUSSIAN_TERMINATOR: "Russian terminator",
-  NINJA_VENGENCE: "Ninja Vengence",
-  NEVER_TOO_YOUNG_TO_DIE: "Never too young to die",
-  THE_NEW_GLADIATORS: "The New Gladiators",
-  EXTERMINATOR_2: "Exterminator 2",
-  THE_AFTERMATH: "The Aftermath",
-};
