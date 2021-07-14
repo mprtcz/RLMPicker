@@ -40,10 +40,12 @@
 
 .video-image {
   max-width: 250px;
+  cursor: pointer;
 }
 
 .chosen-video-image {
   max-width: 400px;
+  cursor: pointer;
 }
 
 .result-cell {

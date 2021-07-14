@@ -46,13 +46,14 @@ const Results = (props) => {
         </div>
       )}
       <div className="results-grid">
-        {shuffleArray(results).map((datum, i) => (
+        {shuffleArray(results).map((episode, i) => (
           <div className="result-cell" key={i}>
             <img
+              onClick={() => openVideoUrl(episode)}
               className="video-image"
-              src={createVideoImageUrl(datum.url)}
+              src={createVideoImageUrl(episode.url)}
             ></img>
-            <div className="title">{datum.episodeName}</div>
+            <div className="title">{episode.episodeName}</div>
           </div>
         ))}
       </div>
