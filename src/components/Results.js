@@ -27,11 +27,16 @@ const Results = (props) => {
     return clone;
   };
 
+  const openVideoUrl = (chosenVideo) => {
+    window.open(chosenVideo.url, "_blank");
+  };
+
   return (
     <div className="all-results">
       {chosen && (
         <div className="main-result" style={{ width: "85%" }}>
           <img
+            onClick={() => openVideoUrl(chosen)}
             className="chosen-video-image"
             src={createVideoImageUrl(chosen.url)}
           ></img>
