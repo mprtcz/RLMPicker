@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
+import { useEffect } from "react";
 
 const Results = (props) => {
   const { results } = props;
+  const [chosen, setChosen] = useState();
+
+  useEffect(() => {
+    setChosen(results[Math.floor(Math.random() * results.length)]);
+  }, [results]);
 
   const createVideoImageUrl = (url) => {
     const parts = url.split("/");
@@ -12,8 +18,8 @@ const Results = (props) => {
   /**
    * Shuffles the array as described in https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#The_modern_algorithm
    */
-  const shuffleArray = (array1) => {
-    const clone = array1.map((x) => x);
+  const shuffleArray = (array) => {
+    const clone = array.map((x) => x);
     for (let i = clone.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [clone[i], clone[j]] = [clone[j], clone[i]];
@@ -22,17 +28,29 @@ const Results = (props) => {
   };
 
   return (
-    <div className="results-grid">
-      <div className="main-result"></div>
-      {shuffleArray(results).map((datum, i) => (
-        <div className="result-cell" key={i}>
+    <div className="all-results">
+      {chosen && (
+        <div className="main-result" style={{ width: "85%" }}>
           <img
-            className="video-image"
-            src={createVideoImageUrl(datum.url)}
+            className="chosen-video-image"
+            src={createVideoImageUrl(chosen.url)}
           ></img>
-          <div className="title">{datum.episodeName}</div>
+          <div className="title">
+            <h2>{chosen.episodeName}</h2>
+          </div>
         </div>
-      ))}
+      )}
+      <div className="results-grid">
+        {shuffleArray(results).map((datum, i) => (
+          <div className="result-cell" key={i}>
+            <img
+              className="video-image"
+              src={createVideoImageUrl(datum.url)}
+            ></img>
+            <div className="title">{datum.episodeName}</div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
