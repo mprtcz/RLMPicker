@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
+import MainResult from "./MainResult";
 import SingleResult from "./SingleResult";
 
 const Results = (props) => {
@@ -26,7 +27,7 @@ const Results = (props) => {
     <div className="all-results">
       {chosen && (
         <div className="main-result">
-          <SingleResult episode={chosen} id={1} main={true} />
+          <MainResult episode={chosen} />
         </div>
       )}
       <div className="results-grid">

@@ -1,7 +1,7 @@
 import React from "react";
 
 const SingleResult = (props) => {
-  const { episode, key, main } = props;
+  const { episode, key } = props;
 
   const openVideoUrl = (chosenVideo) => {
     window.open(chosenVideo.url, "_blank");
@@ -14,12 +14,11 @@ const SingleResult = (props) => {
   };
 
   return (
-    <div className={main ? "main-single-result" : "single-result"}>
-      <div className={main ? "main-result-cell" : "result-cell"} key={key}>
-        {main}
+    <div className={"single-result"}>
+      <div className={"result-cell"} key={key}>
         <img
           onClick={() => openVideoUrl(episode)}
-          className={main ? "chosen-video-image" : "video-image"}
+          className={"video-image"}
           src={createVideoImageUrl(episode.url)}
         ></img>
         <div className="title">{episode.episodeName}</div>

@@ -13,8 +13,6 @@ const ItemSelect = (props) => {
   );
 
   useEffect(() => {
-    console.log("selectedItem", selectedItem);
-
     if (!selectedItem) {
       onSelect(options.map((item) => item.id));
       return;
