@@ -32,7 +32,7 @@ const Page = () => {
   return (
     <div className="mainDiv">
       <div className="header">
-        <h2>Hello, sir.</h2>
+        <h2>Don't worry, I'll pick it up for you.</h2>
       </div>
 
       <div className="content">

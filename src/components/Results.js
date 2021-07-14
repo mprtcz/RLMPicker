@@ -9,9 +9,22 @@ const Results = (props) => {
     return `https://img.youtube.com/vi/${id}/0.jpg`;
   };
 
+  /**
+   * Shuffles the array as described in https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#The_modern_algorithm
+   */
+  const shuffleArray = (array1) => {
+    const clone = array1.map((x) => x);
+    for (let i = clone.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [clone[i], clone[j]] = [clone[j], clone[i]];
+    }
+    return clone;
+  };
+
   return (
     <div className="results-grid">
-      {results.map((datum, i) => (
+      <div className="main-result"></div>
+      {shuffleArray(results).map((datum, i) => (
         <div className="result-cell" key={i}>
           <img
             className="video-image"
