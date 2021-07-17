@@ -56,8 +56,8 @@ const MainResult = (props) => {
 
   return (
     <div className={classes.root}>
-      <Card className={classes.card} onClick={() => openVideoUrl(episode)}>
-        <CardActionArea>
+      <Card className={classes.card}>
+        <CardActionArea onClick={() => openVideoUrl(episode)}>
           <CardMedia
             className={classes.media}
             image={createVideoImageUrl(episode.url)}
