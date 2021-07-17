@@ -16,9 +16,6 @@ const useStyles = makeStyles({
     flexDirection: "column",
   },
   media: {
-    // height: 360,
-    // width: "100%",
-
     height: 360,
     width: "100%",
     objectFit: "cover",
