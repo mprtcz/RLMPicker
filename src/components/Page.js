@@ -1,3 +1,4 @@
+import { makeStyles } from "@material-ui/core";
 import { data } from "data/new-data";
 import { searchData } from "functions/searchData";
 import React, { useEffect, useState } from "react";
@@ -5,7 +6,24 @@ import MatMultiselect from "./MatMultiselect";
 import Results from "./Results";
 import ItemSelect from "./Select";
 
+const useStyles = makeStyles({
+  content: {
+    flexDirection: "row",
+    flexWrap: "wrap-reverse",
+    display: "flex",
+    justifyContent: "center",
+  },
+  results: {
+    margin: 5,
+  },
+  filterContainer: {
+    display: "flex",
+    flexDirection: "row",
+  },
+});
+
 const Page = () => {
+  const classes = useStyles();
   const episodesData = data;
 
   // Results holding data only about ids of videos matching filters.
@@ -19,10 +37,6 @@ const Page = () => {
     setResultsEpsodes(data.filter((episode) => results.includes(episode.id)));
   }, [results]);
 
-  useEffect(() => {
-    console.log("resultsEpsodes", resultsEpsodes);
-  }, [resultsEpsodes]);
-
   const mapResults = () => {
     return episodesData.filter((episode) => {
       (results || []).includes(episode.id);
@@ -35,17 +49,17 @@ const Page = () => {
         <h2>Don't worry, I'll pick it up for you.</h2>
       </div>
 
-      <div className="content">
-        <div className="results">
+      <div className={classes.content}>
+        <div className={classes.results}>
+          <div className="filters-container">
+            <MatMultiselect
+              data={episodesData}
+              filterType="members"
+              onSelect={(e) => setResults(e)}
+            />
+            <ItemSelect items={episodesData} onSelect={(e) => setResults(e)} />
+          </div>
           <Results results={resultsEpsodes} />
-        </div>
-        <div className="filters-container">
-          <MatMultiselect
-            data={episodesData}
-            filterType="members"
-            onSelect={(e) => setResults(e)}
-          />
-          <ItemSelect items={episodesData} onSelect={(e) => setResults(e)} />
         </div>
       </div>
     </div>

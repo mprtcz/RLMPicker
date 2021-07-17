@@ -3,6 +3,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
+import { InputLabel } from "@material-ui/core";
 
 const ItemSelect = (props) => {
   const { items, onSelect } = props;
@@ -30,6 +31,7 @@ const ItemSelect = (props) => {
 
   return (
     <div className="item-select">
+      <InputLabel id="demo-simple-select-label">Select Movie</InputLabel>
       <Select
         className="single-select"
         onChange={(e) => setSelectedItem(e.target.value)}

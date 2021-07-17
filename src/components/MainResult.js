@@ -16,8 +16,12 @@ const useStyles = makeStyles({
     flexDirection: "column",
   },
   media: {
+    // height: 360,
+    // width: "100%",
+
     height: 360,
-    width: 480,
+    width: "100%",
+    objectFit: "cover",
   },
   card: {
     maxWidth: 480,
@@ -25,7 +29,7 @@ const useStyles = makeStyles({
   details: {
     marginLeft: 15,
     marginTop: 15,
-    width: 480,
+    maxWidth: 480,
   },
   detail: {
     textAlign: "left",
