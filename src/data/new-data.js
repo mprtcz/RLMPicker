@@ -10,7 +10,7 @@ export const data = [
     guests: [],
     subtitle: "Action Movies",
     releaseDate: 1358463600000,
-    editors: "Mike Stoklasa",
+    editors: [Members.MIKE],
     description: "The gang views and reviews three terrible films.",
     moviesData: [
       {
@@ -43,7 +43,7 @@ export const data = [
     guests: [],
     subtitle: "Future Dystopian Movies",
     releaseDate: 1359673200000,
-    editors: "Mike Stoklasa",
+    editors: [Members.MIKE],
     description:
       "The gang decides to check out some science-fiction dystopian movies.",
     moviesData: [
@@ -77,7 +77,7 @@ export const data = [
     guests: [],
     subtitle: "Three Bewb-filled Creature Features",
     releaseDate: 1360710000000,
-    editors: "Jay Bauman",
+    editors: [Members.JAY],
     description: "The gang watches some creature features.",
     moviesData: [
       {
@@ -109,7 +109,7 @@ export const data = [
     guests: [],
     subtitle: "Warm Climes",
     releaseDate: 1364079600000,
-    editors: "Jay Bauman",
+    editors: [Members.JAY],
     description:
       "To stave off seasonal affective disorder, the gang watches three movies set in warm climes.",
     moviesData: [
@@ -142,7 +142,7 @@ export const data = [
     guests: [],
     subtitle: "The Wheel of the Worst 1",
     releaseDate: 1367272800000,
-    editors: "Stoklasa/Bauman",
+    editors: ["Stoklasa/Bauman"],
     description:
       "To deal with the glut of weird videos in their inventory, the gang uses the Wheel of the Worst to randomly select videos for review.",
     moviesData: [
@@ -175,7 +175,7 @@ export const data = [
     guests: [],
     subtitle: "Robot Movies",
     releaseDate: 1368662400000,
-    editors: "Jay Bauman",
+    editors: [Members.JAY],
     description:
       "An attempt to watch some bad robot movies nearly ends in failure.",
     moviesData: [
@@ -214,7 +214,7 @@ export const data = [
     guests: [],
     subtitle: "Stupid Kids Movies",
     releaseDate: 1369692000000,
-    editors: "Jay Bauman",
+    editors: [Members.JAY],
     description:
       "The gang watches and reviews three alleged children's films. Rich picks a special movie for Jessi.",
     moviesData: [
@@ -246,7 +246,7 @@ export const data = [
     guests: [],
     subtitle: "Wheel of the Worst 2",
     releaseDate: 1375912800000,
-    editors: "Stoklasa/Bauman",
+    editors: ["Stoklasa/Bauman"],
     description:
       "In the second Wheel of the Worst installment, the gang tackles the next set of terrible videos.",
     moviesData: [
@@ -279,7 +279,7 @@ export const data = [
     guests: ["Colin Cunningham"],
     subtitle: "Visual Effects Driven Turds",
     releaseDate: 1377640800000,
-    editors: "Jay Bauman",
+    editors: [Members.JAY],
     description:
       "After meeting visual effects artist Colin, the gang watches two visual effects-driven films and a mystery movie.",
     moviesData: [
@@ -312,7 +312,7 @@ export const data = [
     guests: ["Gillian Bellinger"],
     subtitle: "Slasher Flicks",
     releaseDate: 1379455200000,
-    editors: "Jay Bauman",
+    editors: [Members.JAY],
     description:
       "After Jay stops Feeding Frenzy star Gillian from committing larceny, the gang watches several slasher flicks.",
     moviesData: [
@@ -345,7 +345,7 @@ export const data = [
     guests: [],
     subtitle: "Halloween Episode",
     releaseDate: 1383174000000,
-    editors: "Mike Stoklasa",
+    editors: [Members.MIKE],
     description:
       "It is Rich's birthday, but after watching three Halloween movies, the gang suspects he may be cursed.",
     moviesData: [
@@ -377,7 +377,7 @@ export const data = [
     guests: [],
     subtitle: "Wheel of the Worst 3",
     releaseDate: 1385074800000,
-    editors: "Mike Stoklasa",
+    editors: [Members.MIKE],
     description:
       "In the third installment of Wheel of the Worst, the gang tackles yet another set of terrible videos.",
     moviesData: [
@@ -410,7 +410,7 @@ export const data = [
     guests: [],
     subtitle: "Sequel Episode",
     releaseDate: 1385769600000,
-    editors: "Jay Bauman",
+    editors: [Members.JAY],
     description:
       "To get a sense of the complete story, the gang watches the sequels to previously reviewed movies.",
     moviesData: [
@@ -443,7 +443,7 @@ export const data = [
     guests: [],
     subtitle: "Christmas Special",
     releaseDate: 1387753200000,
-    editors: "Stoklasa/Bauman",
+    editors: ["Stoklasa/Bauman"],
     description:
       "Rich Evans is pleased that it is Christmas, but no one seems to share his enthusiasm. As Rich watches three Christmas themed movies with the gang, his mood and optimism gradually sour.",
     moviesData: [
@@ -477,7 +477,7 @@ export const data = [
     guests: [],
     subtitle: "Otherworldly Sci-fi Movies",
     releaseDate: 1390950000000,
-    editors: "Mike Stoklasa and Jay Bauman",
+    editors: ["Mike Stoklasa and Jay Bauman"],
     description:
       "An attempt to watch three 1980s science-fiction movies goes horribly wrong.",
     moviesData: [
@@ -510,7 +510,7 @@ export const data = [
     guests: [],
     subtitle: "Wheel of the Worst 4",
     releaseDate: 1392336000000,
-    editors: "Mike Stoklasa",
+    editors: [Members.MIKE],
     description:
       "In the fourth installment of Wheel of the Worst, the gang drudges through another set of terrible videos.",
     moviesData: [
@@ -550,7 +550,7 @@ export const data = [
     guests: [],
     subtitle: "Superhero Movies",
     releaseDate: 1394319600000,
-    editors: "Jay Bauman",
+    editors: [Members.JAY],
     description:
       "In anticipation of the new wave of comic books movies, the gang watches some old comic book movies.",
     moviesData: [
@@ -582,7 +582,7 @@ export const data = [
     guests: ["Len Kabasinski"],
     subtitle: "Ninja Movies!",
     releaseDate: 1398981600000,
-    editors: "Mike Stoklasa",
+    editors: [Members.MIKE],
     description:
       "After having his films criticized by the gang, Len Kabasinski arrives at the Red Letter Media headquarters to exact revenge.",
     moviesData: [
@@ -614,7 +614,7 @@ export const data = [
     guests: [],
     subtitle: "Wheel of the Worst 5",
     releaseDate: 1401746400000,
-    editors: "Jay Bauman",
+    editors: [Members.JAY],
     description: "The Wheel of the Worst makes a triumphant return.",
     moviesData: [
       {
@@ -646,7 +646,7 @@ export const data = [
     guests: ["Colin Cunningham", "Jim Maxwell"],
     subtitle: "American Action Movies",
     releaseDate: 1404338400000,
-    editors: "Stoklasa/Bauman",
+    editors: ["Stoklasa/Bauman"],
     description:
       "Canadian pals Colin and Jim meet up with the gang in Milwaukee to watch three American action movies.",
     moviesData: [
@@ -678,7 +678,7 @@ export const data = [
     guests: [],
     subtitle: "Battle of the Genres",
     releaseDate: 1406757600000,
-    editors: "Mike Stoklasa",
+    editors: [Members.MIKE],
     description:
       "The gang watch three movies and see which is the most successful in meeting the requirements of its genre.",
     moviesData: [
@@ -710,7 +710,7 @@ export const data = [
     guests: [],
     subtitle: "When Animals Attack!!!",
     releaseDate: 1409090400000,
-    editors: "Mike Stoklasa",
+    editors: [Members.MIKE],
     description: "The gang watch three attacking animal movies.",
     moviesData: [
       {
@@ -741,7 +741,7 @@ export const data = [
     guests: ["Colin Cunningham", "Jim Maxwell"],
     subtitle: "Wheel of the Worst 6",
     releaseDate: 1410991200000,
-    editors: "Mike Stoklasa",
+    editors: [Members.MIKE],
     description:
       "The gang's sufferings are shared with their Canadian friends in the sixth installment of Wheel of the Worst.",
     moviesData: [
@@ -774,7 +774,7 @@ export const data = [
     guests: [],
     subtitle: "Dinosaur Movies!",
     releaseDate: 1412460000000,
-    editors: "Stoklasa/Bauman",
+    editors: ["Stoklasa/Bauman"],
     description: "The gang gets together to watch 1990s dinosaur movies.",
     moviesData: [
       {
@@ -805,7 +805,7 @@ export const data = [
     guests: [],
     subtitle: "Halloween Spooktacular!!!",
     releaseDate: 1414623600000,
-    editors: "Stoklasa/Bauman",
+    editors: ["Stoklasa/Bauman"],
     description:
       "When the power goes out at the Red Letter Media studio, the gang finishes their discussion at the haunted Brumder Mansion. Meanwhile, Rich Evans realizes he may never be free from the malevolent spirit of the Showbiz Pizza Bear.",
     moviesData: [
@@ -838,7 +838,7 @@ export const data = [
     guests: ["Freddie Williams"],
     subtitle: "Wheel of the Worst 7",
     releaseDate: 1418860800,
-    editors: "Mike Stoklasa",
+    editors: [Members.MIKE],
     description:
       "While stealing the Horse Ninja comic, graphic artist Freddie Williams II is discovered and roped into a Wheel of the Worst session.",
     moviesData: [
@@ -876,7 +876,7 @@ export const data = [
     guests: [],
     subtitle: "The Star Wars Holiday Special (1978, Color, CBS)",
     releaseDate: 1419462000000,
-    editors: "Stoklasa/Bauman",
+    editors: ["Stoklasa/Bauman"],
     description:
       "Appalled by the Star Wars Holiday Special, the gang decides to bootleg the feature so everyone can watch it.",
     moviesData: [
@@ -897,7 +897,7 @@ export const data = [
     guests: [],
     subtitle: "Weird Things on the Left Arm Sci-Fi-Extravaganza!!!",
     releaseDate: 1392678000000,
-    editors: "Mike Stoklasa",
+    editors: [Members.MIKE],
     description:
       "The gang checks out three sci-fi action movies, which coincidentally all involve weird things on characters' left arms.",
     moviesData: [

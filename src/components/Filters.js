@@ -35,8 +35,21 @@ const Filters = (props) => {
       </AccordionSummary>
       <AccordionDetails className="filters-container">
         <MatMultiselect
+          title="Select Cast"
           data={episodesData}
           filterType="members"
+          onSelect={(e) => onSelect(e)}
+        />
+        <MatMultiselect
+          title="Select Guests"
+          data={episodesData}
+          filterType="guests"
+          onSelect={(e) => onSelect(e)}
+        />
+        <MatMultiselect
+          title="Select Editor"
+          data={episodesData}
+          filterType="editors"
           onSelect={(e) => onSelect(e)}
         />
         <ItemSelect items={episodesData} onSelect={(e) => onSelect(e)} />

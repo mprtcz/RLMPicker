@@ -8,7 +8,7 @@ import Select from "@material-ui/core/Select";
 import Checkbox from "@material-ui/core/Checkbox";
 
 const MatMultiselect = (props) => {
-  const { data, filterType, onSelect } = props;
+  const { data, filterType, onSelect, title } = props;
   const [selected, setSelected] = useState([]);
 
   const ITEM_HEIGHT = 48;
@@ -25,7 +25,7 @@ const MatMultiselect = (props) => {
   useEffect(() => {
     const episodes = data
       .filter((episode) =>
-        selected.every((selection) => episode.members.includes(selection))
+        selected.every((selection) => episode[filterType].includes(selection))
       )
       .map((episode) => episode.id);
 
@@ -48,7 +48,7 @@ const MatMultiselect = (props) => {
 
   return (
     <div className="multiselect-container">
-      <InputLabel id="demo-mutiple-checkbox-label">Select cast</InputLabel>
+      <InputLabel id="demo-mutiple-checkbox-label">{title}</InputLabel>
       <Select
         labelId="demo-mutiple-checkbox-label"
         id="demo-mutiple-checkbox"
