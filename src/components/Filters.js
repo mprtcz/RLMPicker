@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
@@ -24,6 +24,11 @@ const useStyles = makeStyles((theme) => ({
 const Filters = (props) => {
   const classes = useStyles();
   const { episodesData, onSelect } = props;
+
+  const selectChanged = (e) => {
+    console.log("e", e);
+    onSelect(e);
+  };
   return (
     <Accordion className={classes.accordion}>
       <AccordionSummary
@@ -38,21 +43,21 @@ const Filters = (props) => {
           title="Select Cast"
           data={episodesData}
           filterType="members"
-          onSelect={(e) => onSelect(e)}
+          onSelect={(e) => selectChanged(e)}
         />
         <MatMultiselect
           title="Select Guests"
           data={episodesData}
           filterType="guests"
-          onSelect={(e) => onSelect(e)}
+          onSelect={(e) => selectChanged(e)}
         />
         <MatMultiselect
           title="Select Editor"
           data={episodesData}
           filterType="editors"
-          onSelect={(e) => onSelect(e)}
+          onSelect={(e) => selectChanged(e)}
         />
-        <ItemSelect items={episodesData} onSelect={(e) => onSelect(e)} />
+        <ItemSelect items={episodesData} onSelect={(e) => selectChanged(e)} />
       </AccordionDetails>
     </Accordion>
   );

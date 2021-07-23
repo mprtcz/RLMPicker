@@ -27,15 +27,11 @@ const Page = () => {
   const classes = useStyles();
   const episodesData = data;
 
-  // Results holding data only about ids of videos matching filters.
-  const [results, setResults] = useState(
-    episodesData.map((episode) => episode.id)
-  );
+  const [results, setResults] = useState(episodesData);
   const [resultsEpsodes, setResultsEpsodes] = useState([]);
 
   useEffect(() => {
-    console.log("results", results);
-    setResultsEpsodes(data.filter((episode) => results.includes(episode.id)));
+    setResultsEpsodes(data.filter((episode) => results.includes(episode)));
   }, [results]);
 
   const mapResults = () => {
@@ -47,7 +43,7 @@ const Page = () => {
   return (
     <div className="mainDiv">
       <div className="header">
-        <h2>Don't worry, I'll pick it up for you.</h2>
+        <h2>Don't worry, I'll pick it for you.</h2>
       </div>
 
       <div className={classes.content}>

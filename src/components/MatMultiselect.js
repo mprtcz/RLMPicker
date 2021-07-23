@@ -23,11 +23,11 @@ const MatMultiselect = (props) => {
   };
 
   useEffect(() => {
-    const episodes = data
-      .filter((episode) =>
-        selected.every((selection) => episode[filterType].includes(selection))
-      )
-      .map((episode) => episode.id);
+    console.log("selected", selected);
+
+    const episodes = data.filter((episode) =>
+      selected.every((selection) => episode[filterType].includes(selection))
+    );
 
     onSelect(episodes);
   }, [selected]);

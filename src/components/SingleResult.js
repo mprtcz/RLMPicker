@@ -1,7 +1,8 @@
 import React from "react";
+import { useEffect } from "react";
 
 const SingleResult = (props) => {
-  const { episode, key } = props;
+  const { episode } = props;
 
   const openVideoUrl = (chosenVideo) => {
     window.open(chosenVideo.url, "_blank");
@@ -15,7 +16,7 @@ const SingleResult = (props) => {
 
   return (
     <div className={"single-result"}>
-      <div className={"result-cell"} key={key}>
+      <div className={"result-cell"}>
         <img
           onClick={() => openVideoUrl(episode)}
           className={"video-image"}

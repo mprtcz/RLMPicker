@@ -31,8 +31,8 @@ const Results = (props) => {
         </div>
       )}
       <div className="results-grid">
-        {shuffleArray(results).map((episode, i) => (
-          <SingleResult episode={episode} id={1} />
+        {shuffleArray(results).map((episode, index) => (
+          <SingleResult episode={episode} key={index} />
         ))}
       </div>
     </div>
