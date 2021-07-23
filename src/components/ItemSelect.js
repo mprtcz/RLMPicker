@@ -14,7 +14,11 @@ const ItemSelect = (props) => {
   const [options, setOptions] = useState([]);
 
   useEffect(() => {
-    const options1 = items
+    setOptions(createOptions());
+  }, [items]);
+
+  const createOptions = () => {
+    return items
       .map((item) => {
         return item.moviesData.map((data) => {
           return { data, id: item.id };
@@ -33,9 +37,7 @@ const ItemSelect = (props) => {
         if (item1.title > item2.title) return 1;
         return 0;
       });
-
-    setOptions(options1);
-  }, [items]);
+  };
 
   const selectedItemChanged = (e) => {
     const selectedMovieInternalId = e.target.value;
@@ -60,8 +62,8 @@ const ItemSelect = (props) => {
 
   const onSearchChanged = (e) => {
     const searched = e.target.value;
-    const filteredOptions = options.filter((option) =>
-      option.title.includes(searched)
+    const filteredOptions = createOptions().filter((option) =>
+      option.title.toLowerCase().includes(searched.toLowerCase())
     );
 
     setOptions(filteredOptions);
@@ -83,14 +85,13 @@ const ItemSelect = (props) => {
       >
         <TextField
           id="standard-basic"
-          style={{ visibility: "hidden" }}
           label="Search..."
           onKeyDown={handleKeyDown}
           onClick={handleOpen}
           onChange={(e) => onSearchChanged(e)}
         />
 
-        <MenuItem value={null} key={-1}>
+        <MenuItem value={-1} key={-1}>
           {clearTitle}
         </MenuItem>
         {options &&
