@@ -85,6 +85,7 @@ const ItemSelect = (props) => {
       >
         <TextField
           id="standard-basic"
+          className="movie-search-input"
           label="Search..."
           onKeyDown={handleKeyDown}
           onClick={handleOpen}

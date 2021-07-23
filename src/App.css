@@ -91,3 +91,7 @@
   display: flex;
   justify-content: center;
 }
+
+.movie-search-input {
+  width: 100%;
+}
