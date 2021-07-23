@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
 import MenuItem from "@material-ui/core/MenuItem";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import { InputLabel, TextField } from "@material-ui/core";
 
 const ItemSelect = (props) => {
   const { items, onSelect } = props;
-  const [selectedItem, setSelectedItem] = useState(null);
   const clearTitle = "-clear-";
   const [open, setOpen] = useState(false);
 
@@ -17,27 +14,30 @@ const ItemSelect = (props) => {
   const [options, setOptions] = useState([]);
 
   useEffect(() => {
-    const options = items
-      .map((item, id) => {
-        return item.moviesData.map((movie) => {
-          return {
-            title: movie.title,
-            videoId: item.id,
-            id,
-          };
+    const options1 = items
+      .map((item) => {
+        return item.moviesData.map((data) => {
+          return { data, id: item.id };
         });
       })
       .flat()
+      .map((item, id) => {
+        return {
+          title: item.data.title,
+          videoId: item.id,
+          id,
+        };
+      })
       .sort((item1, item2) => {
         if (item2.title > item1.title) return -1;
         if (item1.title > item2.title) return 1;
         return 0;
       });
 
-    setOptions([{ title: clearTitle, id: -1 }].concat(options));
+    setOptions(options1);
   }, [items]);
 
-  const setSelectedItem1 = (e) => {
+  const selectedItemChanged = (e) => {
     const selectedMovieInternalId = e.target.value;
     if (selectedMovieInternalId === -1) {
       onSelect(items);
@@ -79,7 +79,7 @@ const ItemSelect = (props) => {
         open={open}
         onClose={handleClose}
         onOpen={handleOpen}
-        onChange={(e) => setSelectedItem1(e)}
+        onChange={(e) => selectedItemChanged(e)}
       >
         <TextField
           id="standard-basic"
@@ -89,12 +89,20 @@ const ItemSelect = (props) => {
           onClick={handleOpen}
           onChange={(e) => onSearchChanged(e)}
         />
+
+        <MenuItem value={null} key={-1}>
+          {"-- Clear Selection --"}
+        </MenuItem>
         {options &&
-          options.map((movie, key) => (
-            <MenuItem value={movie.id} key={key}>
-              {movie.title}
-            </MenuItem>
-          ))}
+          options.map((movie, key) => {
+            console.log("movie to render", movie);
+
+            return (
+              <MenuItem value={movie.id} key={key}>
+                {movie.title}
+              </MenuItem>
+            );
+          })}
       </Select>
     </div>
   );

@@ -23,8 +23,6 @@ const MatMultiselect = (props) => {
   };
 
   useEffect(() => {
-    console.log("selected", selected);
-
     const episodes = data.filter((episode) =>
       selected.every((selection) => episode[filterType].includes(selection))
     );
@@ -59,12 +57,13 @@ const MatMultiselect = (props) => {
         renderValue={(selected) => selected.join(", ")}
         MenuProps={MenuProps}
       >
-        {options.map((item) => (
-          <MenuItem key={item.name} value={item.name}>
-            <Checkbox checked={selected.indexOf(item.name) > -1} />
-            <ListItemText primary={item.name} />
-          </MenuItem>
-        ))}
+        {options &&
+          options.map((item) => (
+            <MenuItem key={item.name} value={item.name}>
+              <Checkbox checked={selected.indexOf(item.name) > -1} />
+              <ListItemText primary={item.name} />
+            </MenuItem>
+          ))}
       </Select>
     </div>
   );
