@@ -60,9 +60,9 @@ const ItemSelect = (props) => {
 
   const onSearchChanged = (e) => {
     const searched = e.target.value;
-    const filteredOptions = options.filter((option) => {
-      option.title.includes(searched);
-    });
+    const filteredOptions = options.filter((option) =>
+      option.title.includes(searched)
+    );
 
     setOptions(filteredOptions);
   };
@@ -91,18 +91,14 @@ const ItemSelect = (props) => {
         />
 
         <MenuItem value={null} key={-1}>
-          {"-- Clear Selection --"}
+          {clearTitle}
         </MenuItem>
         {options &&
-          options.map((movie, key) => {
-            console.log("movie to render", movie);
-
-            return (
-              <MenuItem value={movie.id} key={key}>
-                {movie.title}
-              </MenuItem>
-            );
-          })}
+          options.map((movie, key) => (
+            <MenuItem value={movie.id} key={key}>
+              {movie.title}
+            </MenuItem>
+          ))}
       </Select>
     </div>
   );

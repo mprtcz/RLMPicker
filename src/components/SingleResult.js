@@ -1,5 +1,4 @@
 import React from "react";
-import { useEffect } from "react";
 
 const SingleResult = (props) => {
   const { episode } = props;
@@ -18,6 +17,7 @@ const SingleResult = (props) => {
     <div className={"single-result"}>
       <div className={"result-cell"}>
         <img
+          alt=""
           onClick={() => openVideoUrl(episode)}
           className={"video-image"}
           src={createVideoImageUrl(episode.url)}
