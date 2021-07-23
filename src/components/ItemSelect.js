@@ -9,14 +9,14 @@ const ItemSelect = (props) => {
   const { items, onSelect } = props;
   const [selectedItem, setSelectedItem] = useState(null);
   const clearTitle = "-clear-";
-
   const [open, setOpen] = useState(false);
 
   const handleClose = () => setOpen(false);
-
   const handleOpen = () => setOpen(true);
 
-  const createOptions = () => {
+  const [options, setOptions] = useState([]);
+
+  useEffect(() => {
     const options = items
       .map((item, id) => {
         return item.moviesData.map((movie) => {
@@ -27,35 +27,43 @@ const ItemSelect = (props) => {
           };
         });
       })
-      .flat();
+      .flat()
+      .sort((item1, item2) => {
+        if (item2.title > item1.title) return -1;
+        if (item1.title > item2.title) return 1;
+        return 0;
+      });
 
-    return options.concat({ title: clearTitle, id: -1 });
-  };
-  const [options, setOptions] = useState(createOptions());
+    setOptions([{ title: clearTitle, id: -1 }].concat(options));
+  }, [items]);
 
   const setSelectedItem1 = (e) => {
-    console.log("e", e);
-    setSelectedItem(e);
-  };
-
-  useEffect(() => {
-    if (!selectedItem) {
+    const selectedMovieInternalId = e.target.value;
+    if (selectedMovieInternalId === -1) {
       onSelect(items);
       return;
     }
+    const selectedMovieId = options
+      .filter((option) => {
+        return option.id === selectedMovieInternalId;
+      })
+      .map((option) => {
+        return option.videoId;
+      })[0];
 
     const filteredItems = items.filter((item) => {
-      return item.id === selectedItem.videoId;
+      return item.id === selectedMovieId;
     });
 
     onSelect(filteredItems);
-  }, [selectedItem]);
+  };
 
   const onSearchChanged = (e) => {
     const searched = e.target.value;
     const filteredOptions = options.filter((option) => {
       option.title.includes(searched);
     });
+
     setOptions(filteredOptions);
   };
 
@@ -75,23 +83,18 @@ const ItemSelect = (props) => {
       >
         <TextField
           id="standard-basic"
+          style={{ visibility: "hidden" }}
           label="Search..."
           onKeyDown={handleKeyDown}
           onClick={handleOpen}
           onChange={(e) => onSearchChanged(e)}
         />
-        {options.length &&
-          options
-            .sort((item1, item2) => {
-              if (item2.title > item1.title) return -1;
-              if (item1.title > item2.title) return 1;
-              return 0;
-            })
-            .map((item2, key) => (
-              <MenuItem value={item2.videoId} key={key}>
-                {item2.title}
-              </MenuItem>
-            ))}
+        {options &&
+          options.map((movie, key) => (
+            <MenuItem value={movie.id} key={key}>
+              {movie.title}
+            </MenuItem>
+          ))}
       </Select>
     </div>
   );

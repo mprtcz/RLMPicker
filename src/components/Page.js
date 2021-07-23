@@ -1,11 +1,8 @@
 import { makeStyles } from "@material-ui/core";
 import { data } from "data/new-data";
-import { searchData } from "functions/searchData";
 import React, { useEffect, useState } from "react";
 import Filters from "./Filters";
-import MatMultiselect from "./MatMultiselect";
 import Results from "./Results";
-import ItemSelect from "./Select";
 
 const useStyles = makeStyles({
   content: {
@@ -33,12 +30,6 @@ const Page = () => {
   useEffect(() => {
     setResultsEpsodes(data.filter((episode) => results.includes(episode)));
   }, [results]);
-
-  const mapResults = () => {
-    return episodesData.filter((episode) => {
-      (results || []).includes(episode.id);
-    });
-  };
 
   return (
     <div className="mainDiv">

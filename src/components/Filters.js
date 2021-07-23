@@ -6,7 +6,7 @@ import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MatMultiselect from "./MatMultiselect";
-import ItemSelect from "./Select";
+import ItemSelect from "./ItemSelect";
 
 const useStyles = makeStyles((theme) => ({
   root: {
