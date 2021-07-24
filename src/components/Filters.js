@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
   },
   accordion: {
-    width: "90%",
+    width: "98%",
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),

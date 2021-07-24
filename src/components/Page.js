@@ -33,10 +33,6 @@ const Page = () => {
 
   return (
     <div className="mainDiv">
-      <div className="header">
-        <h2>Don't worry, I'll pick it for you.</h2>
-      </div>
-
       <div className={classes.content}>
         <Filters
           episodesData={episodesData}
