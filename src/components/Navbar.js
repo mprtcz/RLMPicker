@@ -8,23 +8,30 @@ const useStyles = makeStyles((theme) => ({
   },
   navbar: {
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "space-between",
     alignItems: "center",
     height: 80,
-    lineHeight: 40,
     boxShadow: "1px 3px 5px rgba(0, 0, 0, 0.1)",
     marginBottom: 16,
+  },
+  flexBalancer: {
+    flex: 1,
   },
   links: {
     display: "flex",
     alignItems: "center",
-    position: "absolute",
     right: 0,
     lineHeight: "40px",
+    flexWrap: "wrap",
+    flex: 1,
+    justifyContent: "flex-end",
     "& > *": {
-      marginRight: 15,
+      marginRight: 10,
       padding: "0 8px",
     },
+  },
+  link: {
+    whiteSpace: "nowrap",
   },
 }));
 const Navbar = () => {
@@ -32,10 +39,14 @@ const Navbar = () => {
 
   return (
     <nav className={classes.navbar}>
+      <div className={classes.flexBalancer}></div>
       <h1>Don't worry, I'll pick it for you</h1>
       <div className={classes.links}>
-        <Link to="/">Picker</Link>
+        <Link to="/" className={classes.link}>
+          Picker
+        </Link>
         <Link
+          className={classes.link}
           to="/modify-data"
           style={{
             color: "white",
