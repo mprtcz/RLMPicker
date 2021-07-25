@@ -42,7 +42,7 @@ const Navbar = () => {
       <div className={classes.flexBalancer}></div>
       <h1>Don't worry, I'll pick it for you</h1>
       <div className={classes.links}>
-        <Link to="/" className={classes.link}>
+        <Link to="picker" className={classes.link}>
           Picker
         </Link>
         <Link

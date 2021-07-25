@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { data } from "data/new-data";
@@ -8,6 +8,7 @@ import {
   AccordionSummary,
   Typography,
 } from "@material-ui/core";
+import SingleInput from "./SingleInput";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,19 +25,32 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#dcedc8",
     padding: 5,
     border: "1px solid #aabb97",
+    marginRight: 15,
     "&> pre": {
       textAlign: "left",
       whiteSpace: "pre-wrap",
     },
   },
+  detailsContainer: {
+    display: "flex",
+  },
 }));
 const DataModifierPage = () => {
   const initialData = data;
+  const [state, setState] = useState(initialData);
   const classes = useStyles();
+  const stringFields = ["episodeName", "url", "subtitle", "description"];
+
+  const handleChange = (event, datum, index, fieldName) => {
+    datum[fieldName] = event;
+    initialData[index] = datum;
+    setState([...initialData]);
+  };
 
   return (
     <div className={classes.mainContainer}>
-      {initialData.map((datum) => {
+      {initialData.map((datum, index) => {
+        const datumCopy = JSON.parse(JSON.stringify(datum));
         return (
           <Accordion>
             <AccordionSummary
@@ -49,8 +63,23 @@ const DataModifierPage = () => {
               </Typography>
             </AccordionSummary>
             <AccordionDetails className={classes.accordionDetails}>
-              <div className={classes.jsonRenderContainer}>
-                <pre>{JSON.stringify(datum, null, 2)}</pre>
+              <div className={classes.detailsContainer}>
+                <div className={classes.jsonRenderContainer}>
+                  <pre>{JSON.stringify(datumCopy, null, 2)}</pre>
+                </div>
+                <form>
+                  <div className="inputs">
+                    {stringFields.map((fieldName) => (
+                      <SingleInput
+                        datum={datum}
+                        fieldName={fieldName}
+                        emitNewValue={(newValue) => {
+                          handleChange(newValue, datum, index, fieldName);
+                        }}
+                      ></SingleInput>
+                    ))}
+                  </div>
+                </form>
               </div>
             </AccordionDetails>
           </Accordion>
