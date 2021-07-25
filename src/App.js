@@ -15,6 +15,9 @@ function App() {
             <Route exact path="/">
               <Page />
             </Route>
+            <Route exact path="/picker">
+              <Page />
+            </Route>
             <Route exact path="/modify-data">
               <DataModifierPage />
             </Route>

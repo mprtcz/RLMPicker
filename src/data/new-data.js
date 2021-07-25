@@ -3,7 +3,6 @@ const { Members } = require("./consts");
 export const data = [
   {
     id: "1",
-
     episodeName: "Best of the Worst Episode 1",
     url: "https://www.youtube.com/watch?v=q6TY-nBkxqY",
     members: [Members.JAY, Members.JESS, Members.JOSH, Members.MIKE],
