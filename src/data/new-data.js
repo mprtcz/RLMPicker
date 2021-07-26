@@ -1,5 +1,8 @@
 const { Members } = require("./consts");
-
+// Since I always keep it open - a few snippets to keep in mind:
+// imr - import react
+// usf useState
+// uef - useEffect
 export const data = [
   {
     id: "1",

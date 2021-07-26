@@ -6,9 +6,11 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
+  TextField,
   Typography,
 } from "@material-ui/core";
 import SingleInput from "./SingleInput";
+import MultiselectWithDataAdd from "./MultiselectWithDataAdd";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,6 +42,8 @@ const DataModifierPage = () => {
   const [state, setState] = useState(initialData);
   const classes = useStyles();
   const stringFields = ["episodeName", "url", "subtitle", "description"];
+  const stringArrays = ["members", "guests", "editors"];
+  const objectArrays = ["movies"];
 
   const handleChange = (event, datum, index, fieldName) => {
     datum[fieldName] = event;
@@ -70,13 +74,24 @@ const DataModifierPage = () => {
                 <form>
                   <div className="inputs">
                     {stringFields.map((fieldName) => (
-                      <SingleInput
-                        datum={datum}
-                        fieldName={fieldName}
-                        emitNewValue={(newValue) => {
-                          handleChange(newValue, datum, index, fieldName);
-                        }}
-                      ></SingleInput>
+                      <div>
+                        <SingleInput
+                          datum={datum}
+                          fieldName={fieldName}
+                          emitNewValue={(newValue) => {
+                            handleChange(newValue, datum, index, fieldName);
+                          }}
+                        ></SingleInput>
+                      </div>
+                    ))}
+                    {stringArrays.map((arrayName, index) => (
+                      <div>
+                        <MultiselectWithDataAdd
+                          array={datum[arrayName]}
+                          title={arrayName}
+                          key={index}
+                        ></MultiselectWithDataAdd>
+                      </div>
                     ))}
                   </div>
                 </form>
