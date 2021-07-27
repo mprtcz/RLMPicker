@@ -22,6 +22,9 @@ const useStyles = makeStyles((theme) => ({
   },
   accordionDetails: {},
   mainContainer: {},
+  formContainer: {
+    width: "30%",
+  },
   jsonRenderContainer: {
     maxWidth: "40%",
     backgroundColor: "#dcedc8",
@@ -35,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
   },
   detailsContainer: {
     display: "flex",
+    width: "100%",
   },
 }));
 const DataModifierPage = () => {
@@ -71,7 +75,7 @@ const DataModifierPage = () => {
                 <div className={classes.jsonRenderContainer}>
                   <pre>{JSON.stringify(datumCopy, null, 2)}</pre>
                 </div>
-                <form>
+                <form className={classes.formContainer}>
                   <div className="inputs">
                     {stringFields.map((fieldName) => (
                       <SingleInput

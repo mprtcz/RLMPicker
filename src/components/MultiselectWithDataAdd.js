@@ -1,6 +1,7 @@
 import {
   Button,
   Checkbox,
+  IconButton,
   Input,
   InputLabel,
   ListItemText,
@@ -9,8 +10,9 @@ import {
   Select,
   TextField,
 } from "@material-ui/core";
+import AddIcon from "@material-ui/icons/Add";
 import { data } from "data/new-data";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import MatMultiselect from "./MatMultiselect";
 
 const ITEM_HEIGHT = 48;
@@ -24,11 +26,17 @@ const MenuProps = {
   },
 };
 const useStyles = makeStyles((theme) => ({
-  container: {},
+  container: {
+    minWidth: "50%",
+  },
   addSection: {
     display: "flex",
     alignItems: "center",
   },
+  addValueTextField: {
+    flexGrow: 1,
+  },
+  addValueSection: { flexGrow: 1, display: "flex", alignItems: "center" },
   button: {
     maxHeight: 36,
   },
@@ -38,6 +46,7 @@ const MultiselectWithDataAdd = (props) => {
   const classes = useStyles();
   const { array, title } = props;
   const episodesData = data;
+  const [showAdd, setShowAdd] = useState(false);
 
   const onlyUnique = (value, index, self) => {
     return self.indexOf(value) === index;
@@ -55,6 +64,9 @@ const MultiselectWithDataAdd = (props) => {
   const handleChange = (select) => {};
   const handleAddDatapoint = (select) => {};
   const handleAdd = (select) => {};
+  const handleShowAddButton = () => {
+    setShowAdd(!showAdd);
+  };
 
   return (
     <div className={classes.container}>
@@ -78,19 +90,29 @@ const MultiselectWithDataAdd = (props) => {
           ))}
       </Select>
       <div className={classes.addSection}>
-        <TextField
-          onChange={handleAddDatapoint}
-          id="standard-basic"
-          label="Add value"
-        />
-        <Button
-          color="primary"
-          variant="contained"
-          onClick={handleAdd}
-          className={classes.button}
-        >
-          Add
-        </Button>
+        <div onClick={handleShowAddButton}>
+          <IconButton color="secondary" aria-label="Add new value">
+            <AddIcon />
+          </IconButton>
+        </div>
+        {showAdd && (
+          <div className={classes.addValueSection}>
+            <TextField
+              onChange={handleAddDatapoint}
+              id="standard-basic"
+              className={classes.addValueTextField}
+              label="Add value"
+            />
+            <Button
+              color="primary"
+              variant="contained"
+              onClick={handleAdd}
+              className={classes.button}
+            >
+              Add
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );
