@@ -21,6 +21,8 @@ const SingleInput = (props) => {
       <TextField
         style={{ width: "100%" }}
         value={datum}
+        multiline
+        maxRows={3}
         onChange={handleChange}
         id="standard-basic"
         label={fieldName}

@@ -40,6 +40,11 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     width: "100%",
   },
+  inputs: {
+    "& >*": {
+      marginBottom: 8,
+    },
+  },
 }));
 const DataModifierPage = () => {
   const initialData = data;
@@ -76,7 +81,7 @@ const DataModifierPage = () => {
                   <pre>{JSON.stringify(datumCopy, null, 2)}</pre>
                 </div>
                 <form className={classes.formContainer}>
-                  <div className="inputs">
+                  <div className={classes.inputs}>
                     {stringFields.map((fieldName) => (
                       <SingleInput
                         datum={datum}

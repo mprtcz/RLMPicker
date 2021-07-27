@@ -45,8 +45,10 @@ const useStyles = makeStyles((theme) => ({
 const MultiselectWithDataAdd = (props) => {
   const classes = useStyles();
   const { array, title } = props;
+  const [selectedOptions, setSelectedOptions] = useState(array);
   const episodesData = data;
   const [showAdd, setShowAdd] = useState(false);
+  const [textFieldValue, setTextFieldValue] = useState("");
 
   const onlyUnique = (value, index, self) => {
     return self.indexOf(value) === index;
@@ -56,14 +58,23 @@ const MultiselectWithDataAdd = (props) => {
     .flat()
     .filter(onlyUnique);
 
-  useEffect(() => {
-    console.log("array", array);
-  }, [array]);
-
   const onSelect = (select) => {};
   const handleChange = (select) => {};
-  const handleAddDatapoint = (select) => {};
-  const handleAdd = (select) => {};
+  const handleKeyDown = (keyDownEvent) => {
+    if (keyDownEvent.keyCode === 13) {
+      handleAdd();
+    }
+  };
+  const handleAddDatapoint = (datapoint) => {
+    setTextFieldValue(datapoint.target.value);
+  };
+  const handleAdd = () => {
+    const newValue = textFieldValue;
+
+    setSelectedOptions([...selectedOptions, newValue]);
+    setTextFieldValue("");
+    setShowAdd(false);
+  };
   const handleShowAddButton = () => {
     setShowAdd(!showAdd);
   };
@@ -75,7 +86,7 @@ const MultiselectWithDataAdd = (props) => {
         labelId="demo-mutiple-checkbox-label"
         id="demo-mutiple-checkbox"
         multiple
-        value={array || []}
+        value={selectedOptions || []}
         onChange={handleChange}
         input={<Input />}
         renderValue={(selected) => selected.join(", ")}
@@ -100,6 +111,8 @@ const MultiselectWithDataAdd = (props) => {
             <TextField
               onChange={handleAddDatapoint}
               id="standard-basic"
+              value={textFieldValue}
+              onKeyDown={handleKeyDown}
               className={classes.addValueTextField}
               label="Add value"
             />
