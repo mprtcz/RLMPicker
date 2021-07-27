@@ -53,28 +53,43 @@ const MultiselectWithDataAdd = (props) => {
   const onlyUnique = (value, index, self) => {
     return self.indexOf(value) === index;
   };
-  const allSelectableValues = episodesData
-    .map((episode) => episode[title])
-    .flat()
-    .filter(onlyUnique);
+
+  const gatherSelectableValues = () => {
+    return episodesData
+      .map((episode) => episode[title])
+      .flat()
+      .filter(onlyUnique);
+  };
+  const [selectableValues, setSelectableValues] = useState(
+    gatherSelectableValues()
+  );
+
+  useEffect(() => {
+    setSelectableValues(
+      [...selectableValues, ...selectedOptions].filter(onlyUnique)
+    );
+  }, [selectedOptions]);
 
   const onSelect = (select) => {};
   const handleChange = (select) => {};
+
   const handleKeyDown = (keyDownEvent) => {
     if (keyDownEvent.keyCode === 13) {
       handleAdd();
     }
   };
+
   const handleAddDatapoint = (datapoint) => {
     setTextFieldValue(datapoint.target.value);
   };
+
   const handleAdd = () => {
     const newValue = textFieldValue;
-
     setSelectedOptions([...selectedOptions, newValue]);
     setTextFieldValue("");
     setShowAdd(false);
   };
+
   const handleShowAddButton = () => {
     setShowAdd(!showAdd);
   };
@@ -92,8 +107,8 @@ const MultiselectWithDataAdd = (props) => {
         renderValue={(selected) => selected.join(", ")}
         MenuProps={MenuProps}
       >
-        {allSelectableValues &&
-          allSelectableValues.map((item, index) => (
+        {selectableValues &&
+          selectableValues.map((item, index) => (
             <MenuItem value={item} key={index}>
               <Checkbox checked={(array || []).indexOf(item) > -1} />
               <ListItemText primary={item} />
