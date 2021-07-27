@@ -19,6 +19,7 @@ const SingleInput = (props) => {
   return (
     <div>
       <TextField
+        style={{ width: "100%" }}
         value={datum}
         onChange={handleChange}
         id="standard-basic"

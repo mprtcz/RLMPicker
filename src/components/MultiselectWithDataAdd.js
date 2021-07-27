@@ -4,6 +4,7 @@ import {
   Input,
   InputLabel,
   ListItemText,
+  makeStyles,
   MenuItem,
   Select,
   TextField,
@@ -22,8 +23,19 @@ const MenuProps = {
     },
   },
 };
+const useStyles = makeStyles((theme) => ({
+  container: {},
+  addSection: {
+    display: "flex",
+    alignItems: "center",
+  },
+  button: {
+    maxHeight: 36,
+  },
+}));
 
 const MultiselectWithDataAdd = (props) => {
+  const classes = useStyles();
   const { array, title } = props;
   const episodesData = data;
 
@@ -45,7 +57,7 @@ const MultiselectWithDataAdd = (props) => {
   const handleAdd = (select) => {};
 
   return (
-    <div>
+    <div className={classes.container}>
       <InputLabel id="demo-mutiple-checkbox-label">{title}</InputLabel>
       <Select
         labelId="demo-mutiple-checkbox-label"
@@ -65,12 +77,21 @@ const MultiselectWithDataAdd = (props) => {
             </MenuItem>
           ))}
       </Select>
-      <TextField
-        onChange={handleAddDatapoint}
-        id="standard-basic"
-        label="Add value"
-      />
-      <Button onClick={handleAdd}>Add</Button>
+      <div className={classes.addSection}>
+        <TextField
+          onChange={handleAddDatapoint}
+          id="standard-basic"
+          label="Add value"
+        />
+        <Button
+          color="primary"
+          variant="contained"
+          onClick={handleAdd}
+          className={classes.button}
+        >
+          Add
+        </Button>
+      </div>
     </div>
   );
 };

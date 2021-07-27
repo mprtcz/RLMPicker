@@ -74,15 +74,13 @@ const DataModifierPage = () => {
                 <form>
                   <div className="inputs">
                     {stringFields.map((fieldName) => (
-                      <div>
-                        <SingleInput
-                          datum={datum}
-                          fieldName={fieldName}
-                          emitNewValue={(newValue) => {
-                            handleChange(newValue, datum, index, fieldName);
-                          }}
-                        ></SingleInput>
-                      </div>
+                      <SingleInput
+                        datum={datum}
+                        fieldName={fieldName}
+                        emitNewValue={(newValue) => {
+                          handleChange(newValue, datum, index, fieldName);
+                        }}
+                      ></SingleInput>
                     ))}
                     {stringArrays.map((arrayName, index) => (
                       <div>
