@@ -1,15 +1,9 @@
 import React, { useEffect, useState } from "react";
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  TextField,
-  Typography,
-} from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 
 const SingleInput = (props) => {
   const [datum, setDatum] = useState(props.datum[props.fieldName]);
-  const { emitNewValue, fieldName } = props;
+  const { emitNewValue, fieldName, id } = props;
 
   const handleChange = (event) => {
     setDatum(event.target.value);
@@ -24,7 +18,6 @@ const SingleInput = (props) => {
         multiline
         maxRows={3}
         onChange={handleChange}
-        id="standard-basic"
         label={fieldName}
       />
     </div>

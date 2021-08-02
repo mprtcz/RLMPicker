@@ -13,7 +13,6 @@ import {
 import AddIcon from "@material-ui/icons/Add";
 import { data } from "data/new-data";
 import React, { useEffect, useState } from "react";
-import MatMultiselect from "./MatMultiselect";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -44,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
 
 const MultiselectWithDataAdd = (props) => {
   const classes = useStyles();
-  const { array, title } = props;
+  const { array, title, emitValuesChange } = props;
   const [selectedOptions, setSelectedOptions] = useState(array);
   const episodesData = data;
   const [showAdd, setShowAdd] = useState(false);
@@ -68,10 +67,16 @@ const MultiselectWithDataAdd = (props) => {
     setSelectableValues(
       [...selectableValues, ...selectedOptions].filter(onlyUnique)
     );
+    emitValuesChange(selectedOptions);
   }, [selectedOptions]);
 
-  const onSelect = (select) => {};
-  const handleChange = (select) => {};
+  const onSelect = (select) => {
+    emitValuesChange(select);
+  };
+
+  const handleChange = (select) => {
+    setSelectedOptions(select.target.value);
+  };
 
   const handleKeyDown = (keyDownEvent) => {
     if (keyDownEvent.keyCode === 13) {
@@ -110,7 +115,7 @@ const MultiselectWithDataAdd = (props) => {
         {selectableValues &&
           selectableValues.map((item, index) => (
             <MenuItem value={item} key={index}>
-              <Checkbox checked={(array || []).indexOf(item) > -1} />
+              <Checkbox checked={(selectedOptions || []).indexOf(item) > -1} />
               <ListItemText primary={item} />
             </MenuItem>
           ))}
