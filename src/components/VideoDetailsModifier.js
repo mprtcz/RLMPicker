@@ -44,19 +44,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const VideoDetailsModifier = (props) => {
-  const { datum, index, stringFields, stringArrays, objectArrays } = props;
+  const stringFields = ["episodeName", "url", "subtitle", "description"];
+  const stringArrays = ["members", "guests", "editors"];
+  const objectArrays = ["movies"];
+
+  const { datum, index } = props;
   const classes = useStyles();
 
   const [video, setVideo] = useState(datum);
 
   const handleAccordionChange = (event, isOpened) => {};
 
-  const handleArrayValueChange = (newValue, video, index, arrayName) => {};
-
-  const handleChange = (event, datum, fieldName) => {
-    datum[fieldName] = event;
+  const handleChange = (newValue, datum, fieldName) => {
+    datum[fieldName] = newValue;
     setVideo(Object.assign({}, datum));
-    console.log("set the video ");
   };
 
   return (
@@ -92,7 +93,7 @@ const VideoDetailsModifier = (props) => {
                     title={arrayName}
                     key={index}
                     emitValuesChange={(newValue) => {
-                      handleArrayValueChange(newValue, video, index, arrayName);
+                      handleChange(newValue, video, arrayName);
                     }}
                   ></MultiselectWithDataAdd>
                 </div>

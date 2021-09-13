@@ -54,6 +54,7 @@ const MatMultiselect = (props) => {
         value={selected}
         onChange={handleChange}
         input={<Input />}
+        // @ts-ignore
         renderValue={(selected) => selected.join(", ")}
         MenuProps={MenuProps}
       >
