@@ -1,16 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { data } from "data/new-data";
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Button,
-  Typography,
-} from "@material-ui/core";
-import SingleInput from "./SingleInput";
-import MultiselectWithDataAdd from "./MultiselectWithDataAdd";
+import { Button } from "@material-ui/core";
+import VideoDetailsModifier from "./VideoDetailsModifier";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,31 +12,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: theme.typography.pxToRem(15),
     fontWeight: theme.typography.fontWeightRegular,
   },
-  accordionDetails: {},
   mainContainer: {},
-  formContainer: {
-    width: "30%",
-  },
-  jsonRenderContainer: {
-    maxWidth: "40%",
-    backgroundColor: "#dcedc8",
-    padding: 5,
-    border: "1px solid #aabb97",
-    marginRight: 15,
-    "&> pre": {
-      textAlign: "left",
-      whiteSpace: "pre-wrap",
-    },
-  },
-  detailsContainer: {
-    display: "flex",
-    width: "100%",
-  },
-  inputs: {
-    "& >*": {
-      marginBottom: 8,
-    },
-  },
   button: {
     position: "absolute",
     top: 20,
@@ -54,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
 const DataModifierPage = () => {
   const initialData = data;
   const [state, setState] = useState(initialData);
+
   const classes = useStyles();
   const stringFields = ["episodeName", "url", "subtitle", "description"];
   const stringArrays = ["members", "guests", "editors"];
@@ -65,8 +34,9 @@ const DataModifierPage = () => {
 
   const handleChange = (event, datum, index, fieldName) => {
     datum[fieldName] = event;
-    initialData[index] = datum;
-    setState([...initialData]);
+    const arrayCopy = [...state];
+    arrayCopy[index] = datum;
+    setState(arrayCopy);
   };
 
   const handleArrayValueChange = (event, datum, index, fieldName) => {
@@ -76,6 +46,11 @@ const DataModifierPage = () => {
     const arrayCopy = [...state];
     arrayCopy[index] = datumUpdated;
     setState(arrayCopy);
+  };
+
+  const handleAccordionChange = (event, isOpened) => {
+    console.log("event", event);
+    console.log("isOpened", isOpened);
   };
 
   const handleDownload = () => {
@@ -98,58 +73,16 @@ const DataModifierPage = () => {
       >
         Download File
       </Button>
-      {initialData.map((datum, index) => {
+      {state.map((datum, index) => {
         const datumCopy = JSON.parse(JSON.stringify(datum));
         return (
-          <Accordion>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Typography className={classes.heading}>
-                {datum.episodeName}
-              </Typography>
-            </AccordionSummary>
-            <AccordionDetails className={classes.accordionDetails}>
-              <div className={classes.detailsContainer}>
-                <div className={classes.jsonRenderContainer}>
-                  <pre>{JSON.stringify(datumCopy, null, 2)}</pre>
-                </div>
-                <form className={classes.formContainer}>
-                  <div className={classes.inputs}>
-                    {stringFields.map((fieldName, singleInputIndex) => (
-                      <SingleInput
-                        id={1 + index * singleInputIndex}
-                        datum={datum}
-                        fieldName={fieldName}
-                        emitNewValue={(newValue) => {
-                          handleChange(newValue, datum, index, fieldName);
-                        }}
-                      ></SingleInput>
-                    ))}
-                    {stringArrays.map((arrayName, index) => (
-                      <div>
-                        <MultiselectWithDataAdd
-                          array={datum[arrayName]}
-                          title={arrayName}
-                          key={index}
-                          emitValuesChange={(newValue) => {
-                            handleArrayValueChange(
-                              newValue,
-                              datum,
-                              index,
-                              arrayName
-                            );
-                          }}
-                        ></MultiselectWithDataAdd>
-                      </div>
-                    ))}
-                  </div>
-                </form>
-              </div>
-            </AccordionDetails>
-          </Accordion>
+          <VideoDetailsModifier
+            datum={datum}
+            index={index}
+            stringFields={stringFields}
+            stringArrays={stringArrays}
+            objectArrays={objectArrays}
+          ></VideoDetailsModifier>
         );
       })}
     </div>
