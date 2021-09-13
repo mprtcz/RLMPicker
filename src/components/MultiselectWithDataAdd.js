@@ -67,6 +67,7 @@ const MultiselectWithDataAdd = (props) => {
     setSelectableValues(
       [...selectableValues, ...selectedOptions].filter(onlyUnique)
     );
+    // TODO figure out how to prevent this propagation on first run
     emitValuesChange(selectedOptions);
   }, [selectedOptions]);
 

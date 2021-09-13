@@ -8,10 +8,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
   },
-  heading: {
-    fontSize: theme.typography.pxToRem(15),
-    fontWeight: theme.typography.fontWeightRegular,
-  },
   mainContainer: {},
   button: {
     position: "absolute",
@@ -24,9 +20,6 @@ const DataModifierPage = () => {
   const [state, setState] = useState(initialData);
 
   const classes = useStyles();
-  const stringFields = ["episodeName", "url", "subtitle", "description"];
-  const stringArrays = ["members", "guests", "editors"];
-  const objectArrays = ["movies"];
 
   useEffect(() => {
     console.log("state = ", state);
@@ -79,9 +72,6 @@ const DataModifierPage = () => {
           <VideoDetailsModifier
             datum={datum}
             index={index}
-            stringFields={stringFields}
-            stringArrays={stringArrays}
-            objectArrays={objectArrays}
           ></VideoDetailsModifier>
         );
       })}

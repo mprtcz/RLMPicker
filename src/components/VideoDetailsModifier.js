@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { Button } from "@material-ui/core";
 import {
   Accordion,
   AccordionDetails,
@@ -42,6 +43,9 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: 8,
     },
   },
+  button: {
+    color: "white",
+  },
 }));
 const VideoDetailsModifier = (props) => {
   const stringFields = ["episodeName", "url", "subtitle", "description"];
@@ -52,12 +56,26 @@ const VideoDetailsModifier = (props) => {
   const classes = useStyles();
 
   const [video, setVideo] = useState(datum);
+  const [hasChanged = false, setHasChanged] = useState(false);
 
   const handleAccordionChange = (event, isOpened) => {};
 
+  const handleSave = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    setHasChanged(false);
+  };
+
   const handleChange = (newValue, datum, fieldName) => {
-    datum[fieldName] = newValue;
+    if (areEqual()) datum[fieldName] = newValue;
     setVideo(Object.assign({}, datum));
+
+    setHasChanged(true);
+  };
+
+  const areEqual = (val1, val2) => {
+    return JSON.stringify(val1) === JSON.stringify(val2);
   };
 
   return (
@@ -67,6 +85,18 @@ const VideoDetailsModifier = (props) => {
         aria-controls="panel1a-content"
         id="panel1a-header"
       >
+        {hasChanged ? (
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={handleSave}
+            className={classes.button}
+          >
+            Save changes
+          </Button>
+        ) : (
+          ""
+        )}
         <Typography className={classes.heading}>{video.episodeName}</Typography>
       </AccordionSummary>
       <AccordionDetails className={classes.accordionDetails}>
