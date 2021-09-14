@@ -25,13 +25,6 @@ const DataModifierPage = () => {
     console.log("state = ", state);
   }, [state]);
 
-  const handleChange = (event, datum, index, fieldName) => {
-    datum[fieldName] = event;
-    const arrayCopy = [...state];
-    arrayCopy[index] = datum;
-    setState(arrayCopy);
-  };
-
   const handleArrayValueChange = (event, datum, index, fieldName) => {
     const datumUpdated = { ...datum };
 
@@ -41,9 +34,11 @@ const DataModifierPage = () => {
     setState(arrayCopy);
   };
 
-  const handleAccordionChange = (event, isOpened) => {
-    console.log("event", event);
-    console.log("isOpened", isOpened);
+  const onVideoSave = (movie, index) => {
+    console.log("event", movie);
+    const arrayCopy = [...state];
+    arrayCopy[index] = movie;
+    setState(arrayCopy);
   };
 
   const handleDownload = () => {
@@ -72,6 +67,7 @@ const DataModifierPage = () => {
           <VideoDetailsModifier
             datum={datum}
             index={index}
+            onVideoSave={(video) => onVideoSave(video, index)}
           ></VideoDetailsModifier>
         );
       })}

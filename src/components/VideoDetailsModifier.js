@@ -52,7 +52,7 @@ const VideoDetailsModifier = (props) => {
   const stringArrays = ["members", "guests", "editors"];
   const objectArrays = ["movies"];
 
-  const { datum, index } = props;
+  const { datum, onVideoSave } = props;
   const classes = useStyles();
 
   const [video, setVideo] = useState(datum);
@@ -63,6 +63,8 @@ const VideoDetailsModifier = (props) => {
   const handleSave = (event) => {
     event.preventDefault();
     event.stopPropagation();
+
+    onVideoSave(video);
 
     setHasChanged(false);
   };
