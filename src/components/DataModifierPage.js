@@ -21,19 +21,6 @@ const DataModifierPage = () => {
 
   const classes = useStyles();
 
-  useEffect(() => {
-    console.log("state = ", state);
-  }, [state]);
-
-  const handleArrayValueChange = (event, datum, index, fieldName) => {
-    const datumUpdated = { ...datum };
-
-    datumUpdated[fieldName] = event;
-    const arrayCopy = [...state];
-    arrayCopy[index] = datumUpdated;
-    setState(arrayCopy);
-  };
-
   const onVideoSave = (movie, index) => {
     console.log("event", movie);
     const arrayCopy = [...state];
