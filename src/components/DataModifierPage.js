@@ -9,21 +9,26 @@ import PublishIcon from "@material-ui/icons/Publish";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
+    display: "flex",
   },
-  mainContainer: {},
+  mainContainer: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    backgroundColor: "inherit",
+  },
   buttonIcon: {
     marginLeft: 5,
   },
-  // TODO make title absolute and buttons flex, it'll look more natural
-  buttonUpload: {
-    position: "absolute",
-    top: 20,
-    left: 10,
+  videoModifiers: {
+    width: "80%",
   },
-  buttonDownload: {
-    position: "absolute",
-    top: 20,
-    left: 160,
+  buttonsContainer: {
+    marginBottom: 16,
+    marginTop: 16,
+    width: "100%",
+    display: "flex",
+    justifyContent: "space-evenly",
   },
 }));
 const DataModifierPage = () => {
@@ -53,34 +58,28 @@ const DataModifierPage = () => {
 
   return (
     <div className={classes.mainContainer}>
-      <Button
-        color="secondary"
-        variant="contained"
-        onClick={handleUpload}
-        className={classes.buttonUpload}
-      >
-        Upload File
-        <PublishIcon className={classes.buttonIcon}></PublishIcon>
-      </Button>
-      <Button
-        color="primary"
-        variant="contained"
-        onClick={handleDownload}
-        className={classes.buttonDownload}
-      >
-        Download File
-        <GetAppIcon className={classes.buttonIcon}></GetAppIcon>
-      </Button>
-      {state.map((datum, index) => {
-        const datumCopy = JSON.parse(JSON.stringify(datum));
-        return (
-          <VideoDetailsModifier
-            datum={datum}
-            index={index}
-            onVideoSave={(video) => onVideoSave(video, index)}
-          ></VideoDetailsModifier>
-        );
-      })}
+      <div className={classes.buttonsContainer}>
+        <Button color="secondary" variant="contained" onClick={handleUpload}>
+          Upload File
+          <PublishIcon className={classes.buttonIcon}></PublishIcon>
+        </Button>
+        <Button color="primary" variant="contained" onClick={handleDownload}>
+          Download File
+          <GetAppIcon className={classes.buttonIcon}></GetAppIcon>
+        </Button>
+      </div>
+      <div className={classes.videoModifiers}>
+        {state.map((datum, index) => {
+          const datumCopy = JSON.parse(JSON.stringify(datum));
+          return (
+            <VideoDetailsModifier
+              datum={datum}
+              index={index}
+              onVideoSave={(video) => onVideoSave(video, index)}
+            ></VideoDetailsModifier>
+          );
+        })}
+      </div>
     </div>
   );
 };

@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     height: 80,
     boxShadow: "1px 3px 5px rgba(0, 0, 0, 0.1)",
-    marginBottom: 16,
+    backgroundColor: "white",
   },
   flexBalancer: {
     flex: 1,
