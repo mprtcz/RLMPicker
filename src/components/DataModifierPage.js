@@ -3,16 +3,27 @@ import { makeStyles } from "@material-ui/core/styles";
 import { data } from "data/new-data";
 import { Button } from "@material-ui/core";
 import VideoDetailsModifier from "./VideoDetailsModifier";
+import GetAppIcon from "@material-ui/icons/GetApp";
+import PublishIcon from "@material-ui/icons/Publish";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
   },
   mainContainer: {},
-  button: {
+  buttonIcon: {
+    marginLeft: 5,
+  },
+  // TODO make title absolute and buttons flex, it'll look more natural
+  buttonUpload: {
     position: "absolute",
     top: 20,
     left: 10,
+  },
+  buttonDownload: {
+    position: "absolute",
+    top: 20,
+    left: 160,
   },
 }));
 const DataModifierPage = () => {
@@ -38,15 +49,27 @@ const DataModifierPage = () => {
     tempLink.click();
   };
 
+  const handleUpload = () => {};
+
   return (
     <div className={classes.mainContainer}>
+      <Button
+        color="secondary"
+        variant="contained"
+        onClick={handleUpload}
+        className={classes.buttonUpload}
+      >
+        Upload File
+        <PublishIcon className={classes.buttonIcon}></PublishIcon>
+      </Button>
       <Button
         color="primary"
         variant="contained"
         onClick={handleDownload}
-        className={classes.button}
+        className={classes.buttonDownload}
       >
         Download File
+        <GetAppIcon className={classes.buttonIcon}></GetAppIcon>
       </Button>
       {state.map((datum, index) => {
         const datumCopy = JSON.parse(JSON.stringify(datum));
