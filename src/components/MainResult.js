@@ -22,6 +22,8 @@ const useStyles = makeStyles({
   },
   card: {
     maxWidth: 480,
+
+    boxShadow: "9px 8px 4px rgb(104 97 97 / 10%)",
   },
   details: {
     marginLeft: 15,
