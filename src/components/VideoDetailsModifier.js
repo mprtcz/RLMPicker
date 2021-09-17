@@ -4,6 +4,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { Button } from "@material-ui/core";
 import {
   Accordion,
+  Card,
   AccordionDetails,
   AccordionSummary,
   Typography,
@@ -30,8 +31,11 @@ const useStyles = makeStyles((theme) => ({
       width: "48%",
     },
   },
+  card: {
+    padding: "8px",
+  },
   jsonRenderContainer: {
-    maxWidth: "40%",
+    maxWidth: "35%",
     backgroundColor: "#dcedc8",
     padding: 5,
     border: "1px solid #aabb97",
@@ -126,12 +130,14 @@ const VideoDetailsModifier = (props) => {
             <pre>{JSON.stringify(video, null, 2)}</pre>
           </div>
           <form className={classes.formContainer}>
-            <Inputs
-              inputObject={video}
-              stringFields={stringFields}
-              stringArrays={stringArrays}
-              inputObjectChanged={(output) => onInputObjectChange(output)}
-            ></Inputs>
+            <Card className={classes.card}>
+              <Inputs
+                inputObject={video}
+                stringFields={stringFields}
+                stringArrays={stringArrays}
+                inputObjectChanged={(output) => onInputObjectChange(output)}
+              ></Inputs>
+            </Card>
             {(objectArrays || []).map((fieldName) => (
               <div>
                 {(video[fieldName] || []).map((movieInfo, singleInputIndex) => (

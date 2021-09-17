@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   inputs: {
+    width: "100%",
     "& >*": {
       marginBottom: 8,
     },
@@ -33,31 +34,29 @@ const Inputs = (props) => {
   };
 
   return (
-    <div>
-      <div className={classes.inputs}>
-        {(stringFields || []).map((fieldName, singleInputIndex) => (
-          <SingleInput
-            id={singleInputIndex}
-            datum={object}
-            fieldName={fieldName}
-            emitNewValue={(newValue) => {
-              handleChange(newValue, object, fieldName);
+    <div className={classes.inputs}>
+      {(stringFields || []).map((fieldName, singleInputIndex) => (
+        <SingleInput
+          id={singleInputIndex}
+          datum={object}
+          fieldName={fieldName}
+          emitNewValue={(newValue) => {
+            handleChange(newValue, object, fieldName);
+          }}
+        ></SingleInput>
+      ))}
+      {(stringArrays || []).map((arrayName, index) => (
+        <div>
+          <MultiselectWithDataAdd
+            array={object[arrayName]}
+            title={arrayName}
+            key={index}
+            emitValuesChange={(newValue) => {
+              handleChange(newValue, object, arrayName);
             }}
-          ></SingleInput>
-        ))}
-        {(stringArrays || []).map((arrayName, index) => (
-          <div>
-            <MultiselectWithDataAdd
-              array={object[arrayName]}
-              title={arrayName}
-              key={index}
-              emitValuesChange={(newValue) => {
-                handleChange(newValue, object, arrayName);
-              }}
-            ></MultiselectWithDataAdd>
-          </div>
-        ))}
-      </div>
+          ></MultiselectWithDataAdd>
+        </div>
+      ))}
     </div>
   );
 };

@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 5,
   },
   videoModifiers: {
-    width: "80%",
+    width: "95%",
   },
   buttonsContainer: {
     marginBottom: 16,
