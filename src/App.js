@@ -3,7 +3,7 @@ import Page from "components/Page";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "components/Navbar";
-import DataModifierPage from "components/DataModifierPage";
+import DataModifierPage from "components/data-modifier-page/DataModifierPage";
 
 function App() {
   return (

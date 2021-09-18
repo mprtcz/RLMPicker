@@ -3,6 +3,35 @@ const { Members } = require("./consts");
 // imr - import react
 // usf useState
 // uef - useEffect
+
+const EMPTY_MOVIE_OBJECT = {
+  title: "",
+  year: "",
+  technology: "",
+  studio: "",
+};
+
+export const getNewEmptyMovieObject = () => {
+  return JSON.parse(JSON.stringify(EMPTY_MOVIE_OBJECT));
+};
+
+const EMPTY_VIDEO_OBJECT = {
+  id: "",
+  episodeName: "",
+  url: "",
+  members: [],
+  guests: [],
+  subtitle: "",
+  releaseDate: 0,
+  editors: [],
+  description: "",
+  moviesData: [],
+};
+
+export const getNewEmptyVideoObject = () => {
+  return JSON.parse(JSON.stringify(EMPTY_VIDEO_OBJECT));
+};
+
 export const data = [
   {
     id: "1",

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { data } from "data/new-data";
+import { data, getNewEmptyVideoObject } from "data/new-data";
 import { Button } from "@material-ui/core";
 import VideoDetailsModifier from "./VideoDetailsModifier";
 import GetAppIcon from "@material-ui/icons/GetApp";
 import PublishIcon from "@material-ui/icons/Publish";
+import AddIcon from "@material-ui/icons/Add";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,6 +31,12 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-evenly",
   },
+  addVideoButton: {
+    marginBottom: 16,
+    marginTop: 16,
+    padding: "8px",
+    boxShadow: "0 1px 2px rgba(0,0,0,0.24)",
+  },
 }));
 const DataModifierPage = () => {
   const initialData = data;
@@ -38,9 +45,16 @@ const DataModifierPage = () => {
   const classes = useStyles();
 
   const onVideoSave = (movie, index) => {
-    console.log("event", movie);
     const arrayCopy = [...state];
     arrayCopy[index] = movie;
+    setState(arrayCopy);
+  };
+
+  const handleAddVideo = () => {
+    const arrayCopy = [...state];
+    const emptyObject = getNewEmptyVideoObject();
+    emptyObject.id = arrayCopy.length + 1;
+    arrayCopy.push(emptyObject);
     setState(arrayCopy);
   };
 
@@ -79,6 +93,15 @@ const DataModifierPage = () => {
             ></VideoDetailsModifier>
           );
         })}
+        <Button
+          size="small"
+          color="primary"
+          onClick={handleAddVideo}
+          className={classes.addVideoButton}
+        >
+          Add Video
+          <AddIcon className={classes.buttonIcon}></AddIcon>
+        </Button>
       </div>
     </div>
   );

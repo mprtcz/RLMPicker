@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
-import MultiselectWithDataAdd from "./MultiselectWithDataAdd";
-import SingleInput from "./SingleInput";
+import SingleInput from "components/SingleInput";
+import MultiselectWithDataAdd from "components/MultiselectWithDataAdd";
 
 const useStyles = makeStyles((theme) => ({
   root: {

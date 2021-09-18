@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { Button } from "@material-ui/core";
+import AddIcon from "@material-ui/icons/Add";
 import {
   Accordion,
   Card,
@@ -9,9 +10,8 @@ import {
   AccordionSummary,
   Typography,
 } from "@material-ui/core";
-import SingleInput from "./SingleInput";
-import MultiselectWithDataAdd from "./MultiselectWithDataAdd";
 import Inputs from "./Inputs";
+import { getNewEmptyMovieObject } from "data/new-data";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -57,6 +57,9 @@ const useStyles = makeStyles((theme) => ({
   button: {
     color: "white",
   },
+  addMovieButton: {
+    margin: 8,
+  },
 }));
 const VideoDetailsModifier = (props) => {
   const stringFields = ["episodeName", "url", "subtitle", "description"];
@@ -80,8 +83,6 @@ const VideoDetailsModifier = (props) => {
   };
 
   const onInputObjectChange = (newValue) => {
-    console.log("newValue", newValue);
-
     if (areEqual(video, newValue)) return;
     setVideo(newValue);
 
@@ -89,11 +90,16 @@ const VideoDetailsModifier = (props) => {
   };
 
   const onNestedInputObjectChange = (newValue, video, index, fieldName) => {
-    console.log("newValue", newValue);
-
     if (areEqual(video, newValue)) return;
 
     video[fieldName][index] = newValue;
+
+    setVideo(Object.assign({}, video));
+    setHasChanged(true);
+  };
+
+  const handleAddMovie = (fieldName) => {
+    video[fieldName].push(getNewEmptyMovieObject());
 
     setVideo(Object.assign({}, video));
     setHasChanged(true);
@@ -167,6 +173,15 @@ const VideoDetailsModifier = (props) => {
                     </AccordionDetails>
                   </Accordion>
                 ))}
+                <Button
+                  size="small"
+                  color="primary"
+                  onClick={() => handleAddMovie(fieldName)}
+                  className={classes.addMovieButton}
+                >
+                  Add Movie
+                  <AddIcon className={classes.buttonIcon}></AddIcon>
+                </Button>
               </div>
             ))}
           </form>
