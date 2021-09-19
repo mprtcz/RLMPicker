@@ -1,3 +1,4 @@
+import { createVideoImageUrl } from "functions/createVideoImageUrl";
 import React from "react";
 
 const SingleResult = (props) => {
@@ -5,12 +6,6 @@ const SingleResult = (props) => {
 
   const openVideoUrl = (chosenVideo) => {
     window.open(chosenVideo.url, "_blank");
-  };
-
-  const createVideoImageUrl = (url) => {
-    const parts = url.split("/");
-    const id = parts[parts.length - 1].split("=")[1];
-    return `https://img.youtube.com/vi/${id}/0.jpg`;
   };
 
   return (

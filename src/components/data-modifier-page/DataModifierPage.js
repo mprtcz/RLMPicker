@@ -6,6 +6,7 @@ import VideoDetailsModifier from "./VideoDetailsModifier";
 import GetAppIcon from "@material-ui/icons/GetApp";
 import PublishIcon from "@material-ui/icons/Publish";
 import AddIcon from "@material-ui/icons/Add";
+import VideosList from "./VideosList";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -83,16 +84,7 @@ const DataModifierPage = () => {
         </Button>
       </div>
       <div className={classes.videoModifiers}>
-        {state.map((datum, index) => {
-          const datumCopy = JSON.parse(JSON.stringify(datum));
-          return (
-            <VideoDetailsModifier
-              datum={datum}
-              index={index}
-              onVideoSave={(video) => onVideoSave(video, index)}
-            ></VideoDetailsModifier>
-          );
-        })}
+        <VideosList videos={state}></VideosList>
         <Button
           size="small"
           color="primary"
