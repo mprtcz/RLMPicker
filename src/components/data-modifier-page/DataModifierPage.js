@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import makeStyles from '@mui/styles/makeStyles';
 import { data, getNewEmptyVideoObject } from "data/new-data";
-import { Button } from "@material-ui/core";
+import { Button } from "@mui/material";
 import VideoDetailsModifier from "./VideoDetailsModifier";
-import GetAppIcon from "@material-ui/icons/GetApp";
-import PublishIcon from "@material-ui/icons/Publish";
-import AddIcon from "@material-ui/icons/Add";
+import GetAppIcon from "@mui/icons-material/GetApp";
+import PublishIcon from "@mui/icons-material/Publish";
+import AddIcon from "@mui/icons-material/Add";
 import VideosList from "./VideosList";
 
 const useStyles = makeStyles((theme) => ({
@@ -84,17 +84,25 @@ const DataModifierPage = () => {
         </Button>
       </div>
       <div className={classes.videoModifiers}>
-        <VideosList videos={state}></VideosList>
-        <Button
-          size="small"
-          color="primary"
-          onClick={handleAddVideo}
-          className={classes.addVideoButton}
-        >
-          Add Video
-          <AddIcon className={classes.buttonIcon}></AddIcon>
-        </Button>
+        {state.map((datum, index) => {
+          return (
+            <VideoDetailsModifier
+              datum={JSON.parse(JSON.stringify(datum))}
+              index={index}
+              onVideoSave={(video) => onVideoSave(video, index)}
+            ></VideoDetailsModifier>
+          );
+        })}
       </div>
+      <Button
+        size="small"
+        color="primary"
+        onClick={handleAddVideo}
+        className={classes.addVideoButton}
+      >
+        Add Video
+        <AddIcon className={classes.buttonIcon}></AddIcon>
+      </Button>
     </div>
   );
 };

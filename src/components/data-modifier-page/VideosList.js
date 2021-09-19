@@ -1,12 +1,13 @@
 import React from "react";
-import { Button, makeStyles, Typography } from "@material-ui/core";
+import { Button, Typography } from "@mui/material";
+import makeStyles from '@mui/styles/makeStyles';
 import { createVideoImageUrl } from "functions/createVideoImageUrl";
 import {
   Accordion,
   Card,
   AccordionDetails,
   AccordionSummary,
-} from "@material-ui/core";
+} from "@mui/material";
 
 const useStyles = makeStyles({
   root: {

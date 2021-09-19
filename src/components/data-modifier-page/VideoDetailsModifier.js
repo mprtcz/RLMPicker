@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { Button } from "@material-ui/core";
-import AddIcon from "@material-ui/icons/Add";
+import makeStyles from "@mui/styles/makeStyles";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { Button } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
 import {
   Accordion,
   Card,
   AccordionDetails,
   AccordionSummary,
   Typography,
-} from "@material-ui/core";
+} from "@mui/material";
 import Inputs from "./Inputs";
 import { getNewEmptyMovieObject } from "data/new-data";
 
@@ -18,8 +18,8 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
   },
   heading: {
-    fontSize: theme.typography.pxToRem(15),
-    fontWeight: theme.typography.fontWeightRegular,
+    // fontSize: theme.typography.pxToRem(15),
+    // fontWeight: theme.typography.fontWeightRegular,
   },
   accordionDetails: {},
   formContainer: {
@@ -72,6 +72,11 @@ const VideoDetailsModifier = (props) => {
 
   const [video, setVideo] = useState(datum);
   const [hasChanged, setHasChanged] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  useEffect(() => {
+    console.log("video", video);
+  }, [video]);
 
   const handleSave = (event) => {
     event.preventDefault();
@@ -105,12 +110,16 @@ const VideoDetailsModifier = (props) => {
     setHasChanged(true);
   };
 
+  const accordionChanged = (event, isExpanded) => {
+    setIsExpanded(isExpanded);
+  };
+
   const areEqual = (val1, val2) => {
     return JSON.stringify(val1) === JSON.stringify(val2);
   };
 
   return (
-    <Accordion>
+    <Accordion onChange={accordionChanged}>
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1a-content"
@@ -128,64 +137,73 @@ const VideoDetailsModifier = (props) => {
         ) : (
           ""
         )}
-        <Typography className={classes.heading}>{video.episodeName}</Typography>
+        <Typography className={classes.heading}>
+          {video.id}. {video.episodeName}
+        </Typography>
       </AccordionSummary>
+
       <AccordionDetails className={classes.accordionDetails}>
-        <div className={classes.detailsContainer}>
-          <div className={classes.jsonRenderContainer}>
-            <pre>{JSON.stringify(video, null, 2)}</pre>
+        {isExpanded ? (
+          <div className={classes.detailsContainer}>
+            <div className={classes.jsonRenderContainer}>
+              <pre>{JSON.stringify(video, null, 2)}</pre>
+            </div>
+            <form className={classes.formContainer}>
+              <Card className={classes.card}>
+                <Inputs
+                  inputObject={video}
+                  stringFields={stringFields}
+                  stringArrays={stringArrays}
+                  inputObjectChanged={(output) => onInputObjectChange(output)}
+                ></Inputs>
+              </Card>
+              {(objectArrays || []).map((fieldName) => (
+                <div>
+                  {(video[fieldName] || []).map(
+                    (movieInfo, singleInputIndex) => (
+                      <Accordion>
+                        <AccordionSummary
+                          expandIcon={<ExpandMoreIcon />}
+                          aria-controls="panel1a-content"
+                          id="panel1a-header"
+                        >
+                          <Typography className={classes.heading}>
+                            {singleInputIndex + 1}. {movieInfo.title}
+                          </Typography>
+                        </AccordionSummary>
+                        <AccordionDetails className={classes.accordionDetails}>
+                          <Inputs
+                            inputObject={movieInfo}
+                            stringFields={movieInfoStringFields}
+                            inputObjectChanged={(output) =>
+                              onNestedInputObjectChange(
+                                output,
+                                video,
+                                singleInputIndex,
+                                fieldName
+                              )
+                            }
+                          ></Inputs>
+                        </AccordionDetails>
+                      </Accordion>
+                    )
+                  )}
+                  <Button
+                    size="small"
+                    color="primary"
+                    onClick={() => handleAddMovie(fieldName)}
+                    className={classes.addMovieButton}
+                  >
+                    Add Movie
+                    <AddIcon className={classes.buttonIcon}></AddIcon>
+                  </Button>
+                </div>
+              ))}
+            </form>
           </div>
-          <form className={classes.formContainer}>
-            <Card className={classes.card}>
-              <Inputs
-                inputObject={video}
-                stringFields={stringFields}
-                stringArrays={stringArrays}
-                inputObjectChanged={(output) => onInputObjectChange(output)}
-              ></Inputs>
-            </Card>
-            {(objectArrays || []).map((fieldName) => (
-              <div>
-                {(video[fieldName] || []).map((movieInfo, singleInputIndex) => (
-                  <Accordion>
-                    <AccordionSummary
-                      expandIcon={<ExpandMoreIcon />}
-                      aria-controls="panel1a-content"
-                      id="panel1a-header"
-                    >
-                      <Typography className={classes.heading}>
-                        {singleInputIndex + 1}. {movieInfo.title}
-                      </Typography>
-                    </AccordionSummary>
-                    <AccordionDetails className={classes.accordionDetails}>
-                      <Inputs
-                        inputObject={movieInfo}
-                        stringFields={movieInfoStringFields}
-                        inputObjectChanged={(output) =>
-                          onNestedInputObjectChange(
-                            output,
-                            video,
-                            singleInputIndex,
-                            fieldName
-                          )
-                        }
-                      ></Inputs>
-                    </AccordionDetails>
-                  </Accordion>
-                ))}
-                <Button
-                  size="small"
-                  color="primary"
-                  onClick={() => handleAddMovie(fieldName)}
-                  className={classes.addMovieButton}
-                >
-                  Add Movie
-                  <AddIcon className={classes.buttonIcon}></AddIcon>
-                </Button>
-              </div>
-            ))}
-          </form>
-        </div>
+        ) : (
+          ""
+        )}
       </AccordionDetails>
     </Accordion>
   );

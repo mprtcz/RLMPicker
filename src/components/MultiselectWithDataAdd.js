@@ -5,12 +5,12 @@ import {
   Input,
   InputLabel,
   ListItemText,
-  makeStyles,
   MenuItem,
   Select,
   TextField,
-} from "@material-ui/core";
-import AddIcon from "@material-ui/icons/Add";
+} from "@mui/material";
+import makeStyles from '@mui/styles/makeStyles';
+import AddIcon from "@mui/icons-material/Add";
 import { data } from "data/new-data";
 import React, { useEffect, useState } from "react";
 
@@ -123,7 +123,7 @@ const MultiselectWithDataAdd = (props) => {
       </Select>
       <div className={classes.addSection}>
         <div onClick={handleShowAddButton}>
-          <IconButton color="secondary" aria-label="Add new value">
+          <IconButton color="secondary" aria-label="Add new value" size="large">
             <AddIcon />
           </IconButton>
         </div>

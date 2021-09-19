@@ -5,9 +5,9 @@ import {
   CardActions,
   CardContent,
   CardMedia,
-  makeStyles,
   Typography,
-} from "@material-ui/core";
+} from "@mui/material";
+import makeStyles from '@mui/styles/makeStyles';
 import React, { useState } from "react";
 
 const useStyles = makeStyles({

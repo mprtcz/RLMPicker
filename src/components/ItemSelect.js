@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import MenuItem from "@material-ui/core/MenuItem";
-import Select from "@material-ui/core/Select";
-import { InputLabel, TextField } from "@material-ui/core";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
+import { InputLabel, TextField } from "@mui/material";
 
 const ItemSelect = (props) => {
   const { items, onSelect } = props;

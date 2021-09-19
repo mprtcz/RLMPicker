@@ -34,7 +34,7 @@ export const getNewEmptyVideoObject = () => {
 
 export const data = [
   {
-    id: "1",
+    id: 1,
     episodeName: "Best of the Worst Episode 1",
     url: "https://www.youtube.com/watch?v=q6TY-nBkxqY",
     members: [Members.JAY, Members.JESS, Members.JOSH, Members.MIKE],
@@ -65,7 +65,7 @@ export const data = [
     ],
   },
   {
-    id: "2",
+    id: 2,
 
     episodeName:
       "Best of the Worst: The New Gladiators, Exterminator 2, and Aftermath",
@@ -99,7 +99,7 @@ export const data = [
     ],
   },
   {
-    id: "3",
+    id: 3,
 
     episodeName:
       "Best of the Worst Episode 3: The Killer Eye, They Bite, and Xtro",
@@ -132,7 +132,7 @@ export const data = [
     ],
   },
   {
-    id: "4",
+    id: 4,
     episodeName:
       "Best of the Worst: Deadly Prey, Hard Ticket to Hawaii, and Miami Connection",
     url: "https://www.youtube.com/watch?v=mbWTthXfdBc",
@@ -165,7 +165,7 @@ export const data = [
     ],
   },
   {
-    id: "5",
+    id: 5,
 
     episodeName: "Best of the Worst: The Wheel of the Worst",
     url: "https://www.youtube.com/watch?v=JkWk_chVcJk",
@@ -198,7 +198,7 @@ export const data = [
     ],
   },
   {
-    id: "6",
+    id: 6,
     episodeName:
       "Best of the Worst: The Vindicator, Cyber Tracker, Robot Jox, and R.O.T.O.R.",
     url: "https://www.youtube.com/watch?v=s76vZATqLrE",
@@ -237,7 +237,7 @@ export const data = [
     ],
   },
   {
-    id: "7",
+    id: 7,
     episodeName:
       "Best of the Worst: Playing Dangerous, Shapeshifter, and Thunderpants",
     url: "https://www.youtube.com/watch?v=WGI-BKctOK8",
@@ -270,7 +270,7 @@ export const data = [
     ],
   },
   {
-    id: "8",
+    id: 8,
     episodeName: "Best of the Worst: Wheel of the Worst #2",
     url: "https://www.youtube.com/watch?v=7Kf00CUxMto",
     members: [Members.MIKE, Members.RICH, Members.JOSH, Members.JACK],
@@ -302,7 +302,7 @@ export const data = [
     ],
   },
   {
-    id: "9",
+    id: 9,
     episodeName:
       "Best of the Worst: V-World Matrix, The Amazing Bulk, and ????",
     url: "https://www.youtube.com/watch?v=o4HOlhADlZo",
@@ -335,7 +335,7 @@ export const data = [
     ],
   },
   {
-    id: "10",
+    id: 10,
     episodeName:
       "Best of the Worst: Bloody Birthday, Crazy Fat Ethel II, and Psycho From Texas",
     url: "https://www.youtube.com/watch?v=x94zXO02VPU",
@@ -368,7 +368,7 @@ export const data = [
     ],
   },
   {
-    id: "11",
+    id: 11,
     episodeName:
       "Best of the Worst: Night Beast, Trick or Treat, and Skull Forest",
     url: "https://www.youtube.com/watch?v=J7eSdXLmj9A",
@@ -401,7 +401,7 @@ export const data = [
     ],
   },
   {
-    id: "12",
+    id: 12,
     episodeName: "Best of the Worst: Wheel of the Worst #3",
     url: "https://www.youtube.com/watch?v=5fkjMstO-t0",
     members: [Members.JAY, Members.RICH, Members.MIKE, Members.JESS],
@@ -433,7 +433,7 @@ export const data = [
     ],
   },
   {
-    id: "13",
+    id: 13,
     episodeName:
       "Best of the Worst: Playing Dangerous 2, The Exterminator, and The Deadliest Prey",
     url: "youtube.com/watch?v=kdGfGjusufo",
@@ -466,7 +466,7 @@ export const data = [
     ],
   },
   {
-    id: "14",
+    id: 14,
     episodeName:
       "Best of the Worst: Elves, Santa Claus, and Christmas Vacation 2",
     url: "https://www.youtube.com/watch?v=3plH6M1LadY",
@@ -499,7 +499,7 @@ export const data = [
     ],
   },
   {
-    id: "15",
+    id: 15,
 
     episodeName:
       "Best of the Worst: Robo-C.H.I.C., Alien Seed, and Yor: The Hunter from the Future",
@@ -533,7 +533,7 @@ export const data = [
     ],
   },
   {
-    id: "16",
+    id: 16,
 
     episodeName: "Best of the Worst: Wheel of the Worst #4",
     url: "https://www.youtube.com/watch?v=kakU6kQDmU4",
@@ -573,7 +573,7 @@ export const data = [
     ],
   },
   {
-    id: "17",
+    id: 17,
     episodeName:
       "Best of the Worst: Supergirl, Captain America (1990), and Roger Corman's Fantastic Four",
     url: "youtube.com/watch?v=d-O_RzwrZPw",
@@ -606,7 +606,7 @@ export const data = [
     ],
   },
   {
-    id: "18",
+    id: 18,
     episodeName: "Best of the Worst: Ninja Movies",
     url: "https://www.youtube.com/watch?v=ZERv4Q92vXA",
     members: [Members.JAY, Members.MIKE, Members.RICH],
@@ -638,7 +638,7 @@ export const data = [
     ],
   },
   {
-    id: "19",
+    id: 19,
     episodeName: "Best of the Worst: Wheel of the Worst #5",
     url: "https://www.youtube.com/watch?v=ceUSZBMeREY",
     members: [Members.MIKE, Members.JAY, Members.RICH, Members.JACK],
@@ -669,7 +669,7 @@ export const data = [
     ],
   },
   {
-    id: "20",
+    id: 20,
     episodeName:
       "Best of the Worst: Ghetto Blaster, Terror in Beverly Hills, and Killing American Style",
     url: "https://www.youtube.com/watch?v=AND1YZSp6YI",
@@ -702,7 +702,7 @@ export const data = [
     ],
   },
   {
-    id: "21",
+    id: 21,
     episodeName: "Best of the Worst: High Voltage, Death Spa, and Space Mutiny",
     url: "https://www.youtube.com/watch?v=6pgbB9ORqRg",
     members: [Members.JAY, Members.MIKE, Members.RICH, Members.JOSH],
@@ -734,7 +734,7 @@ export const data = [
     ],
   },
   {
-    id: "22",
+    id: 22,
     episodeName: "Best of the Worst: Shakma, Python II, and Beaks: The Movie",
     url: "https://www.youtube.com/watch?v=QAzZceRTmpc",
     members: [Members.JACK, Members.JAY, Members.RICH, Members.MIKE],
@@ -765,7 +765,7 @@ export const data = [
     ],
   },
   {
-    id: "23",
+    id: 23,
     episodeName: "Best of the Worst: Wheel of the Worst #6",
     url: "https://www.youtube.com/watch?v=aA2Z16QiNsE",
     members: [Members.MIKE, Members.JESS],
@@ -797,7 +797,7 @@ export const data = [
     ],
   },
   {
-    id: "24",
+    id: 24,
     episodeName:
       "Best of the Worst: Theodore Rex, Carnosaur, Tammy and the T-Rex",
     url: "https://www.youtube.com/watch?v=t4pJL1eAh00",
@@ -829,7 +829,7 @@ export const data = [
     ],
   },
   {
-    id: "25",
+    id: 25,
     episodeName: "Best of the Worst: The Item, The Crawlers, and Blood Lock",
     url: "https://www.youtube.com/watch?v=n747ktceuwI",
     members: [Members.JESS, Members.JOSH, Members.MIKE, Members.JAY],
@@ -861,7 +861,7 @@ export const data = [
     ],
   },
   {
-    id: "26",
+    id: 26,
 
     episodeName: "Best of the Worst: Wheel of the Worst #7",
     url: "https://www.youtube.com/watch?v=wZFuyATj5EI",
@@ -900,7 +900,7 @@ export const data = [
     ],
   },
   {
-    id: "27",
+    id: 27,
     episodeName: "Best of the Worst: The Star Wars Holiday Special",
     url: "https://www.youtube.com/watch?v=_CtUd0yuYN4",
     members: [Members.MIKE, Members.JACK, Members.RICH, Members.JAY],
@@ -920,7 +920,7 @@ export const data = [
     ],
   },
   {
-    id: "28",
+    id: 28,
     episodeName:
       "Best of the Worst: Alienator, Alien from the Deep, and Hands of Steel",
     url: "https://www.youtube.com/watch?v=z5PnYARAyUw",

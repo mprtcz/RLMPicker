@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core";
+import makeStyles from '@mui/styles/makeStyles';
 import { data } from "data/new-data";
 import React, { useEffect, useState } from "react";
 import Filters from "./Filters";
