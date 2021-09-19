@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
-import makeStyles from '@mui/styles/makeStyles';
+import React, { useState } from "react";
+import makeStyles from "@mui/styles/makeStyles";
 import { data, getNewEmptyVideoObject } from "data/new-data";
 import { Button } from "@mui/material";
 import VideoDetailsModifier from "./VideoDetailsModifier";
 import GetAppIcon from "@mui/icons-material/GetApp";
 import PublishIcon from "@mui/icons-material/Publish";
 import AddIcon from "@mui/icons-material/Add";
-import VideosList from "./VideosList";
 
 const useStyles = makeStyles((theme) => ({
   root: {

@@ -9,7 +9,7 @@ import {
   Select,
   TextField,
 } from "@mui/material";
-import makeStyles from '@mui/styles/makeStyles';
+import makeStyles from "@mui/styles/makeStyles";
 import AddIcon from "@mui/icons-material/Add";
 import { data } from "data/new-data";
 import React, { useEffect, useState } from "react";
@@ -70,10 +70,6 @@ const MultiselectWithDataAdd = (props) => {
     // TODO figure out how to prevent this propagation on first run
     emitValuesChange(selectedOptions);
   }, [selectedOptions]);
-
-  const onSelect = (select) => {
-    emitValuesChange(select);
-  };
 
   const handleChange = (select) => {
     setSelectedOptions(select.target.value);

@@ -1,13 +1,7 @@
 import React from "react";
-import { Button, Typography } from "@mui/material";
-import makeStyles from '@mui/styles/makeStyles';
-import { createVideoImageUrl } from "functions/createVideoImageUrl";
-import {
-  Accordion,
-  Card,
-  AccordionDetails,
-  AccordionSummary,
-} from "@mui/material";
+import { Button } from "@mui/material";
+import makeStyles from "@mui/styles/makeStyles";
+import { Card } from "@mui/material";
 
 const useStyles = makeStyles({
   root: {
@@ -31,7 +25,6 @@ const VideosList = (props) => {
   const { videos } = props;
 
   const classes = useStyles();
-  const handleShowDetails = () => {};
 
   const formatDate = (dateString) => {
     const options = { year: "numeric", month: "long", day: "numeric" };
