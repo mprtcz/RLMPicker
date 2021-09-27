@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import makeStyles from "@mui/styles/makeStyles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Button } from "@mui/material";
+
+import TextField from "@mui/material/TextField";
 import AddIcon from "@mui/icons-material/Add";
 import {
   Accordion,
@@ -57,6 +59,7 @@ const useStyles = makeStyles((theme) => ({
   button: {
     color: "white",
   },
+  buttonIcon: {},
   addMovieButton: {
     margin: 8,
   },
@@ -93,6 +96,8 @@ const VideoDetailsModifier = (props) => {
 
     setHasChanged(true);
   };
+
+  const handleDateChange = (newValue) => {};
 
   const onNestedInputObjectChange = (newValue, video, index, fieldName) => {
     if (areEqual(video, newValue)) return;

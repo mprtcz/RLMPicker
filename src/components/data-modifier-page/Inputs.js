@@ -3,6 +3,7 @@ import makeStyles from "@mui/styles/makeStyles";
 
 import SingleInput from "components/SingleInput";
 import MultiselectWithDataAdd from "components/MultiselectWithDataAdd";
+import DateInput from "./DateInput";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,6 +22,8 @@ const Inputs = (props) => {
   const classes = useStyles();
   const { inputObject, stringFields, stringArrays, inputObjectChanged } = props;
   const [object, setObject] = useState(inputObject);
+  // TODO make it more generic
+  const dateFieldName = "releaseDate";
 
   const handleChange = (newValue, datum, fieldName) => {
     if (areEqual()) datum[fieldName] = newValue;
@@ -45,6 +48,13 @@ const Inputs = (props) => {
           }}
         ></SingleInput>
       ))}
+      <DateInput
+        datum={object}
+        fieldName={dateFieldName}
+        emitNewValue={(newValue) => {
+          handleChange(newValue, object, dateFieldName);
+        }}
+      ></DateInput>
       {(stringArrays || []).map((arrayName, index) => (
         <div>
           <MultiselectWithDataAdd
