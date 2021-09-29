@@ -1,13 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import {
-  ListItemText,
-  MenuItem,
-  Input,
-  Select,
-  TextField,
-} from "@mui/material";
-import { LOCALE_BY_LANGUAGE } from "./Locales";
+import { TextField } from "@mui/material";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -19,9 +12,9 @@ const MenuProps = {
     },
   },
 };
+const SUPPORTED_LOCALE = "en-US";
 const DateInput = (props) => {
   const { emitNewValue, fieldName } = props;
-  const [locale, setLocale] = useState(navigator.language);
 
   const convertTimestamp = (timestamp) => {
     const options = {
@@ -30,52 +23,38 @@ const DateInput = (props) => {
       day: "numeric",
     };
     const date = new Date(timestamp);
-    console.log("date", date);
 
-    return date.toLocaleDateString(locale, options);
+    return date.toLocaleDateString(SUPPORTED_LOCALE, options);
   };
 
   const [datum, setDatum] = useState(
     convertTimestamp(props.datum[props.fieldName])
   );
 
+  const [error, setError] = useState(false);
+
   const handleChange = (event) => {
-    setDatum(event.target.value);
-    emitNewValue(event.target.value);
-  };
+    const date = new Date(event.target.value);
+    const date2 = Date.parse(event.target.value);
 
-  const handleLocaleChange = (event) => {
-    setLocale(event.target.value);
+    if (Number.isNaN(date2)) {
+      setError(true);
+    } else {
+      setError(false);
+      setDatum(convertTimestamp(date2));
+      emitNewValue(date2);
+    }
   };
-
-  useEffect(() => {
-    setDatum(convertTimestamp(props.datum[props.fieldName]));
-  }, [locale]);
 
   return (
     <div style={{ display: "flex" }}>
       <TextField
-        style={{ flexGrow: 3 }}
+        style={{ flexGrow: 1 }}
         value={datum}
+        error={error}
         onChange={handleChange}
         label={fieldName}
       />
-      <Select
-        style={{ flexShrink: 10 }}
-        id="demo-mutiple-checkbox"
-        value={locale}
-        onChange={handleLocaleChange}
-        input={<Input />}
-        renderValue={(selected) => selected}
-        MenuProps={MenuProps}
-      >
-        {LOCALE_BY_LANGUAGE &&
-          LOCALE_BY_LANGUAGE.map((item, index) => (
-            <MenuItem value={item.locale} key={index}>
-              <ListItemText primary={item.name} />
-            </MenuItem>
-          ))}
-      </Select>
     </div>
   );
 };

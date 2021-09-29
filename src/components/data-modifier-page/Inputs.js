@@ -20,10 +20,15 @@ const useStyles = makeStyles((theme) => ({
 
 const Inputs = (props) => {
   const classes = useStyles();
-  const { inputObject, stringFields, stringArrays, inputObjectChanged } = props;
+  const {
+    inputObject,
+    stringFields,
+    stringArrays,
+    inputObjectChanged,
+    dateFieldName,
+  } = props;
   const [object, setObject] = useState(inputObject);
   // TODO make it more generic
-  const dateFieldName = "releaseDate";
 
   const handleChange = (newValue, datum, fieldName) => {
     if (areEqual()) datum[fieldName] = newValue;
@@ -48,13 +53,17 @@ const Inputs = (props) => {
           }}
         ></SingleInput>
       ))}
-      <DateInput
-        datum={object}
-        fieldName={dateFieldName}
-        emitNewValue={(newValue) => {
-          handleChange(newValue, object, dateFieldName);
-        }}
-      ></DateInput>
+      {dateFieldName ? (
+        <DateInput
+          datum={object}
+          fieldName={dateFieldName}
+          emitNewValue={(newValue) => {
+            handleChange(newValue, object, dateFieldName);
+          }}
+        ></DateInput>
+      ) : (
+        ""
+      )}
       {(stringArrays || []).map((arrayName, index) => (
         <div>
           <MultiselectWithDataAdd

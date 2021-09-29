@@ -66,6 +66,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 const VideoDetailsModifier = (props) => {
   const stringFields = ["episodeName", "url", "subtitle", "description"];
+  const dateFieldName = "releaseDate";
   const stringArrays = ["members", "guests", "editors"];
   const objectArrays = ["moviesData"];
   const movieInfoStringFields = ["title", "year", "technology", "studio"];
@@ -159,6 +160,7 @@ const VideoDetailsModifier = (props) => {
                   inputObject={video}
                   stringFields={stringFields}
                   stringArrays={stringArrays}
+                  dateFieldName={dateFieldName}
                   inputObjectChanged={(output) => onInputObjectChange(output)}
                 ></Inputs>
               </Card>
