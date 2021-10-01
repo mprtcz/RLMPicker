@@ -59,6 +59,7 @@ const MultiselectWithDataAdd = (props) => {
       .flat()
       .filter(onlyUnique);
   };
+
   const [selectableValues, setSelectableValues] = useState(
     gatherSelectableValues()
   );

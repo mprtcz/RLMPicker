@@ -164,11 +164,11 @@ const VideoDetailsModifier = (props) => {
                   inputObjectChanged={(output) => onInputObjectChange(output)}
                 ></Inputs>
               </Card>
-              {(objectArrays || []).map((fieldName) => (
-                <div>
+              {(objectArrays || []).map((fieldName, index) => (
+                <div key={index}>
                   {(video[fieldName] || []).map(
                     (movieInfo, singleInputIndex) => (
-                      <Accordion>
+                      <Accordion key={singleInputIndex}>
                         <AccordionSummary
                           expandIcon={<ExpandMoreIcon />}
                           aria-controls="panel1a-content"

@@ -86,6 +86,7 @@ const DataModifierPage = () => {
         {state.map((datum, index) => {
           return (
             <VideoDetailsModifier
+              key={index.toString()}
               datum={JSON.parse(JSON.stringify(datum))}
               index={index}
               onVideoSave={(video) => onVideoSave(video, index)}

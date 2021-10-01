@@ -45,7 +45,7 @@ const Inputs = (props) => {
     <div className={classes.inputs}>
       {(stringFields || []).map((fieldName, singleInputIndex) => (
         <SingleInput
-          id={singleInputIndex}
+          key={singleInputIndex}
           datum={object}
           fieldName={fieldName}
           emitNewValue={(newValue) => {
@@ -65,16 +65,14 @@ const Inputs = (props) => {
         ""
       )}
       {(stringArrays || []).map((arrayName, index) => (
-        <div>
-          <MultiselectWithDataAdd
-            array={object[arrayName]}
-            title={arrayName}
-            key={index}
-            emitValuesChange={(newValue) => {
-              handleChange(newValue, object, arrayName);
-            }}
-          ></MultiselectWithDataAdd>
-        </div>
+        <MultiselectWithDataAdd
+          array={object[arrayName]}
+          title={arrayName}
+          key={index}
+          emitValuesChange={(newValue) => {
+            handleChange(newValue, object, arrayName);
+          }}
+        ></MultiselectWithDataAdd>
       ))}
     </div>
   );
