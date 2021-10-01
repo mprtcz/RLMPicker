@@ -71,7 +71,7 @@ const VideoDetailsModifier = (props) => {
   const objectArrays = ["moviesData"];
   const movieInfoStringFields = ["title", "year", "technology", "studio"];
 
-  const { datum, onVideoSave } = props;
+  const { datum, onVideoSave, videosData } = props;
   const classes = useStyles();
 
   const [video, setVideo] = useState(datum);
@@ -81,6 +81,10 @@ const VideoDetailsModifier = (props) => {
   useEffect(() => {
     console.log("video", video);
   }, [video]);
+
+  useEffect(() => {
+    console.log("VideoDetailsModifier videosData", videosData);
+  }, [videosData]);
 
   const handleSave = (event) => {
     event.preventDefault();
@@ -97,8 +101,6 @@ const VideoDetailsModifier = (props) => {
 
     setHasChanged(true);
   };
-
-  const handleDateChange = (newValue) => {};
 
   const onNestedInputObjectChange = (newValue, video, index, fieldName) => {
     if (areEqual(video, newValue)) return;
@@ -161,6 +163,7 @@ const VideoDetailsModifier = (props) => {
                   stringFields={stringFields}
                   stringArrays={stringArrays}
                   dateFieldName={dateFieldName}
+                  videosData={videosData}
                   inputObjectChanged={(output) => onInputObjectChange(output)}
                 ></Inputs>
               </Card>

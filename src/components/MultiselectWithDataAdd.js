@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
 
 const MultiselectWithDataAdd = (props) => {
   const classes = useStyles();
-  const { array, title, emitValuesChange } = props;
+  const { array, title, emitValuesChange, videosData } = props;
   const [selectedOptions, setSelectedOptions] = useState(array);
   const episodesData = data;
   const [showAdd, setShowAdd] = useState(false);
@@ -54,7 +54,7 @@ const MultiselectWithDataAdd = (props) => {
   };
 
   const gatherSelectableValues = () => {
-    return episodesData
+    return videosData
       .map((episode) => episode[title])
       .flat()
       .filter(onlyUnique);
@@ -71,6 +71,10 @@ const MultiselectWithDataAdd = (props) => {
     // TODO figure out how to prevent this propagation on first run
     emitValuesChange(selectedOptions);
   }, [selectedOptions]);
+
+  useEffect(() => {
+    console.log("MultiselectWithDataAdd state", videosData);
+  }, [videosData]);
 
   const handleChange = (select) => {
     setSelectedOptions(select.target.value);

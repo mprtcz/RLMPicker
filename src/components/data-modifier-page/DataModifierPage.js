@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import makeStyles from "@mui/styles/makeStyles";
 import { data, getNewEmptyVideoObject } from "data/new-data";
 import { Button } from "@mui/material";
@@ -39,28 +39,31 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const DataModifierPage = () => {
-  const initialData = data;
-  const [state, setState] = useState(initialData);
+  const [videosData, setVideosData] = useState(data);
 
   const classes = useStyles();
 
   const onVideoSave = (movie, index) => {
-    const arrayCopy = [...state];
+    const arrayCopy = [...videosData];
     arrayCopy[index] = movie;
-    setState(arrayCopy);
+    setVideosData(arrayCopy);
   };
 
+  useEffect(() => {
+    console.log("state", videosData.length);
+  }, [videosData]);
+
   const handleAddVideo = () => {
-    const arrayCopy = [...state];
+    const arrayCopy = [...videosData];
     const emptyObject = getNewEmptyVideoObject();
     emptyObject.id = arrayCopy.length + 1;
     arrayCopy.push(emptyObject);
-    setState(arrayCopy);
+    setVideosData(arrayCopy);
   };
 
   const handleDownload = () => {
     const timestamp = new Date().getTime();
-    var data = new Blob([JSON.stringify(state)], { type: "text/json" });
+    var data = new Blob([JSON.stringify(videosData)], { type: "text/json" });
     var csvURL = window.URL.createObjectURL(data);
     var tempLink = document.createElement("a");
     tempLink.href = csvURL;
@@ -83,13 +86,14 @@ const DataModifierPage = () => {
         </Button>
       </div>
       <div className={classes.videoModifiers}>
-        {state.map((datum, index) => {
+        {videosData.map((datum, index) => {
           return (
             <VideoDetailsModifier
               key={index.toString()}
               datum={JSON.parse(JSON.stringify(datum))}
               index={index}
               onVideoSave={(video) => onVideoSave(video, index)}
+              videosData={videosData}
             ></VideoDetailsModifier>
           );
         })}
