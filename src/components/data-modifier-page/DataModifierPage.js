@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import makeStyles from "@mui/styles/makeStyles";
 import { getNewEmptyVideoObject } from "data/new-data";
-import { Button, Input } from "@mui/material";
+import { Button } from "@mui/material";
 import VideoDetailsModifier from "./VideoDetailsModifier";
 import GetAppIcon from "@mui/icons-material/GetApp";
 import PublishIcon from "@mui/icons-material/Publish";
@@ -67,8 +67,7 @@ const DataModifierPage = () => {
     e.preventDefault();
     const reader = new FileReader();
     reader.onload = async (e) => {
-      const text = e.target.result;
-      videoData.setVideosData(JSON.parse(text));
+      videoData.setVideosData(JSON.parse(e.target.result));
     };
     reader.readAsText(e.target.files[0]);
   };

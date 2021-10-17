@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import makeStyles from "@mui/styles/makeStyles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Button } from "@mui/material";
 
-import TextField from "@mui/material/TextField";
 import AddIcon from "@mui/icons-material/Add";
 import {
   Accordion,
@@ -18,10 +17,6 @@ import { getNewEmptyMovieObject } from "data/new-data";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
-  },
-  heading: {
-    // fontSize: theme.typography.pxToRem(15),
-    // fontWeight: theme.typography.fontWeightRegular,
   },
   accordionDetails: {},
   formContainer: {
@@ -71,20 +66,12 @@ const VideoDetailsModifier = (props) => {
   const objectArrays = ["moviesData"];
   const movieInfoStringFields = ["title", "year", "technology", "studio"];
 
-  const { datum, onVideoSave, videosData } = props;
+  const { datum, onVideoSave } = props;
   const classes = useStyles();
 
   const [video, setVideo] = useState(datum);
   const [hasChanged, setHasChanged] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
-
-  useEffect(() => {
-    console.log("video", video);
-  }, [video]);
-
-  useEffect(() => {
-    console.log("VideoDetailsModifier videosData", videosData);
-  }, [videosData]);
 
   const handleSave = (event) => {
     event.preventDefault();
@@ -163,7 +150,6 @@ const VideoDetailsModifier = (props) => {
                   stringFields={stringFields}
                   stringArrays={stringArrays}
                   dateFieldName={dateFieldName}
-                  videosData={videosData}
                   inputObjectChanged={(output) => onInputObjectChange(output)}
                 ></Inputs>
               </Card>

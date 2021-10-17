@@ -15,10 +15,6 @@ const useStyles = makeStyles((theme) => ({
   accordion: {
     width: "98%",
   },
-  heading: {
-    // fontSize: theme.typography.pxToRem(15),
-    // fontWeight: theme.typography.fontWeightRegular,
-  },
 }));
 
 const Filters = (props) => {
@@ -32,7 +28,7 @@ const Filters = (props) => {
         aria-controls="panel1a-content"
         id="panel1a-header"
       >
-        <Typography className={classes.heading}>Filters</Typography>
+        <Typography>Filters</Typography>
       </AccordionSummary>
       <AccordionDetails className="filters-container">
         <MatMultiselect
