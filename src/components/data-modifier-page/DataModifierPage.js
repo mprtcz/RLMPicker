@@ -68,9 +68,7 @@ const DataModifierPage = () => {
     const reader = new FileReader();
     reader.onload = async (e) => {
       const text = e.target.result;
-      console.table("JSON.parse(text)", JSON.parse(text));
-
-      setVideosData(JSON.parse(text));
+      videoData.setVideosData(JSON.parse(text));
     };
     reader.readAsText(e.target.files[0]);
   };
