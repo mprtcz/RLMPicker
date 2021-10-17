@@ -9,7 +9,7 @@ import { data } from "data/new-data";
 
 function App() {
   return (
-    <VideoDataProvider videos={data}>
+    <VideoDataProvider>
       <Router>
         <div className="App">
           <Navbar />
@@ -31,7 +31,6 @@ function App() {
           </div>
         </div>
       </Router>
-      ,
     </VideoDataProvider>
   );
 }

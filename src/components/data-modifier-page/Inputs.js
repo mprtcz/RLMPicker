@@ -72,13 +72,13 @@ const Inputs = (props) => {
       )}
 
       <VideoDataContext.Consumer>
-        {(value) => (
+        {(contextValue) => (
           <span>
             {(stringArrays || []).map((arrayName, index) => (
               <MultiselectWithDataAdd
                 array={object[arrayName]}
                 title={arrayName}
-                videosData={value.videos}
+                videosData={contextValue.videos}
                 key={index}
                 emitValuesChange={(newValue) => {
                   handleChange(newValue, object, arrayName);
