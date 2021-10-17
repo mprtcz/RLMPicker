@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import makeStyles from "@mui/styles/makeStyles";
-import { data, getNewEmptyVideoObject } from "data/new-data";
+import { getNewEmptyVideoObject } from "data/new-data";
 import { Button, Input } from "@mui/material";
 import VideoDetailsModifier from "./VideoDetailsModifier";
 import GetAppIcon from "@mui/icons-material/GetApp";
 import PublishIcon from "@mui/icons-material/Publish";
 import AddIcon from "@mui/icons-material/Add";
+import { useVideoData, VideoDataContext } from "contexts/VideosDataContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,27 +40,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const DataModifierPage = () => {
-  const [videosData, setVideosData] = useState(data);
+  const videoData = useVideoData();
   let inputFile = useRef(null);
 
   const classes = useStyles();
 
   const onVideoSave = (movie, index) => {
-    const arrayCopy = [...videosData];
+    const arrayCopy = [...videoData.videos];
     arrayCopy[index] = movie;
-    setVideosData(arrayCopy);
+    videoData.setVideosData(arrayCopy);
   };
 
   useEffect(() => {
-    console.log("state", videosData.length);
-  }, [videosData]);
+    console.log("state", (videoData.videos || []).length);
+  }, [videoData.videos]);
 
   const handleAddVideo = () => {
-    const arrayCopy = [...videosData];
+    const arrayCopy = [...videoData.videos];
     const emptyObject = getNewEmptyVideoObject();
     emptyObject.id = arrayCopy.length + 1;
     arrayCopy.push(emptyObject);
-    setVideosData(arrayCopy);
+    videoData.setVideosData(arrayCopy);
   };
 
   const handleFileSelected = (e) => {
@@ -76,7 +77,9 @@ const DataModifierPage = () => {
 
   const handleDownload = () => {
     const timestamp = new Date().getTime();
-    var data = new Blob([JSON.stringify(videosData)], { type: "text/json" });
+    var data = new Blob([JSON.stringify(videoData.videos)], {
+      type: "text/json",
+    });
     var csvURL = window.URL.createObjectURL(data);
     var tempLink = document.createElement("a");
     tempLink.href = csvURL;
@@ -107,19 +110,23 @@ const DataModifierPage = () => {
           <GetAppIcon className={classes.buttonIcon}></GetAppIcon>
         </Button>
       </div>
-      <div className={classes.videoModifiers}>
-        {videosData.map((datum, index) => {
-          return (
-            <VideoDetailsModifier
-              key={index.toString()}
-              datum={JSON.parse(JSON.stringify(datum))}
-              index={index}
-              onVideoSave={(video) => onVideoSave(video, index)}
-              videosData={videosData}
-            ></VideoDetailsModifier>
-          );
-        })}
-      </div>
+      <VideoDataContext.Consumer>
+        {(value) => (
+          <div className={classes.videoModifiers}>
+            {(value.videos || []).map((datum, index) => {
+              return (
+                <VideoDetailsModifier
+                  key={index.toString()}
+                  datum={JSON.parse(JSON.stringify(datum))}
+                  index={index}
+                  onVideoSave={(video) => onVideoSave(video, index)}
+                  videosData={videoData.videos}
+                ></VideoDetailsModifier>
+              );
+            })}
+          </div>
+        )}
+      </VideoDataContext.Consumer>
       <Button
         size="small"
         color="primary"

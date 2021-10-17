@@ -1,4 +1,5 @@
-import makeStyles from '@mui/styles/makeStyles';
+import makeStyles from "@mui/styles/makeStyles";
+import { useVideoData } from "contexts/VideosDataContext";
 import { data } from "data/new-data";
 import React, { useEffect, useState } from "react";
 import Filters from "./Filters";
@@ -23,20 +24,27 @@ const useStyles = makeStyles({
 
 const Page = () => {
   const classes = useStyles();
+
+  const videoData = useVideoData();
   const episodesData = data;
 
-  const [results, setResults] = useState(episodesData);
+  const [results, setResults] = useState(videoData.videos);
   const [resultsEpsodes, setResultsEpsodes] = useState([]);
 
   useEffect(() => {
-    setResultsEpsodes(data.filter((episode) => results.includes(episode)));
+    setResultsEpsodes(
+      videoData.videos.filter((episode) => results.includes(episode))
+    );
   }, [results]);
 
   return (
     <div className="mainDiv">
       <div className={classes.content}>
+        {/* {videoData.isOpen ? `It's Open` : `It's Closed`}
+
+        <button onClick={() => videoData.toggle()}>Toggle</button> */}
         <Filters
-          episodesData={episodesData}
+          episodesData={videoData.videos}
           onSelect={(e) => setResults(e)}
         ></Filters>
         <div className={classes.results}>
