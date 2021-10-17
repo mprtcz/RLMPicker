@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import makeStyles from "@mui/styles/makeStyles";
 import { data, getNewEmptyVideoObject } from "data/new-data";
-import { Button } from "@mui/material";
+import { Button, Input } from "@mui/material";
 import VideoDetailsModifier from "./VideoDetailsModifier";
 import GetAppIcon from "@mui/icons-material/GetApp";
 import PublishIcon from "@mui/icons-material/Publish";
@@ -40,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 const DataModifierPage = () => {
   const [videosData, setVideosData] = useState(data);
+  let inputFile = useRef(null);
 
   const classes = useStyles();
 
@@ -61,6 +62,18 @@ const DataModifierPage = () => {
     setVideosData(arrayCopy);
   };
 
+  const handleFileSelected = (e) => {
+    e.preventDefault();
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      const text = e.target.result;
+      console.table("JSON.parse(text)", JSON.parse(text));
+
+      setVideosData(JSON.parse(text));
+    };
+    reader.readAsText(e.target.files[0]);
+  };
+
   const handleDownload = () => {
     const timestamp = new Date().getTime();
     var data = new Blob([JSON.stringify(videosData)], { type: "text/json" });
@@ -71,7 +84,9 @@ const DataModifierPage = () => {
     tempLink.click();
   };
 
-  const handleUpload = () => {};
+  const handleUpload = () => {
+    inputFile.current.click();
+  };
 
   return (
     <div className={classes.mainContainer}>
@@ -79,6 +94,13 @@ const DataModifierPage = () => {
         <Button color="secondary" variant="contained" onClick={handleUpload}>
           Upload File
           <PublishIcon className={classes.buttonIcon}></PublishIcon>
+          <input
+            onChange={handleFileSelected}
+            type="file"
+            id="file"
+            ref={inputFile}
+            style={{ display: "none" }}
+          />
         </Button>
         <Button color="primary" variant="contained" onClick={handleDownload}>
           Download File
