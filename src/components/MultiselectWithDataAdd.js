@@ -11,7 +11,6 @@ import {
 } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
 import AddIcon from "@mui/icons-material/Add";
-import { data } from "data/new-data";
 import React, { useEffect, useState } from "react";
 
 const ITEM_HEIGHT = 48;
@@ -45,7 +44,6 @@ const MultiselectWithDataAdd = (props) => {
   const classes = useStyles();
   const { array, title, emitValuesChange, videosData } = props;
   const [selectedOptions, setSelectedOptions] = useState(array);
-  const episodesData = data;
   const [showAdd, setShowAdd] = useState(false);
   const [textFieldValue, setTextFieldValue] = useState("");
 

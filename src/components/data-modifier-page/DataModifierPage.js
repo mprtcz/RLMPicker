@@ -111,9 +111,9 @@ const DataModifierPage = () => {
         </Button>
       </div>
       <VideoDataContext.Consumer>
-        {(value) => (
+        {(contextValue) => (
           <div className={classes.videoModifiers}>
-            {(value.videos || []).map((datum, index) => {
+            {(contextValue.videos || []).map((datum, index) => {
               return (
                 <VideoDetailsModifier
                   key={index.toString()}
