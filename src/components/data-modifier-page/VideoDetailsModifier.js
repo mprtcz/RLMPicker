@@ -54,6 +54,10 @@ const useStyles = makeStyles((theme) => ({
   button: {
     color: "white",
   },
+  title: {
+    alignSelf: "center",
+    paddingLeft: 8,
+  },
   buttonIcon: {},
   addMovieButton: {
     margin: 8,
@@ -132,7 +136,7 @@ const VideoDetailsModifier = (props) => {
         ) : (
           ""
         )}
-        <Typography>
+        <Typography className={classes.title}>
           {video.id}. {video.episodeName}
         </Typography>
       </AccordionSummary>

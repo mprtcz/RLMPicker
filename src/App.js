@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "components/Navbar";
 import DataModifierPage from "components/data-modifier-page/DataModifierPage";
 import { VideoDataProvider } from "contexts/VideosDataContext";
-import { data } from "data/new-data";
 
 function App() {
   return (

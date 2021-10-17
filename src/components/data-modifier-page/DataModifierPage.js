@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import makeStyles from "@mui/styles/makeStyles";
 import { getNewEmptyVideoObject } from "data/new-data";
 import { Button } from "@mui/material";
@@ -33,10 +33,8 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-evenly",
   },
   addVideoButton: {
-    marginBottom: 16,
-    marginTop: 16,
-    padding: "8px",
-    boxShadow: "0 1px 2px rgba(0,0,0,0.24)",
+    padding: 12,
+    boxShadow: "0 1px 2px rgba(0,0,0,0.34)",
   },
 }));
 const DataModifierPage = () => {
@@ -51,10 +49,6 @@ const DataModifierPage = () => {
     videoData.setVideosData(arrayCopy);
   };
 
-  useEffect(() => {
-    console.log("state", (videoData.videos || []).length);
-  }, [videoData.videos]);
-
   const handleAddVideo = () => {
     const arrayCopy = [...videoData.videos];
     const emptyObject = getNewEmptyVideoObject();
@@ -67,7 +61,8 @@ const DataModifierPage = () => {
     e.preventDefault();
     const reader = new FileReader();
     reader.onload = async (e) => {
-      videoData.setVideosData(JSON.parse(e.target.result));
+      // @ts-ignore
+      videoData.setVideosData([...JSON.parse(e.target.result)]);
     };
     reader.readAsText(e.target.files[0]);
   };
@@ -125,6 +120,7 @@ const DataModifierPage = () => {
         )}
       </VideoDataContext.Consumer>
       <Button
+        style={{ margin: "16px", padding: "8px" }}
         size="small"
         color="primary"
         onClick={handleAddVideo}
