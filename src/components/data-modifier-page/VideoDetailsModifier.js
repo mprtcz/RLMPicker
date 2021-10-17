@@ -132,7 +132,7 @@ const VideoDetailsModifier = (props) => {
         ) : (
           ""
         )}
-        <Typography className={classes.heading}>
+        <Typography>
           {video.id}. {video.episodeName}
         </Typography>
       </AccordionSummary>
@@ -163,7 +163,7 @@ const VideoDetailsModifier = (props) => {
                           aria-controls="panel1a-content"
                           id="panel1a-header"
                         >
-                          <Typography className={classes.heading}>
+                          <Typography>
                             {singleInputIndex + 1}. {movieInfo.title}
                           </Typography>
                         </AccordionSummary>
