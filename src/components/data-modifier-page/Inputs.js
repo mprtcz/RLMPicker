@@ -4,6 +4,7 @@ import makeStyles from "@mui/styles/makeStyles";
 import SingleInput from "components/SingleInput";
 import MultiselectWithDataAdd from "components/MultiselectWithDataAdd";
 import DateInput from "./DateInput";
+import { VideoDataContext } from "contexts/VideosDataContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -69,17 +70,24 @@ const Inputs = (props) => {
       ) : (
         ""
       )}
-      {(stringArrays || []).map((arrayName, index) => (
-        <MultiselectWithDataAdd
-          array={object[arrayName]}
-          title={arrayName}
-          videosData={videosData}
-          key={index}
-          emitValuesChange={(newValue) => {
-            handleChange(newValue, object, arrayName);
-          }}
-        ></MultiselectWithDataAdd>
-      ))}
+
+      <VideoDataContext.Consumer>
+        {(value) => (
+          <span>
+            {(stringArrays || []).map((arrayName, index) => (
+              <MultiselectWithDataAdd
+                array={object[arrayName]}
+                title={arrayName}
+                videosData={value.videos}
+                key={index}
+                emitValuesChange={(newValue) => {
+                  handleChange(newValue, object, arrayName);
+                }}
+              ></MultiselectWithDataAdd>
+            ))}
+          </span>
+        )}
+      </VideoDataContext.Consumer>
     </div>
   );
 };
