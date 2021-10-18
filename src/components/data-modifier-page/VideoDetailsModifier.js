@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import makeStyles from "@mui/styles/makeStyles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Button } from "@mui/material";
@@ -76,6 +76,12 @@ const VideoDetailsModifier = (props) => {
   const [video, setVideo] = useState(datum);
   const [hasChanged, setHasChanged] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+
+  useEffect(() => {
+    if (props.datum !== video) {
+      setVideo(props.datum);
+    }
+  }, [props.datum]);
 
   const handleSave = (event) => {
     event.preventDefault();

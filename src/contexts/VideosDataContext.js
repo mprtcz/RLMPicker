@@ -9,7 +9,7 @@ const { Provider } = VideoDataContext;
 
 export const VideoDataProvider = ({ children }) => {
   const [videos, setVideos] = useState(data);
-  const setVideosData = (videos) => setVideos([...videos]);
+  const setVideosData = (videosToSet) => setVideos([...videosToSet]);
   return <Provider value={{ videos, setVideosData }}>{children}</Provider>;
 };
 

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import makeStyles from "@mui/styles/makeStyles";
 import { getNewEmptyVideoObject } from "data/new-data";
 import { Button } from "@mui/material";
@@ -103,19 +103,17 @@ const DataModifierPage = () => {
         </Button>
       </div>
       <VideoDataContext.Consumer>
-        {(contextValue) => (
+        {() => (
           <div className={classes.videoModifiers}>
-            {(contextValue.videos || []).map((datum, index) => {
-              return (
-                <VideoDetailsModifier
-                  key={index.toString()}
-                  datum={JSON.parse(JSON.stringify(datum))}
-                  index={index}
-                  onVideoSave={(video) => onVideoSave(video, index)}
-                  videosData={videoData.videos}
-                ></VideoDetailsModifier>
-              );
-            })}
+            {(videoData.videos || []).map((datum, index) => (
+              <VideoDetailsModifier
+                key={index}
+                datum={datum}
+                index={index}
+                onVideoSave={(video) => onVideoSave(video, index)}
+                videosData={videoData.videos}
+              ></VideoDetailsModifier>
+            ))}
           </div>
         )}
       </VideoDataContext.Consumer>
