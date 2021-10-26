@@ -2,6 +2,10 @@ url: https://mprtcz.github.io/RLMPicker/
 
 TODOs:
 
+:heavy_check_mark: Data modifer page
+
+:heavy_check_mark: Data presentation page
+
 :x: Closing accordion when clicked on:
 
 - Next movie :x:
