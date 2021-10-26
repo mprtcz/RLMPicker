@@ -8,9 +8,9 @@ TODOs:
 
 :x: Closing accordion when clicked on:
 
-- Next movie :x:
+- :x: Next movie
 
-- Next Video :x:
+- :x: Next Video
 
 :x: UTC conversion when adding the date
 
