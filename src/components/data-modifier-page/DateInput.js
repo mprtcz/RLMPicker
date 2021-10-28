@@ -34,15 +34,23 @@ const DateInput = (props) => {
   const [error, setError] = useState(false);
 
   const handleChange = (event) => {
-    const date = new Date(event.target.value);
-    const date2 = Date.parse(event.target.value);
+    const date = new Date(Date.parse(event.target.value));
+    const utcMidnightDate = Date.UTC(
+      date.getUTCFullYear(),
+      date.getUTCMonth(),
+      date.getUTCDate(),
+      0,
+      0,
+      0
+    );
+    console.log("utcMidnightDate", utcMidnightDate);
 
-    if (Number.isNaN(date2)) {
+    if (Number.isNaN(utcMidnightDate)) {
       setError(true);
     } else {
       setError(false);
-      setDatum(convertTimestamp(date2));
-      emitNewValue(date2);
+      setDatum(convertTimestamp(utcMidnightDate));
+      emitNewValue(utcMidnightDate);
     }
   };
 
