@@ -78,7 +78,7 @@ const VideoDetailsModifier = (props) => {
     ["url", (input) => input.split("&list=")[0]],
   ]);
 
-  const { datum, onVideoSave, deleteVideo } = props;
+  const { datum, onVideoSave, deleteVideo, index } = props;
   const classes = useStyles();
 
   const [video, setVideo] = useState(datum);
@@ -157,7 +157,7 @@ const VideoDetailsModifier = (props) => {
           ""
         )}
         <Typography className={classes.title}>
-          {video.id}. {video.episodeName}
+          {index + 1}. {video.episodeName}
         </Typography>
         <Button onClick={(event) => handleDelete(event)} color="error">
           DELETE
