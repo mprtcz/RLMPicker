@@ -12,7 +12,7 @@ TODOs:
 
 - :x: Next Video
 
-:x: UTC conversion when adding the date
+:heavy_check_mark: UTC conversion when adding the date
 
 :x: Trimming newlines for:
 
@@ -22,7 +22,7 @@ TODOs:
 
 - :x: Description
 
-:x: Splitting URL when adding url with `&link`
+:heavy_check_mark: Splitting URL when adding url with `&link`
 
 :x: Movie removal
 
