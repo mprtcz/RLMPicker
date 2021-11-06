@@ -83,6 +83,12 @@ const DataModifierPage = () => {
     inputFile.current.click();
   };
 
+  const onDeleteVideoCLicked = (index) => {
+    const arrayCopy = [...videoData.videos];
+    arrayCopy.splice(index, 1);
+    videoData.setVideosData(arrayCopy);
+  };
+
   return (
     <div className={classes.mainContainer}>
       <div className={classes.buttonsContainer}>
@@ -112,6 +118,7 @@ const DataModifierPage = () => {
                 index={index}
                 onVideoSave={(video) => onVideoSave(video, index)}
                 videosData={videoData.videos}
+                deleteVideo={() => onDeleteVideoCLicked(index)}
               ></VideoDetailsModifier>
             ))}
           </div>

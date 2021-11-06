@@ -56,11 +56,16 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     alignSelf: "center",
+    textAlign: "left",
     paddingLeft: 8,
+    flexGrow: 1,
   },
   buttonIcon: {},
   addMovieButton: {
     margin: 8,
+  },
+  accordionSummary: {
+    flexDirection: "row-reverse",
   },
 }));
 const VideoDetailsModifier = (props) => {
@@ -73,7 +78,7 @@ const VideoDetailsModifier = (props) => {
     ["url", (input) => input.split("&list=")[0]],
   ]);
 
-  const { datum, onVideoSave } = props;
+  const { datum, onVideoSave, deleteVideo } = props;
   const classes = useStyles();
 
   const [video, setVideo] = useState(datum);
@@ -126,9 +131,15 @@ const VideoDetailsModifier = (props) => {
     return JSON.stringify(val1) === JSON.stringify(val2);
   };
 
+  const handleDelete = (event) => {
+    event.stopPropagation();
+    deleteVideo();
+  };
+
   return (
     <Accordion onChange={accordionChanged}>
       <AccordionSummary
+        className={classes.accordionSummary}
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1a-content"
         id="panel1a-header"
@@ -148,6 +159,9 @@ const VideoDetailsModifier = (props) => {
         <Typography className={classes.title}>
           {video.id}. {video.episodeName}
         </Typography>
+        <Button onClick={(event) => handleDelete(event)} color="error">
+          DELETE
+        </Button>
       </AccordionSummary>
 
       <AccordionDetails className={classes.accordionDetails}>
