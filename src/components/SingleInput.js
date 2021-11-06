@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { TextField } from "@mui/material";
 
 const SingleInput = (props) => {
   const [datum, setDatum] = useState(props.datum[props.fieldName]);
   const { emitNewValue, fieldName } = props;
+
+  useEffect(() => {
+    setDatum(props.datum[props.fieldName]);
+  }, [props]);
 
   const handleChange = (event) => {
     setDatum(event.target.value);

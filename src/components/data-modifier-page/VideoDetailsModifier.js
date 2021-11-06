@@ -69,6 +69,9 @@ const VideoDetailsModifier = (props) => {
   const stringArrays = ["members", "guests", "editors"];
   const objectArrays = ["moviesData"];
   const movieInfoStringFields = ["title", "year", "technology", "studio"];
+  const fieldNameToPostProcess = new Map([
+    ["url", (input) => input.split("&list=")[0]],
+  ]);
 
   const { datum, onVideoSave } = props;
   const classes = useStyles();
@@ -160,6 +163,7 @@ const VideoDetailsModifier = (props) => {
                   stringFields={stringFields}
                   stringArrays={stringArrays}
                   dateFieldName={dateFieldName}
+                  postProcesses={fieldNameToPostProcess}
                   inputObjectChanged={(output) => onInputObjectChange(output)}
                 ></Inputs>
               </Card>

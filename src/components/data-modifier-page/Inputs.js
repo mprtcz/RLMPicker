@@ -26,11 +26,16 @@ const Inputs = (props) => {
     stringArrays,
     inputObjectChanged,
     dateFieldName,
+    postProcesses,
   } = props;
   const [object, setObject] = useState(inputObject);
 
   const handleChange = (newValue, datum, fieldName) => {
-    if (areEqual()) datum[fieldName] = newValue;
+    if (postProcesses.has(fieldName)) {
+      newValue = postProcesses.get(fieldName)(newValue);
+    }
+    if (areEqual(datum[fieldName], newValue)) return;
+    datum[fieldName] = newValue;
     setObject(Object.assign({}, datum));
 
     inputObjectChanged(object);
@@ -63,7 +68,6 @@ const Inputs = (props) => {
       ) : (
         ""
       )}
-
       <VideoDataContext.Consumer>
         {(contextValue) => (
           <span>

@@ -43,7 +43,6 @@ const DateInput = (props) => {
       0,
       0
     );
-    console.log("utcMidnightDate", utcMidnightDate);
 
     if (Number.isNaN(utcMidnightDate)) {
       setError(true);

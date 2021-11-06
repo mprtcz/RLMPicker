@@ -70,10 +70,6 @@ const MultiselectWithDataAdd = (props) => {
     emitValuesChange(selectedOptions);
   }, [selectedOptions]);
 
-  useEffect(() => {
-    console.log("MultiselectWithDataAdd state", videosData);
-  }, [videosData]);
-
   const handleChange = (select) => {
     setSelectedOptions(select.target.value);
   };
