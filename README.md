@@ -14,20 +14,20 @@ TODOs:
 
 :heavy_check_mark: UTC conversion when adding the date
 
-:x: Trimming newlines for:
+:heavy_check_mark: Trimming newlines for:
 
-- :x: Title
+- :heavy_check_mark: Title
 
-- :x: Subtitle
+- :heavy_check_mark: Subtitle
 
-- :x: Description
+- :heavy_check_mark: Description
 
 :heavy_check_mark: Splitting URL when adding url with `&link`
 
-:x: Movie removal
+:heavy_check_mark: Movie removal
 
-:x: Sort in order of appearance across episodes:
+:heavy_check_mark: Sort in order of appearance across episodes:
 
-- :x: Members
+- :heavy_check_mark: Members
 
-- :x: Guests
+- :heavy_check_mark: Guests
