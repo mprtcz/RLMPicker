@@ -47,6 +47,17 @@ const MultiselectWithDataAdd = (props) => {
   const [showAdd, setShowAdd] = useState(false);
   const [textFieldValue, setTextFieldValue] = useState("");
 
+  const countMap = videosData
+    .flatMap((datum) => datum[title])
+    .reduce((acc, curr) => {
+      if (acc[curr]) {
+        acc[curr]++;
+      } else {
+        acc[curr] = 1;
+      }
+      return acc;
+    }, {});
+
   const onlyUnique = (value, index, self) => {
     return self.indexOf(value) === index;
   };
@@ -55,7 +66,8 @@ const MultiselectWithDataAdd = (props) => {
     return videosData
       .map((episode) => episode[title])
       .flat()
-      .filter(onlyUnique);
+      .filter(onlyUnique)
+      .sort((a, b) => countMap[b] - countMap[a]);
   };
 
   const [selectableValues, setSelectableValues] = useState(
