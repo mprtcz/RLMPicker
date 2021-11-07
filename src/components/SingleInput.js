@@ -10,8 +10,9 @@ const SingleInput = (props) => {
   }, [props]);
 
   const handleChange = (event) => {
-    setDatum(event.target.value);
-    emitNewValue(event.target.value);
+    const trimmedValue = event.target.value.trim();
+    setDatum(trimmedValue);
+    emitNewValue(trimmedValue);
   };
 
   return (
