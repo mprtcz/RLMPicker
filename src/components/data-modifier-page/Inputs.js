@@ -5,6 +5,7 @@ import MultiselectWithDataAdd from "components/MultiselectWithDataAdd";
 import DateInput from "./DateInput";
 import { VideoDataContext } from "contexts/VideosDataContext";
 import { createVideoImageUrl } from "functions/createVideoImageUrl";
+import { Alert, Button, Snackbar } from "@mui/material";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,6 +38,7 @@ const Inputs = (props) => {
     postProcesses,
   } = props;
   const [object, setObject] = useState(inputObject);
+  const [open, setOpen] = React.useState(false);
 
   const handleChange = (newValue, datum, fieldName) => {
     if (postProcesses && postProcesses.has(fieldName)) {
@@ -51,6 +53,37 @@ const Inputs = (props) => {
 
   const areEqual = (val1, val2) => {
     return JSON.stringify(val1) === JSON.stringify(val2);
+  };
+
+  const handleProcessTitles = (title, datum, fieldName) => {
+    console.log("title", title);
+    // split the title with colon
+    const titleArray = title.split(":");
+    if (titleArray.length < 2) {
+      setOpen(true);
+      return;
+    }
+
+    const titles = titleArray[1]
+      .split(/,| and /)
+      .filter((title) => title)
+      .map((title) => title.trim())
+      .map((title) => {
+        return {
+          title,
+        };
+      });
+
+    datum[fieldName] = titles;
+    setObject(Object.assign({}, datum));
+    inputObjectChanged(object);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
   };
 
   return (
@@ -71,6 +104,19 @@ const Inputs = (props) => {
               className={"video-image-small"}
               src={createVideoImageUrl(object[fieldName])}
             ></img>
+          ) : (
+            ""
+          )}
+          {fieldName === "episodeName" && object[fieldName] ? (
+            <Button
+              size="small"
+              color="primary"
+              onClick={() =>
+                handleProcessTitles(object[fieldName], object, "moviesData")
+              }
+            >
+              (R)
+            </Button>
           ) : (
             ""
           )}
@@ -104,6 +150,11 @@ const Inputs = (props) => {
           </span>
         )}
       </VideoDataContext.Consumer>
+      <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="error" sx={{ width: "100%" }}>
+          Can't resolve titties!
+        </Alert>
+      </Snackbar>
     </div>
   );
 };
