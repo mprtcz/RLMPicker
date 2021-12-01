@@ -7,7 +7,8 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
-import makeStyles from '@mui/styles/makeStyles';
+import makeStyles from "@mui/styles/makeStyles";
+import { createVideoImageUrl } from "functions/createVideoImageUrl";
 import React, { useState } from "react";
 
 const useStyles = makeStyles({
@@ -44,12 +45,6 @@ const MainResult = (props) => {
 
   const openVideoUrl = (chosenVideo) => {
     window.open(chosenVideo.url, "_blank");
-  };
-
-  const createVideoImageUrl = (url) => {
-    const parts = url.split("/");
-    const id = parts[parts.length - 1].split("=")[1];
-    return `https://img.youtube.com/vi/${id}/0.jpg`;
   };
 
   const handleShowDetails = () => {

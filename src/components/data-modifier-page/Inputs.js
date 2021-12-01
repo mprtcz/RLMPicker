@@ -4,6 +4,7 @@ import SingleInput from "components/SingleInput";
 import MultiselectWithDataAdd from "components/MultiselectWithDataAdd";
 import DateInput from "./DateInput";
 import { VideoDataContext } from "contexts/VideosDataContext";
+import { createVideoImageUrl } from "functions/createVideoImageUrl";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,6 +16,13 @@ const useStyles = makeStyles((theme) => ({
     "& >*": {
       marginBottom: 8,
     },
+  },
+  inputHorizontal: {
+    display: "flex",
+    flexDirection: "row",
+  },
+  singleInput: {
+    flexGrow: 1,
   },
 }));
 
@@ -31,7 +39,7 @@ const Inputs = (props) => {
   const [object, setObject] = useState(inputObject);
 
   const handleChange = (newValue, datum, fieldName) => {
-    if (postProcesses.has(fieldName)) {
+    if (postProcesses && postProcesses.has(fieldName)) {
       newValue = postProcesses.get(fieldName)(newValue);
     }
     if (areEqual(datum[fieldName], newValue)) return;
@@ -48,14 +56,25 @@ const Inputs = (props) => {
   return (
     <div className={classes.inputs}>
       {(stringFields || []).map((fieldName, singleInputIndex) => (
-        <SingleInput
-          key={singleInputIndex}
-          datum={object}
-          fieldName={fieldName}
-          emitNewValue={(newValue) => {
-            handleChange(newValue, object, fieldName);
-          }}
-        ></SingleInput>
+        <div className={classes.inputHorizontal}>
+          <SingleInput
+            key={singleInputIndex}
+            datum={object}
+            fieldName={fieldName}
+            emitNewValue={(newValue) => {
+              handleChange(newValue, object, fieldName);
+            }}
+          ></SingleInput>
+          {fieldName === "url" && object[fieldName] ? (
+            <img
+              alt=""
+              className={"video-image-small"}
+              src={createVideoImageUrl(object[fieldName])}
+            ></img>
+          ) : (
+            ""
+          )}
+        </div>
       ))}
       {dateFieldName ? (
         <DateInput

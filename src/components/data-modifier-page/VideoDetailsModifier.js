@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "8px",
   },
   jsonRenderContainer: {
-    maxWidth: "35%",
+    width: "35%",
     backgroundColor: "#dcedc8",
     padding: 5,
     border: "1px solid #aabb97",

@@ -10,13 +10,13 @@ const SingleInput = (props) => {
   }, [props]);
 
   const handleChange = (event) => {
-    const trimmedValue = event.target.value.trim();
+    const trimmedValue = event.target.value.replace(/\n$/, "");
     setDatum(trimmedValue);
     emitNewValue(trimmedValue);
   };
 
   return (
-    <div>
+    <div style={{ flexGrow: 1 }}>
       <TextField
         style={{ width: "100%" }}
         value={datum}
