@@ -105,7 +105,6 @@ const VideoDetailsModifier = (props) => {
   };
 
   const onInputObjectChange = (newValue) => {
-    if (areEqual(video, newValue)) return;
     setVideo(newValue);
 
     setHasChanged(true);
@@ -148,44 +147,35 @@ const VideoDetailsModifier = (props) => {
     setVideo(Object.assign({}, video));
   };
 
+  const calculateProgressForFields = (fields, counter) => {
+    for (let fieldName of fields.filter(
+      (fieldName) => !notMandatoryFields.includes(fieldName)
+    )) {
+      counter.total++;
+      if (video[fieldName].length > 0) {
+        counter.result++;
+      }
+    }
+  };
+
   const calculateProgress = (video) => {
-    let total = 0;
-    let result = 0;
-    for (let fieldName of stringFields.filter(
-      (fieldName) => !notMandatoryFields.includes(fieldName)
-    )) {
-      total++;
-      if (video[fieldName].length > 0) {
-        result++;
-      }
-    }
+    const counter = {
+      total: 0,
+      result: 0,
+    };
 
-    for (let fieldName of stringArrays.filter(
-      (fieldName) => !notMandatoryFields.includes(fieldName)
-    )) {
-      total++;
-      if (video[fieldName].length > 0) {
-        result++;
-      }
-    }
-
-    for (let fieldName of objectArrays.filter(
-      (fieldName) => !notMandatoryFields.includes(fieldName)
-    )) {
-      total++;
-      if (video[fieldName].length > 0) {
-        result++;
-      }
-    }
+    calculateProgressForFields(stringFields, counter);
+    calculateProgressForFields(stringArrays, counter);
+    calculateProgressForFields(objectArrays, counter);
 
     if (video[dateFieldName]) {
-      total++;
+      counter.total++;
       if (video[dateFieldName] !== 0) {
-        result++;
+        counter.result++;
       }
     }
 
-    return Math.round((result * 100) / total);
+    return Math.round((counter.result * 100) / counter.total);
   };
 
   return (

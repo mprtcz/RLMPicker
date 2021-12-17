@@ -56,7 +56,6 @@ const Inputs = (props) => {
   };
 
   const handleProcessTitles = (title, datum, fieldName) => {
-    console.log("title", title);
     // split the title with colon
     const titleArray = title.split(":");
     if (titleArray.length < 2) {
