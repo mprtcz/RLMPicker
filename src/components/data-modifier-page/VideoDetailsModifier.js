@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "8px",
   },
   jsonRenderContainer: {
-    maxWidth: "35%",
+    width: "35%",
     backgroundColor: "#dcedc8",
     padding: 5,
     border: "1px solid #aabb97",
@@ -136,6 +136,14 @@ const VideoDetailsModifier = (props) => {
     deleteVideo();
   };
 
+  const handleMovieDelete = (event, moviesArray, index, fieldName) => {
+    event.stopPropagation();
+    const arrayCopy = [...moviesArray];
+    arrayCopy.splice(index, 1);
+    video[fieldName] = arrayCopy;
+    setVideo(Object.assign({}, video));
+  };
+
   return (
     <Accordion onChange={accordionChanged}>
       <AccordionSummary
@@ -208,6 +216,19 @@ const VideoDetailsModifier = (props) => {
                               )
                             }
                           ></Inputs>
+                          <Button
+                            onClick={(event) =>
+                              handleMovieDelete(
+                                event,
+                                video[fieldName],
+                                singleInputIndex,
+                                fieldName
+                              )
+                            }
+                            color="error"
+                          >
+                            DELETE
+                          </Button>
                         </AccordionDetails>
                       </Accordion>
                     )

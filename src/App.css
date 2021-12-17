@@ -42,6 +42,11 @@
   cursor: pointer;
 }
 
+.video-image-small {
+  max-height: 50px;
+  cursor: pointer;
+}
+
 .main-video-image {
   max-width: 400px;
   cursor: pointer;
