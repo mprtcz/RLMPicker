@@ -67,8 +67,12 @@ const useStyles = makeStyles((theme) => ({
   accordionSummary: {
     flexDirection: "row-reverse",
   },
+  progress: {
+    color: "green",
+  },
 }));
 const VideoDetailsModifier = (props) => {
+  const notMandatoryFields = ["guests", "subtitle"];
   const stringFields = ["episodeName", "url", "subtitle", "description"];
   const dateFieldName = "releaseDate";
   const stringArrays = ["members", "guests", "editors"];
@@ -144,6 +148,46 @@ const VideoDetailsModifier = (props) => {
     setVideo(Object.assign({}, video));
   };
 
+  const calculateProgress = (video) => {
+    let total = 0;
+    let result = 0;
+    for (let fieldName of stringFields.filter(
+      (fieldName) => !notMandatoryFields.includes(fieldName)
+    )) {
+      total++;
+      if (video[fieldName].length > 0) {
+        result++;
+      }
+    }
+
+    for (let fieldName of stringArrays.filter(
+      (fieldName) => !notMandatoryFields.includes(fieldName)
+    )) {
+      total++;
+      if (video[fieldName].length > 0) {
+        result++;
+      }
+    }
+
+    for (let fieldName of objectArrays.filter(
+      (fieldName) => !notMandatoryFields.includes(fieldName)
+    )) {
+      total++;
+      if (video[fieldName].length > 0) {
+        result++;
+      }
+    }
+
+    if (video[dateFieldName]) {
+      total++;
+      if (video[dateFieldName] !== 0) {
+        result++;
+      }
+    }
+
+    return Math.round((result * 100) / total);
+  };
+
   return (
     <Accordion onChange={accordionChanged}>
       <AccordionSummary
@@ -165,7 +209,7 @@ const VideoDetailsModifier = (props) => {
           ""
         )}
         <Typography className={classes.title}>
-          {index + 1}. {video.episodeName}
+          {index + 1}. {video.episodeName} [{calculateProgress(video)}%]
         </Typography>
         <Button onClick={(event) => handleDelete(event)} color="error">
           DELETE
