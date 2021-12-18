@@ -1,4 +1,4 @@
-import { DATA } from "./converted-data";
+var json = require("./data-1639826118660.json");
 
 const { Members } = require("./consts");
 // Since I always keep it open - a few snippets to keep in mind:
@@ -34,4 +34,4 @@ export const getNewEmptyVideoObject = () => {
   return JSON.parse(JSON.stringify(EMPTY_VIDEO_OBJECT));
 };
 
-export const data = DATA;
+export const data = json;
