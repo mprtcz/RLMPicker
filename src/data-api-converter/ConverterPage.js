@@ -27,7 +27,6 @@ const ConverterPage = () => {
     const existing = urls.find((url) => url === urlToCheck);
     if (existing) {
       setUsedUrls(usedUrls.filter((url) => url === urlToCheck));
-      console.log("Used urls: ", usedUrls);
       return data.find((item) => item.url === urlToCheck);
     }
     return null;
@@ -48,7 +47,6 @@ const ConverterPage = () => {
 
   const convert = (input) => {
     const inputJson = JSON.parse(input);
-    console.log("inputJson", inputJson[0]);
 
     const sorted = inputJson
       .map((item) => item.items)
@@ -57,13 +55,6 @@ const ConverterPage = () => {
         return a.snippet.publishedAt.value - b.snippet.publishedAt.value;
       });
 
-    console.log(
-      "sorted ",
-      sorted.map((item) =>
-        new Date(item.snippet.publishedAt.value).toISOString()
-      )
-    );
-
     const resultConverted = sorted
       .map((item, index) => {
         item.index = index;
@@ -71,7 +62,6 @@ const ConverterPage = () => {
       })
       .map((item) => {
         let existing = checkIfExists(item);
-        console.log("existing", existing);
         if (existing) {
           return existing;
         }

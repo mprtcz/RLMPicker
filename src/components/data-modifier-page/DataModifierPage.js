@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import makeStyles from "@mui/styles/makeStyles";
 import { getNewEmptyVideoObject } from "data/new-data";
 import { Button } from "@mui/material";
@@ -40,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
 const DataModifierPage = () => {
   const videoData = useVideoData();
   let inputFile = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(-1);
 
   const classes = useStyles();
 
@@ -83,6 +84,12 @@ const DataModifierPage = () => {
     inputFile.current.click();
   };
 
+  const changeActiveIndex = (index, isExpanded) => {
+    if (isExpanded) {
+      setActiveIndex(index);
+    }
+  };
+
   const onDeleteVideoCLicked = (index) => {
     const arrayCopy = [...videoData.videos];
     arrayCopy.splice(index, 1);
@@ -116,8 +123,12 @@ const DataModifierPage = () => {
                 key={index}
                 datum={datum}
                 index={index}
+                activeIndex={activeIndex}
                 onVideoSave={(video) => onVideoSave(video, index)}
                 videosData={videoData.videos}
+                activeIndexChanged={(index, isExpanded) =>
+                  changeActiveIndex(index, isExpanded)
+                }
                 deleteVideo={() => onDeleteVideoCLicked(index)}
               ></VideoDetailsModifier>
             ))}

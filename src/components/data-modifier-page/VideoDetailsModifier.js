@@ -82,7 +82,14 @@ const VideoDetailsModifier = (props) => {
     ["url", (input) => input.split("&list=")[0]],
   ]);
 
-  const { datum, onVideoSave, deleteVideo, index } = props;
+  const {
+    datum,
+    onVideoSave,
+    deleteVideo,
+    index,
+    activeIndexChanged,
+    activeIndex,
+  } = props;
   const classes = useStyles();
 
   const [video, setVideo] = useState(datum);
@@ -127,6 +134,7 @@ const VideoDetailsModifier = (props) => {
   };
 
   const accordionChanged = (event, isExpanded) => {
+    activeIndexChanged(index, isExpanded);
     setIsExpanded(isExpanded);
   };
 
@@ -179,7 +187,10 @@ const VideoDetailsModifier = (props) => {
   };
 
   return (
-    <Accordion onChange={accordionChanged}>
+    <Accordion
+      expanded={activeIndex === index && isExpanded}
+      onChange={accordionChanged}
+    >
       <AccordionSummary
         className={classes.accordionSummary}
         expandIcon={<ExpandMoreIcon />}
