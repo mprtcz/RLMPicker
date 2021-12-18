@@ -95,6 +95,7 @@ const VideoDetailsModifier = (props) => {
   const [video, setVideo] = useState(datum);
   const [hasChanged, setHasChanged] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [expandedMovieIndex, setExpandedMovieIndex] = useState(-1);
 
   useEffect(() => {
     if (props.datum !== video) {
@@ -238,7 +239,11 @@ const VideoDetailsModifier = (props) => {
                 <div key={index}>
                   {(video[fieldName] || []).map(
                     (movieInfo, singleInputIndex) => (
-                      <Accordion key={singleInputIndex}>
+                      <Accordion
+                        key={singleInputIndex}
+                        expanded={expandedMovieIndex === singleInputIndex}
+                        onChange={() => setExpandedMovieIndex(singleInputIndex)}
+                      >
                         <AccordionSummary
                           expandIcon={<ExpandMoreIcon />}
                           aria-controls="panel1a-content"

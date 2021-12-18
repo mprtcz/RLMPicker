@@ -99,6 +99,7 @@ const Inputs = (props) => {
           ></SingleInput>
           {fieldName === "url" && object[fieldName] ? (
             <img
+              key={singleInputIndex + "image"}
               alt=""
               className={"video-image-small"}
               src={createVideoImageUrl(object[fieldName])}
@@ -108,6 +109,7 @@ const Inputs = (props) => {
           )}
           {fieldName === "episodeName" && object[fieldName] ? (
             <Button
+              key={singleInputIndex + "button"}
               size="small"
               color="primary"
               onClick={() =>
@@ -123,6 +125,7 @@ const Inputs = (props) => {
       ))}
       {dateFieldName ? (
         <DateInput
+          key={dateFieldName}
           datum={object}
           fieldName={dateFieldName}
           emitNewValue={(newValue) => {
