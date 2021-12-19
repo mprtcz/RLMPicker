@@ -37,6 +37,7 @@ const Page = () => {
 
   return (
     <div className="mainDiv">
+      {process.env.XD}
       <div className={classes.content}>
         <Filters
           episodesData={videoData.videos}
