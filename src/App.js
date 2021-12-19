@@ -22,16 +22,25 @@ function App() {
               <Route exact path="/picker">
                 <Page />
               </Route>
+              <Route exact path="/RLMPicker/picker">
+                <Page />
+              </Route>
               <Route exact path="/RLMPicker">
                 <Page />
               </Route>
               <Route exact path="/modify-data">
                 <DataModifierPage />
               </Route>
+              <Route exact path="/RLMPicker/modify-data">
+                <DataModifierPage />
+              </Route>
               <Route exact path="/converter">
                 <ConverterPage />
               </Route>
               <Route exact path="/anal">
+                <AnalysisPage />
+              </Route>
+              <Route exact path="/RLMPicker/anal">
                 <AnalysisPage />
               </Route>
             </Switch>
