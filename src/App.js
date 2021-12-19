@@ -11,6 +11,7 @@ import ReactGA from "react-ga";
 
 function App() {
   ReactGA.initialize("G-4CQVS4F0D6");
+  console.log("ReactGA.ga()", ReactGA.ga());
 
   return (
     <VideoDataProvider>
