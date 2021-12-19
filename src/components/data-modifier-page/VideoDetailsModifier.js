@@ -88,12 +88,17 @@ const VideoDetailsModifier = (props) => {
   const [video, setVideo] = useState(datum);
   const [hasChanged, setHasChanged] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     if (props.datum !== video) {
       setVideo(props.datum);
     }
   }, [props.datum]);
+
+  useEffect(() => {
+    setProgress(calculateProgress(video));
+  }, [video]);
 
   const handleSave = (event) => {
     event.preventDefault();
@@ -178,6 +183,18 @@ const VideoDetailsModifier = (props) => {
     return Math.round((counter.result * 100) / counter.total);
   };
 
+  const calculatePercentageStyle = (progress) => {
+    let color = "grey";
+    if (progress < 60) color = "#ffebee";
+    if (progress >= 60 && progress < 85) color = "#fff8e1";
+    if (progress >= 85) color = "#e8f5e9";
+    return {
+      background: `linear-gradient(to right, ${color} ${progress}%, white ${
+        100 - progress
+      }%)`,
+    };
+  };
+
   return (
     <Accordion onChange={accordionChanged}>
       <AccordionSummary
@@ -185,6 +202,7 @@ const VideoDetailsModifier = (props) => {
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1a-content"
         id="panel1a-header"
+        style={calculatePercentageStyle(progress)}
       >
         {hasChanged ? (
           <Button
@@ -199,7 +217,7 @@ const VideoDetailsModifier = (props) => {
           ""
         )}
         <Typography className={classes.title}>
-          {index + 1}. {video.episodeName} [{calculateProgress(video)}%]
+          {index + 1}. {video.episodeName} [{progress}%]
         </Typography>
         <Button onClick={(event) => handleDelete(event)} color="error">
           DELETE
