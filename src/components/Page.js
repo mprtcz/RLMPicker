@@ -3,6 +3,7 @@ import { useVideoData } from "contexts/VideosDataContext";
 import React, { useEffect, useState } from "react";
 import Filters from "./Filters";
 import Results from "./Results";
+import ReactGA from "react-ga";
 
 const useStyles = makeStyles({
   content: {
@@ -24,6 +25,7 @@ const useStyles = makeStyles({
 const omg = JSON.stringify(process.env);
 
 const Page = () => {
+  ReactGA.pageview("/picker");
   const classes = useStyles();
 
   const videoData = useVideoData();
