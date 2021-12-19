@@ -7,9 +7,11 @@ import AddIcon from "@mui/icons-material/Add";
 import {
   Accordion,
   Card,
+  Box,
   AccordionDetails,
   AccordionSummary,
   Typography,
+  Paper,
 } from "@mui/material";
 import Inputs from "./Inputs";
 import { getNewEmptyMovieObject } from "data/new-data";
@@ -20,19 +22,13 @@ const useStyles = makeStyles((theme) => ({
   },
   accordionDetails: {},
   formContainer: {
-    width: "60%",
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-between",
-    "&> *": {
-      width: "48%",
-    },
   },
   card: {
     padding: "8px",
   },
   jsonRenderContainer: {
-    width: "35%",
     backgroundColor: "#dcedc8",
     padding: 5,
     border: "1px solid #aabb97",
@@ -238,82 +234,131 @@ const VideoDetailsModifier = (props) => {
 
       <AccordionDetails className={classes.accordionDetails}>
         {isExpanded ? (
-          <div className={classes.detailsContainer}>
-            <div className={classes.jsonRenderContainer}>
+          <Paper
+            className={classes.detailsContainer}
+            sx={{
+              flexDirection: { xl: "row", xs: "column" },
+            }}
+          >
+            <Box
+              className={classes.jsonRenderContainer}
+              sx={{
+                width: { xs: "100%", xl: "35%" },
+              }}
+            >
               <pre>{JSON.stringify(video, null, 2)}</pre>
-            </div>
-            <form className={classes.formContainer}>
-              <Card className={classes.card}>
-                <Inputs
-                  inputObject={video}
-                  stringFields={stringFields}
-                  stringArrays={stringArrays}
-                  dateFieldName={dateFieldName}
-                  postProcesses={fieldNameToPostProcess}
-                  inputObjectChanged={(output) => onInputObjectChange(output)}
-                ></Inputs>
-              </Card>
-              {(objectArrays || []).map((fieldName, index) => (
-                <div key={index}>
-                  {(video[fieldName] || []).map(
-                    (movieInfo, singleInputIndex) => (
-                      <Accordion
-                        key={singleInputIndex}
-                        expanded={expandedMovieIndex === singleInputIndex}
-                        onChange={() => setExpandedMovieIndex(singleInputIndex)}
-                      >
-                        <AccordionSummary
-                          expandIcon={<ExpandMoreIcon />}
-                          aria-controls="panel1a-content"
-                          id="panel1a-header"
-                        >
-                          <Typography>
-                            {singleInputIndex + 1}. {movieInfo.title}
-                          </Typography>
-                        </AccordionSummary>
-                        <AccordionDetails className={classes.accordionDetails}>
-                          <Inputs
-                            inputObject={movieInfo}
-                            stringFields={movieInfoStringFields}
-                            inputObjectChanged={(output) =>
-                              onNestedInputObjectChange(
-                                output,
-                                video,
-                                singleInputIndex,
-                                fieldName
-                              )
+            </Box>
+            <form style={{ width: "100%" }}>
+              <Box
+                className={classes.formContainer}
+                sx={{
+                  display: "flex",
+                  width: {
+                    xs: "100%",
+                  },
+                  flexDirection: {
+                    xl: "row",
+                    xs: "column",
+                  },
+                }}
+              >
+                <Box
+                  style={{ marginTop: "6px" }}
+                  sx={{
+                    width: {
+                      xs: "100%",
+                      xl: "60%",
+                    },
+                    marginRight: {
+                      xs: "0px",
+                      xl: "2%",
+                    },
+                  }}
+                >
+                  <Inputs
+                    inputObject={video}
+                    stringFields={stringFields}
+                    stringArrays={stringArrays}
+                    dateFieldName={dateFieldName}
+                    postProcesses={fieldNameToPostProcess}
+                    inputObjectChanged={(output) => onInputObjectChange(output)}
+                  ></Inputs>{" "}
+                </Box>
+                <Box
+                  sx={{
+                    width: {
+                      xs: "100%",
+                      xl: "40%",
+                    },
+                  }}
+                >
+                  {(objectArrays || []).map((fieldName, index) => (
+                    <div key={index} style={{ width: "100%" }}>
+                      {(video[fieldName] || []).map(
+                        (movieInfo, singleInputIndex) => (
+                          <Accordion
+                            key={singleInputIndex}
+                            expanded={expandedMovieIndex === singleInputIndex}
+                            onChange={() =>
+                              setExpandedMovieIndex(singleInputIndex)
                             }
-                          ></Inputs>
-                          <Button
-                            onClick={(event) =>
-                              handleMovieDelete(
-                                event,
-                                video[fieldName],
-                                singleInputIndex,
-                                fieldName
-                              )
-                            }
-                            color="error"
                           >
-                            DELETE
-                          </Button>
-                        </AccordionDetails>
-                      </Accordion>
-                    )
-                  )}
-                  <Button
-                    size="small"
-                    color="primary"
-                    onClick={() => handleAddMovie(fieldName)}
-                    className={classes.addMovieButton}
-                  >
-                    Add Movie
-                    <AddIcon className={classes.buttonIcon}></AddIcon>
-                  </Button>
-                </div>
-              ))}
+                            <AccordionSummary
+                              expandIcon={<ExpandMoreIcon />}
+                              aria-controls="panel1a-content"
+                              id="panel1a-header"
+                            >
+                              <Typography>
+                                {singleInputIndex + 1}. {movieInfo.title}
+                              </Typography>
+                            </AccordionSummary>
+                            <AccordionDetails
+                              className={classes.accordionDetails}
+                            >
+                              <Inputs
+                                inputObject={movieInfo}
+                                stringFields={movieInfoStringFields}
+                                inputObjectChanged={(output) =>
+                                  onNestedInputObjectChange(
+                                    output,
+                                    video,
+                                    singleInputIndex,
+                                    fieldName
+                                  )
+                                }
+                              ></Inputs>
+                              <Button
+                                onClick={(event) =>
+                                  handleMovieDelete(
+                                    event,
+                                    video[fieldName],
+                                    singleInputIndex,
+                                    fieldName
+                                  )
+                                }
+                                color="error"
+                              >
+                                DELETE
+                              </Button>
+                            </AccordionDetails>
+                          </Accordion>
+                        )
+                      )}
+                      <Button
+                        size="small"
+                        color="primary"
+                        onClick={() => handleAddMovie(fieldName)}
+                        className={classes.addMovieButton}
+                      >
+                        Add Movie
+                        <AddIcon className={classes.buttonIcon}></AddIcon>
+                      </Button>
+                    </div>
+                  ))}
+                </Box>
+              </Box>
             </form>
-          </div>
+          </Paper>
         ) : (
           ""
         )}
