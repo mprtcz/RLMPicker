@@ -14,7 +14,7 @@ const injectGA = () => {
   }
   gtag("js", new Date());
 
-  gtag("config", "YOUR_TRACKING_ID");
+  gtag("config", "G-4CQVS4F0D6");
 };
 
 ReactDOM.render(
