@@ -4,6 +4,7 @@ import {
   Chart,
   Legend,
   PieSeries,
+  Title,
   Tooltip,
 } from "@devexpress/dx-react-chart-material-ui";
 import { HoverState, EventTracker } from "@devexpress/dx-react-chart";
@@ -40,8 +41,8 @@ const AnalysisPage = () => {
         {() => (
           <span>
             <Paper>
-              <h1>Core member by appearance</h1>
               <Chart data={getPieChartData()}>
+                <Title text="Member appearance by count" />
                 <PieSeries
                   valueField="count"
                   argumentField="name"
