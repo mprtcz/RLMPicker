@@ -23,7 +23,7 @@ ReactDOM.render(
     {/* Global site tag (gtag.js) - Google Analytics */}
     <script
       async
-      src="https://www.googletagmanager.com/gtag/js?id=YOUR_TRACKING_ID"
+      src="https://www.googletagmanager.com/gtag/js?id=G-4CQVS4F0D6"
     />
     <script>{injectGA()}</script>
   </React.StrictMode>,
