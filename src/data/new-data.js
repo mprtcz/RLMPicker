@@ -1,4 +1,5 @@
-var json = require("./data-1639826118660.json");
+// @ts-ignore
+var json = require("./data-1639914279550.json");
 
 const { Members } = require("./consts");
 // Since I always keep it open - a few snippets to keep in mind:
