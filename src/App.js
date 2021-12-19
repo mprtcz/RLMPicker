@@ -37,6 +37,9 @@ function App() {
               <Route exact path="/converter">
                 <ConverterPage />
               </Route>
+              <Route exact path="/RLMPicker/converter">
+                <ConverterPage />
+              </Route>
               <Route exact path="/anal">
                 <AnalysisPage />
               </Route>
