@@ -7,8 +7,11 @@ import DataModifierPage from "components/data-modifier-page/DataModifierPage";
 import ConverterPage from "data-api-converter/ConverterPage";
 import { VideoDataProvider } from "contexts/VideosDataContext";
 import AnalysisPage from "components/analysis/AnalysisPage";
+import ReactGA from "react-ga";
 
 function App() {
+  ReactGA.initialize("G-4CQVS4F0D6");
+
   return (
     <VideoDataProvider>
       <Router>
