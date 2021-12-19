@@ -84,7 +84,6 @@ const ConverterPage = () => {
 
   return (
     <div className={classes.root}>
-      {process.env.XD}
       <Button onClick={handleConvert}>Convert</Button>
       <div>
         <TextField
