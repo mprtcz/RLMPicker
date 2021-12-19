@@ -7,6 +7,7 @@ import GetAppIcon from "@mui/icons-material/GetApp";
 import PublishIcon from "@mui/icons-material/Publish";
 import AddIcon from "@mui/icons-material/Add";
 import { useVideoData, VideoDataContext } from "contexts/VideosDataContext";
+import ReactGA from "react-ga";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const DataModifierPage = () => {
+  ReactGA.pageview("/picker");
   const videoData = useVideoData();
   let inputFile = useRef(null);
   const [activeIndex, setActiveIndex] = useState(-1);

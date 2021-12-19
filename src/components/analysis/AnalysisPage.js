@@ -2,6 +2,7 @@ import React from "react";
 import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import makeStyles from "@mui/styles/makeStyles";
+import ReactGA from "react-ga";
 
 import {
   Chart,
@@ -25,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const AnalysisPage = () => {
+  ReactGA.pageview("/analysis");
   const classes = useStyles();
   const videoData = useVideoData();
 
