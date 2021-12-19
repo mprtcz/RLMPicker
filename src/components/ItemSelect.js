@@ -77,6 +77,7 @@ const ItemSelect = (props) => {
     <div className="item-select">
       <InputLabel id="demo-simple-select-label">Select Movie</InputLabel>
       <Select
+        variant="standard"
         className="single-select"
         open={open}
         onClose={handleClose}
