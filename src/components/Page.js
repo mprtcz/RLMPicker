@@ -32,8 +32,6 @@ const Page = () => {
   const [resultsEpsodes, setResultsEpsodes] = useState([]);
 
   useEffect(() => {
-    console.log("process env XD", process.env.XD);
-
     setResultsEpsodes(
       videoData.videos.filter((episode) => results.includes(episode))
     );
@@ -50,9 +48,6 @@ const Page = () => {
           <Results results={resultsEpsodes} />
         </div>
       </div>
-      Env: {process.env.XD}
-      <br />
-      Env2: {omg}
     </div>
   );
 };
