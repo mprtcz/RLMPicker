@@ -6,6 +6,7 @@ import Navbar from "components/Navbar";
 import DataModifierPage from "components/data-modifier-page/DataModifierPage";
 import ConverterPage from "data-api-converter/ConverterPage";
 import { VideoDataProvider } from "contexts/VideosDataContext";
+import AnalysisPage from "components/analysis/AnalysisPage";
 
 function App() {
   return (
@@ -29,6 +30,9 @@ function App() {
               </Route>
               <Route exact path="/converter">
                 <ConverterPage />
+              </Route>
+              <Route exact path="/anal">
+                <AnalysisPage />
               </Route>
             </Switch>
           </div>
