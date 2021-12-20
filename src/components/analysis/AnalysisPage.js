@@ -2,6 +2,7 @@ import React from "react";
 import Box from "@material-ui/core/Box";
 import makeStyles from "@mui/styles/makeStyles";
 import ReactGA from "react-ga";
+import * as colorsMaterial from "@material-ui/core/colors";
 import {
   BarChart,
   Bar,
@@ -35,6 +36,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 const AnalysisPage = () => {
   ReactGA.pageview("/analysis");
+  const randomColor = (shade) => {
+    const colors = Object.keys(colorsMaterial);
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    return colorsMaterial[color][shade];
+  };
   const classes = useStyles();
   const videoData = useVideoData();
 
@@ -110,7 +116,7 @@ const AnalysisPage = () => {
                   <h2>{chart.title}</h2>
                   <ResponsiveContainer height={300} width={"99%"}>
                     <BarChart data={chart.data} height={50} width={50}>
-                      <Bar dataKey="count" fill="#8884d8" />
+                      <Bar dataKey="count" fill={randomColor(300)} />
                       <Tooltip />
                       <XAxis dataKey="name" />
                       <YAxis />
@@ -139,8 +145,8 @@ const AnalysisPage = () => {
                   <Area
                     type="monotone"
                     dataKey="count"
-                    stroke="#8884d8"
-                    fill="#8884d8"
+                    stroke={randomColor(300)}
+                    fill={randomColor(300)}
                   />
                 </AreaChart>
               </ResponsiveContainer>
