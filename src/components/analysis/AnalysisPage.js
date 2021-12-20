@@ -1,13 +1,14 @@
 import React from "react";
-import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import makeStyles from "@mui/styles/makeStyles";
 import ReactGA from "react-ga";
+import { Animation } from "@devexpress/dx-react-chart";
 
 import {
   Chart,
-  Legend,
-  PieSeries,
+  BarSeries,
+  ArgumentAxis,
+  ValueAxis,
   Title,
   Tooltip,
 } from "@devexpress/dx-react-chart-material-ui";
@@ -19,10 +20,8 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     width: "100%",
     display: "flex",
-    "& >*": {
-      width: "50%",
-      maxHeight: "300px",
-    },
+    flexDirection: "column",
+    "& >*": {},
   },
 }));
 const AnalysisPage = () => {
@@ -52,49 +51,36 @@ const AnalysisPage = () => {
       .sort((a, b) => b.count - a.count);
   };
 
-  const getGuestsByAppearanceData = () => {
-    const result = videoData.videos
-      .map((videoData) => videoData.guests)
-      .flat()
-      .reduce((map, word) => {
-        if (word in map) {
-          map[word]++;
-        } else {
-          map[word] = 1;
-        }
-        return map;
-      }, {});
-
-    return Object.keys(result)
-      .map((key) => {
-        const name = key;
-        const count = result[key];
-        return { name, count };
-      })
-      .sort((a, b) => b.count - a.count);
-  };
+  const charts = [
+    {
+      title: "Member appearance by count",
+      data: getFieldByAppearanceData("members"),
+    },
+    {
+      title: "Guest appearance by count",
+      data: getFieldByAppearanceData("guests"),
+    },
+  ];
 
   return (
     <VideoDataContext.Consumer>
       {() => (
         <span>
           <Box className={classes.container}>
-            <Chart data={getFieldByAppearanceData("members")}>
-              <Title text="Member appearance by count" />
-              <PieSeries valueField="count" argumentField="name" name="name" />
-              <Legend />
-              <EventTracker />
-              <HoverState />
-              <Tooltip />
-            </Chart>
-            <Chart data={getFieldByAppearanceData("guests")}>
-              <Title text="Guest appearance by count" />
-              <PieSeries valueField="count" argumentField="name" name="name" />
-              <Legend />
-              <EventTracker />
-              <HoverState />
-              <Tooltip />
-            </Chart>
+            {charts.map((chart, index) => {
+              return (
+                <Chart data={chart.data}>
+                  <Title text={chart.title} />
+                  <ArgumentAxis />
+                  <ValueAxis />
+                  <BarSeries valueField="count" argumentField="name" />
+                  <Animation />
+                  <EventTracker />
+                  <HoverState />
+                  <Tooltip />
+                </Chart>
+              );
+            })}
           </Box>
         </span>
       )}
