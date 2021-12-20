@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import makeStyles from "@mui/styles/makeStyles";
 import { Box, IconButton, Menu, MenuItem } from "@mui/material";
@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     lineHeight: "40px",
     flex: 1,
-    justifyContent: "flex-start",
+    justifyContent: "flex-end",
   },
   link: {
     whiteSpace: "nowrap",
@@ -53,6 +53,25 @@ const useStyles = makeStyles((theme) => ({
 }));
 const Navbar = () => {
   const classes = useStyles();
+  const [isMobile, setIsMobile] = useState(false);
+
+  //choose the screen size
+  const handleResize = () => {
+    console.log("window.innerWidth", window.innerWidth);
+
+    if (window.innerWidth < 720) {
+      setIsMobile(true);
+    } else {
+      setIsMobile(false);
+    }
+  };
+
+  // create an event listener
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+  });
+  // create an event listener
+  useEffect(() => handleResize(), []);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -62,85 +81,78 @@ const Navbar = () => {
   const handleClose = () => setAnchorEl(null);
   return (
     <nav className={classes.navbar}>
-      <Box
-        className={classes.menuButton}
-        sx={{
-          visibility: { xs: "visible", md: "hidden" },
-        }}
-      >
-        <IconButton
-          color="secondary"
-          aria-label="Add new value"
-          size="large"
-          onClick={handleClick}
-        >
-          <MoreVertIcon />
-        </IconButton>
-
-        <Menu
-          id="basic-menu"
-          anchorEl={anchorEl}
-          open={open}
-          onClose={handleClose}
-          MenuListProps={{
-            "aria-labelledby": "basic-button",
-          }}
-        >
-          <Link to="picker" className={classes.menuLink}>
-            <MenuItem className={classes.menuItem} onClick={handleClose}>
-              <AutoAwesomeIcon style={{ paddingRight: 3 }} />
-              Picker
-            </MenuItem>
-          </Link>
-          <Link className={classes.menuLink} to="/modify-data">
-            <MenuItem className={classes.menuItem} onClick={handleClose}>
-              <EditIcon style={{ paddingRight: 3 }} />
-              Modify Data
-            </MenuItem>
-          </Link>
-          <Link className={classes.menuLink} to="/anal">
-            <MenuItem className={classes.menuItem} onClick={handleClose}>
-              <BarChartIcon style={{ paddingRight: 3 }} />
-              Analysis
-            </MenuItem>
-          </Link>
-        </Menu>
-      </Box>
-
+      <div className={classes.flexBalancer}></div>
       <h1>Don't worry, I'll pick it for you</h1>
 
-      <Box
-        className={classes.links}
-        sx={{
-          visibility: { xs: "hidden", md: "visible" },
-        }}
-      >
-        <Link to="picker" className={classes.link}>
-          Picker
-        </Link>
-        <Link
-          className={classes.link}
-          to="/modify-data"
-          style={{
-            color: "white",
-            backgroundColor: "#f1356d",
-            borderRadius: "8px",
-          }}
-        >
-          Modify Data
-        </Link>
-        <Link
-          className={classes.link}
-          to="/anal"
-          style={{
-            color: "white",
-            backgroundColor: "#66bb6a",
-            borderRadius: "8px",
-          }}
-        >
-          Analysis
-        </Link>
-      </Box>
+      {isMobile ? (
+        <Box className={classes.menuButton}>
+          <IconButton
+            color="secondary"
+            aria-label="Add new value"
+            size="large"
+            onClick={handleClick}
+          >
+            <MoreVertIcon />
+          </IconButton>
+
+          <Menu
+            id="basic-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            MenuListProps={{
+              "aria-labelledby": "basic-button",
+            }}
+          >
+            <Link to="picker" className={classes.menuLink}>
+              <MenuItem className={classes.menuItem} onClick={handleClose}>
+                <AutoAwesomeIcon style={{ paddingRight: 3 }} />
+                Picker
+              </MenuItem>
+            </Link>
+            <Link className={classes.menuLink} to="/modify-data">
+              <MenuItem className={classes.menuItem} onClick={handleClose}>
+                <EditIcon style={{ paddingRight: 3 }} />
+                Modify Data
+              </MenuItem>
+            </Link>
+            <Link className={classes.menuLink} to="/anal">
+              <MenuItem className={classes.menuItem} onClick={handleClose}>
+                <BarChartIcon style={{ paddingRight: 3 }} />
+                Analysis
+              </MenuItem>
+            </Link>
+          </Menu>
+        </Box>
+      ) : (
+        <Box className={classes.links}>
+          <Link to="picker" className={classes.link}>
+            Picker
+          </Link>
+          <Link
+            className={classes.link}
+            to="/modify-data"
+            style={{
+              color: "white",
+              backgroundColor: "#f1356d",
+              borderRadius: "8px",
+            }}
+          >
+            Modify Data
+          </Link>
+          <Link
+            className={classes.link}
+            to="/anal"
+            style={{
+              color: "white",
+              backgroundColor: "#66bb6a",
+              borderRadius: "8px",
+            }}
+          >
+            Analysis
+          </Link>
+        </Box>
+      )}
     </nav>
   );
 };
