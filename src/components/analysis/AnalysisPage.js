@@ -2,18 +2,20 @@ import React from "react";
 import Box from "@material-ui/core/Box";
 import makeStyles from "@mui/styles/makeStyles";
 import ReactGA from "react-ga";
-import { Animation } from "@devexpress/dx-react-chart";
-
 import {
-  Chart,
-  BarSeries,
-  ArgumentAxis,
-  ValueAxis,
-  Title,
+  BarChart,
+  Bar,
+  Cell,
+  XAxis,
+  YAxis,
+  CartesianGrid,
   Tooltip,
-} from "@devexpress/dx-react-chart-material-ui";
-import { HoverState, EventTracker } from "@devexpress/dx-react-chart";
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
+
 import { useVideoData, VideoDataContext } from "contexts/VideosDataContext";
+import { Paper } from "@mui/material";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -21,7 +23,13 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     display: "flex",
     flexDirection: "column",
+    alignItems: "center",
     "& >*": {},
+  },
+  chartPaper: {
+    width: "95%",
+    height: "100%",
+    margin: "5px",
   },
 }));
 const AnalysisPage = () => {
@@ -69,16 +77,17 @@ const AnalysisPage = () => {
           <Box className={classes.container}>
             {charts.map((chart, index) => {
               return (
-                <Chart data={chart.data}>
-                  <Title text={chart.title} />
-                  <ArgumentAxis />
-                  <ValueAxis />
-                  <BarSeries valueField="count" argumentField="name" />
-                  <Animation />
-                  <EventTracker />
-                  <HoverState />
-                  <Tooltip />
-                </Chart>
+                <Paper key={index} className={classes.chartPaper}>
+                  <ResponsiveContainer height={300} width={"99%"}>
+                    <BarChart data={chart.data} height={50} width={50}>
+                      <Bar dataKey="count" fill="#8884d8" />
+                      <Tooltip />
+                      <XAxis dataKey="name" />
+                      <YAxis />
+                      <Legend />
+                    </BarChart>
+                  </ResponsiveContainer>
+                </Paper>
               );
             })}
           </Box>
