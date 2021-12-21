@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import makeStyles from "@mui/styles/makeStyles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Button } from "@mui/material";
+import * as colorsMaterial from "@material-ui/core/colors";
 
 import AddIcon from "@mui/icons-material/Add";
 import {
@@ -188,15 +189,19 @@ const VideoDetailsModifier = (props) => {
     return Math.round((counter.result * 100) / counter.total);
   };
 
-  const calculatePercentageStyle = (progress) => {
-    let color = "grey";
-    if (progress < 60) color = "#ffebee";
-    if (progress >= 60 && progress < 85) color = "#fff8e1";
-    if (progress >= 85) color = "#e8f5e9";
+  const getColor = (progress) => {
+    const shade = 200;
+
+    let color = colorsMaterial["grey"][shade];
+    if (progress < 60) color = colorsMaterial["red"][shade];
+    if (progress >= 60 && progress < 85) color = colorsMaterial["amber"][shade];
+    if (progress >= 85) color = colorsMaterial["lightGreen"][shade];
     return {
       background: `linear-gradient(to right, ${color} ${progress}%, white ${
         100 - progress
       }%)`,
+      height: "3px",
+      width: "100%",
     };
   };
 
@@ -210,26 +215,32 @@ const VideoDetailsModifier = (props) => {
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1a-content"
         id="panel1a-header"
-        style={calculatePercentageStyle(progress)}
       >
-        {hasChanged ? (
-          <Button
-            color="primary"
-            variant="contained"
-            onClick={handleSave}
-            className={classes.button}
-          >
-            Save changes
-          </Button>
-        ) : (
-          ""
-        )}
-        <Typography className={classes.title}>
-          {index + 1}. {video.episodeName} [{progress}%]
-        </Typography>
-        <Button onClick={(event) => handleDelete(event)} color="error">
-          DELETE
-        </Button>
+        <div
+          style={{ display: "flex", flexDirection: "column", width: "100%" }}
+        >
+          <div style={{ width: "100%", display: "flex" }}>
+            {hasChanged ? (
+              <Button
+                color="primary"
+                variant="contained"
+                onClick={handleSave}
+                className={classes.button}
+              >
+                Save changes
+              </Button>
+            ) : (
+              ""
+            )}
+            <Typography className={classes.title}>
+              {index + 1}. {video.episodeName} [{progress}%]
+            </Typography>
+            <Button onClick={(event) => handleDelete(event)} color="error">
+              DELETE
+            </Button>
+          </div>
+          <div style={getColor(progress)}></div>
+        </div>
       </AccordionSummary>
 
       <AccordionDetails className={classes.accordionDetails}>
