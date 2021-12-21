@@ -217,7 +217,7 @@ const VideoDetailsModifier = (props) => {
           />
           <Box
             sx={{
-              top: 3,
+              top: 4,
               left: 3,
               bottom: 0,
               right: 0,

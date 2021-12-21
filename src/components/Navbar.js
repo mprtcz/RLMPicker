@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import makeStyles from "@mui/styles/makeStyles";
-import { Box, IconButton, Menu, MenuItem } from "@mui/material";
+import { Box, Button, IconButton, Menu, MenuItem } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import EditIcon from "@mui/icons-material/Edit";
@@ -127,29 +127,27 @@ const Navbar = () => {
       ) : (
         <Box className={classes.links}>
           <Link to="/RLMPicker/picker" className={classes.link}>
-            Picker
+            <Button variant="outlined">Picker</Button>
           </Link>
           <Link
             className={classes.link}
             to="/RLMPicker/modify-data"
             style={{
-              color: "white",
-              backgroundColor: "#f1356d",
-              borderRadius: "8px",
+              textDecoration: "none",
             }}
           >
-            Modify Data
+            <Button variant="contained">Modify Data</Button>
           </Link>
           <Link
             className={classes.link}
             to="/RLMPicker/anal"
             style={{
-              color: "white",
-              backgroundColor: "#66bb6a",
-              borderRadius: "8px",
+              textDecoration: "none",
             }}
           >
-            Analysis
+            <Button variant="contained" color="secondary">
+              Analysis
+            </Button>
           </Link>
         </Box>
       )}
