@@ -3,6 +3,7 @@ import makeStyles from "@mui/styles/makeStyles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Button } from "@mui/material";
 import * as colorsMaterial from "@material-ui/core/colors";
+import CircularProgress from "@mui/material/CircularProgress";
 
 import AddIcon from "@mui/icons-material/Add";
 import {
@@ -189,20 +190,12 @@ const VideoDetailsModifier = (props) => {
     return Math.round((counter.result * 100) / counter.total);
   };
 
-  const getColor = (progress) => {
-    const shade = 200;
-
+  const getColor = (progress, shade) => {
     let color = colorsMaterial["grey"][shade];
-    if (progress < 60) color = colorsMaterial["red"][shade];
-    if (progress >= 60 && progress < 85) color = colorsMaterial["amber"][shade];
-    if (progress >= 85) color = colorsMaterial["lightGreen"][shade];
-    return {
-      background: `linear-gradient(to right, ${color} ${progress}%, white ${
-        100 - progress
-      }%)`,
-      height: "3px",
-      width: "100%",
-    };
+    if (progress < 60) return colorsMaterial["red"][shade];
+    if (progress >= 60 && progress < 85) return colorsMaterial["amber"][shade];
+    if (progress >= 85) return colorsMaterial["lightGreen"][shade];
+    return color;
   };
 
   return (
@@ -216,31 +209,51 @@ const VideoDetailsModifier = (props) => {
         aria-controls="panel1a-content"
         id="panel1a-header"
       >
-        <div
-          style={{ display: "flex", flexDirection: "column", width: "100%" }}
-        >
-          <div style={{ width: "100%", display: "flex" }}>
-            {hasChanged ? (
-              <Button
-                color="primary"
-                variant="contained"
-                onClick={handleSave}
-                className={classes.button}
-              >
-                Save changes
-              </Button>
-            ) : (
-              ""
-            )}
-            <Typography className={classes.title}>
-              {index + 1}. {video.episodeName} [{progress}%]
+        <Box sx={{ position: "relative", display: "inline-flex" }}>
+          <CircularProgress
+            variant="determinate"
+            {...{ value: progress }}
+            style={{ color: getColor(progress, 400) }}
+          />
+          <Box
+            sx={{
+              top: 3,
+              left: 3,
+              bottom: 0,
+              right: 0,
+              position: "absolute",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Typography
+              variant="caption"
+              component="div"
+              color="text.secondary"
+            >
+              {`${Math.round(progress)}%`}
             </Typography>
-            <Button onClick={(event) => handleDelete(event)} color="error">
-              DELETE
-            </Button>
-          </div>
-          <div style={getColor(progress)}></div>
-        </div>
+          </Box>
+        </Box>
+        {hasChanged ? (
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={handleSave}
+            className={classes.button}
+          >
+            Save changes
+          </Button>
+        ) : (
+          ""
+        )}
+        <Typography className={classes.title}>
+          {index + 1}. {video.episodeName}
+        </Typography>
+        <Button onClick={(event) => handleDelete(event)} color="error">
+          DELETE
+        </Button>
       </AccordionSummary>
 
       <AccordionDetails className={classes.accordionDetails}>
