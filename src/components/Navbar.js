@@ -104,19 +104,19 @@ const Navbar = () => {
               "aria-labelledby": "basic-button",
             }}
           >
-            <Link to="picker" className={classes.menuLink}>
+            <Link to="/RLMPicker/picker" className={classes.menuLink}>
               <MenuItem className={classes.menuItem} onClick={handleClose}>
                 <AutoAwesomeIcon style={{ paddingRight: 3 }} />
                 Picker
               </MenuItem>
             </Link>
-            <Link className={classes.menuLink} to="/modify-data">
+            <Link className={classes.menuLink} to="/RLMPicker/modify-data">
               <MenuItem className={classes.menuItem} onClick={handleClose}>
                 <EditIcon style={{ paddingRight: 3 }} />
                 Modify Data
               </MenuItem>
             </Link>
-            <Link className={classes.menuLink} to="/anal">
+            <Link className={classes.menuLink} to="/RLMPicker/anal">
               <MenuItem className={classes.menuItem} onClick={handleClose}>
                 <BarChartIcon style={{ paddingRight: 3 }} />
                 Analysis
@@ -126,12 +126,12 @@ const Navbar = () => {
         </Box>
       ) : (
         <Box className={classes.links}>
-          <Link to="picker" className={classes.link}>
+          <Link to="/RLMPicker/picker" className={classes.link}>
             Picker
           </Link>
           <Link
             className={classes.link}
-            to="/modify-data"
+            to="/RLMPicker/modify-data"
             style={{
               color: "white",
               backgroundColor: "#f1356d",
@@ -142,7 +142,7 @@ const Navbar = () => {
           </Link>
           <Link
             className={classes.link}
-            to="/anal"
+            to="/RLMPicker/anal"
             style={{
               color: "white",
               backgroundColor: "#66bb6a",
