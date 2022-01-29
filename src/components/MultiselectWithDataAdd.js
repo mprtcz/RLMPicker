@@ -76,7 +76,7 @@ const MultiselectWithDataAdd = (props) => {
 
   useEffect(() => {
     setSelectableValues(
-      [...selectableValues, ...selectedOptions].filter(onlyUnique)
+      [...selectableValues, ...(selectedOptions || [])].filter(onlyUnique)
     );
     // TODO figure out how to prevent this propagation on first run
     emitValuesChange(selectedOptions);
@@ -98,7 +98,7 @@ const MultiselectWithDataAdd = (props) => {
 
   const handleAdd = () => {
     const newValue = textFieldValue;
-    setSelectedOptions([...selectedOptions, newValue]);
+    setSelectedOptions([...(selectedOptions || []), newValue]);
     setTextFieldValue("");
     setShowAdd(false);
   };

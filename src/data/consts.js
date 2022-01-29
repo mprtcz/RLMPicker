@@ -13,7 +13,10 @@ export const Members = {
 
 export const SubSeries = {
   DEFAULT: "",
+  BATTLE_OF_THE_GENRES: "Battle of the Genres",
+  BEST_OF_THE_WORST: "Best Of The Worst",
   WHEEL_OF_THE_WORST: "Wheel of the worst",
   WHEEL_OF_MISFORTUNE: "Wheel of misfortune",
+  PLINKETTO: "Plinketto",
+  CHRISTMAS_EPISODE: "Christmas Episode",
 };
-

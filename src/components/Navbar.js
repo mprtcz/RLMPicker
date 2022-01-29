@@ -126,24 +126,20 @@ const Navbar = () => {
         </Box>
       ) : (
         <Box className={classes.links}>
-          <Link to="/RLMPicker/picker" className={classes.link}>
+          <Link to="/RLMPicker/picker" style={{ textDecoration: "none" }}>
             <Button variant="outlined">Picker</Button>
           </Link>
           <Link
             className={classes.link}
             to="/RLMPicker/modify-data"
-            style={{
-              textDecoration: "none",
-            }}
+            style={{ textDecoration: "none" }}
           >
             <Button variant="contained">Modify Data</Button>
           </Link>
           <Link
             className={classes.link}
             to="/RLMPicker/anal"
-            style={{
-              textDecoration: "none",
-            }}
+            style={{ textDecoration: "none" }}
           >
             <Button variant="contained" color="secondary">
               Analysis

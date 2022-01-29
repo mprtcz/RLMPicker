@@ -73,7 +73,7 @@ const VideoDetailsModifier = (props) => {
   const notMandatoryFields = ["guests", "subtitle"];
   const stringFields = ["episodeName", "url", "subtitle", "description"];
   const dateFieldName = "releaseDate";
-  const stringArrays = ["members", "guests", "editors"];
+  const stringArrays = ["members", "guests", "editors", "subseries"];
   const objectArrays = ["moviesData"];
   const movieInfoStringFields = ["title", "year", "technology", "studio"];
   const fieldNameToPostProcess = new Map([
@@ -164,7 +164,7 @@ const VideoDetailsModifier = (props) => {
       (fieldName) => !notMandatoryFields.includes(fieldName)
     )) {
       counter.total++;
-      if (video[fieldName].length > 0) {
+      if ((video[fieldName] || {}).length > 0) {
         counter.result++;
       }
     }

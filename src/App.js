@@ -1,12 +1,7 @@
 import React, { useEffect } from "react";
 import Page from "components/Page";
 import "./App.css";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  withRouter,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "components/Navbar";
 import DataModifierPage from "components/data-modifier-page/DataModifierPage";
 import ConverterPage from "data-api-converter/ConverterPage";
