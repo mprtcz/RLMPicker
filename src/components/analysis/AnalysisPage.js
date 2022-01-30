@@ -90,9 +90,61 @@ const AnalysisPage = () => {
     return toReturn;
   };
 
+  const getAllSeriesNames = () => {
+    return videoData.videos
+      .map((video) => video.subseries)
+      .flat()
+      .filter((name) => !!name)
+      .filter((value, index, self) => {
+        return self.indexOf(value) === index;
+      });
+  };
+
+  const getVideoCountForYearBySeries = () => {
+    const result = videoData.videos
+      .flat()
+      .filter((video) => video.subseries?.length)
+      .map((video) => {
+        return video.subseries.map((subseries) => {
+          return {
+            year: new Date(video.releaseDate).getFullYear(),
+            series: subseries,
+          };
+        });
+      })
+      .flat();
+
+    const array = [];
+    for (const year in result) {
+      const item = result[year];
+      const existing = array.find((r) => r.year === item.year);
+      const seriesToAdd = item.series;
+      if (existing) {
+        if (Object.keys(existing).includes(seriesToAdd)) {
+          existing[seriesToAdd]++;
+        } else {
+          existing[seriesToAdd] = 1;
+        }
+      } else {
+        array.push({
+          year: item.year,
+          [seriesToAdd]: 1,
+        });
+      }
+    }
+    return array;
+  };
+
   const getVideoCountByYear = getVideoCountForYear((video) => {
     return new Date(video.releaseDate).getFullYear();
   }).sort((a, b) => a.name - b.name);
+
+  const getAreaInfo = (item) => {
+    return {
+      series: item,
+      color: randomColor(400),
+    };
+  };
 
   const charts = [
     {
@@ -148,6 +200,42 @@ const AnalysisPage = () => {
                     stroke={randomColor(300)}
                     fill={randomColor(300)}
                   />
+                </AreaChart>
+              </ResponsiveContainer>
+            </Paper>
+
+            <Paper className={classes.chartPaper}>
+              <h2>Series by year</h2>
+              <ResponsiveContainer height={300} width={"99%"}>
+                <AreaChart
+                  width={500}
+                  height={400}
+                  data={getVideoCountForYearBySeries()}
+                  margin={{
+                    top: 10,
+                    right: 30,
+                    left: 0,
+                    bottom: 0,
+                  }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="year" />
+                  <YAxis />
+                  <Tooltip />
+                  {getAllSeriesNames()
+                    .map((item) => getAreaInfo(item))
+                    .map((areaData) => {
+                      return (
+                        <Area
+                          type="linear"
+                          dataKey={areaData.series}
+                          stackId="1"
+                          stroke={areaData.color}
+                          fill={areaData.color}
+                        />
+                      );
+                    })}
+                  <Legend />
                 </AreaChart>
               </ResponsiveContainer>
             </Paper>
